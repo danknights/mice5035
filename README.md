@@ -39,7 +39,7 @@ Copy this command, paste it into your terminal, and press "return"
 
 Run this additional command. It's OK to get two "File exists" errors:
 ```bash
-    mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/matplotlib/matplotlibrc
+mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/matplotlib/matplotlibrc
 ```
 
 ### Run a test script

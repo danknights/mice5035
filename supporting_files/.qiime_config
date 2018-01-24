@@ -1,0 +1,25 @@
+# qiime_config
+# WARNING: DO NOT EDIT OR DELETE Qiime/qiime/support_files/qiime_config
+# To overwrite defaults, copy this file to $HOME/.qiime_config or a full path
+# specified by $QIIME_CONFIG_FP and edit that copy of the file.
+# Find details on this file at http://qiime.org/install/qiime_config.html
+
+cluster_jobs_fp	  /home/biol3004/tward/Software/start_parallel_jobs_torque_MSI.py
+python_exe_fp   /soft/qiime/1.8.0/python-2.7.3-release/bin/python
+working_dir     /home/biol3004/tward/QIIME_Workspace
+blastmat_dir    /soft/qiime/1.8.0/blast-2.2.22-release/data
+blastall_fp     /soft/qiime/1.8.0/blast-2.2.22-release/bin/blastall
+pynast_template_alignment_fp    /soft/qiime/1.8.0/core_set_aligned.fasta.imputed
+pynast_template_alignment_blastdb
+template_alignment_lanemask_fp  /soft/qiime/1.8.0/lanemask_in_1s_and_0s
+jobs_to_start   6
+seconds_to_sleep        60
+qiime_scripts_dir       /soft/qiime/1.8.0/qiime-1.8.0-release/bin
+temp_dir        /tmp/
+denoiser_min_per_core   50
+cloud_environment       False
+topiaryexplorer_project_dir
+torque_queue    lab
+assign_taxonomy_reference_seqs_fp       /home/mice5992/shared/97_otus.fasta
+assign_taxonomy_id_to_taxonomy_fp       /home/mice5992/shared/97_otu_taxonomy.txt
+sc_queue        all.q

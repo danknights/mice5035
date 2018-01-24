@@ -9,17 +9,18 @@ To set up your MSI account for using QIIME, please follow these steps:
 ### Connect to MSI with SSH
 
 **Windows users**
-
-  * Install "Putty" by downloading this file and running the installer:
+  * Visual instructions can be found here: http://gabedev.com/3004/software_guide/ (Step 3)
+  * Alternatively, follow these instructions:
+    * Install "Putty" by downloading this file and running the installer:
 https://the.earth.li/~sgtatham/putty/latest/x86/putty-0.67-installer.msi
-  * Open the Putty application
-  * Under the "Hostname" field, enter `login.msi.umn.edu`
-  * Under "Port", enter `22`
-  * For "Connection type" click "SSH"
-  * Click "Open"
-  * Enter your MSI username and password
-  * You should now be connected.
-  * Visual instructions can be found here: http://www.fastcomet.com/tutorials/getting-started/putty#connect and here: http://gabedev.com/3004/software_guide/ (Step 3)
+    * Open the Putty application
+    * Under the "Hostname" field, enter `login.msi.umn.edu`
+    * Under "Port", enter `22`
+    * For "Connection type" click "SSH"
+    * Click "Open"
+    * Enter your MSI username and password
+    * You should now be connected.
+
 
 **Mac/Linux users**
 

@@ -73,3 +73,8 @@ If those don't work, see more options here: https://it.umn.edu/downloads-guides
 ### Install R on your computer
 Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.com/3004/software_guide/
 
+### Clone/download the course code repository to your home directory
+```
+cd
+git clone https://github.com/danknights/mice5035-2018.git repo
+```

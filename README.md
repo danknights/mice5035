@@ -34,7 +34,7 @@ https://the.earth.li/~sgtatham/putty/latest/x86/putty-0.67-installer.msi
 ### Run the setup command
 Copy this command, paste it into your terminal, and press "return"
 
-`wget -O setup.sh z.umn.edu/5992setup && chmod +x setup.sh && ./setup.sh`
+`wget -O setup.sh z.umn.edu/5035setup && chmod +x setup.sh && ./setup.sh`
 
 Run this additional command. It's OK to get two "File exists" errors:
 ```bash
@@ -68,3 +68,7 @@ Windows users see step 7 in Gabe's instructions here: http://gabedev.com/3004/so
 Mac users try the "Native Client for MAC using IPSec" instructions here: https://it.umn.edu/downloads-guides-install-ipsec-native
 
 If those don't work, see more options here: https://it.umn.edu/downloads-guides
+
+### Install R on your computer
+Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.com/3004/software_guide/
+

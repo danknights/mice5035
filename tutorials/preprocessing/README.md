@@ -1,4 +1,4 @@
-## MiCE 5992 Tutorial: QIIME Core diversity analyses
+## MiCE 5035 Tutorial: Preprocessing
 
 ### Background
 In this tutorial we will learn how to use the command line to

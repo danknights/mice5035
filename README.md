@@ -1,25 +1,30 @@
-# MiCE 5992 Getting Started Guide
+# MiCE 5035 Getting Started Guide
 
 To set up your MSI account for using QIIME, please follow these steps:
 
 ### Get your login info for MSI
 
   * Click on this link: https://www.msi.umn.edu/user-agreement. After you agree to the user agreement you will get your login information. 
+  * If you already have MSI access, log in using your normal username and password, but then change into the course directory with this command:
+  ```bash
+  cd /home/mice5035/<your username>
+  ```
 
 ### Connect to MSI with SSH
 
 **Windows users**
-
-  * Install "Putty" by downloading this file and running the installer:
+  * Visual instructions can be found here: http://gabedev.com/3004/software_guide/ (Step 3)
+  * Alternatively, follow these instructions:
+    * Install "Putty" by downloading this file and running the installer:
 https://the.earth.li/~sgtatham/putty/latest/x86/putty-0.67-installer.msi
-  * Open the Putty application
-  * Under the "Hostname" field, enter `login.msi.umn.edu`
-  * Under "Port", enter `22`
-  * For "Connection type" click "SSH"
-  * Click "Open"
-  * Enter your MSI username and password
-  * You should now be connected.
-  * Visual instructions can be found here: http://www.fastcomet.com/tutorials/getting-started/putty#connect and here: http://gabedev.com/3004/software_guide/ (Step 3)
+    * Open the Putty application
+    * Under the "Hostname" field, enter `login.msi.umn.edu`
+    * Under "Port", enter `22`
+    * For "Connection type" click "SSH"
+    * Click "Open"
+    * Enter your MSI username and password
+    * You should now be connected.
+
 
 **Mac/Linux users**
 
@@ -34,11 +39,11 @@ https://the.earth.li/~sgtatham/putty/latest/x86/putty-0.67-installer.msi
 ### Run the setup command
 Copy this command, paste it into your terminal, and press "return"
 
-`wget -O setup.sh z.umn.edu/5992setup && chmod +x setup.sh && ./setup.sh`
+`wget -O setup.sh z.umn.edu/5035setup && chmod +x setup.sh && ./setup.sh`
 
 Run this additional command. It's OK to get two "File exists" errors:
 ```bash
-    mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/matplotlib/matplotlibrc
+mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/matplotlib/matplotlibrc
 ```
 
 ### Run a test script
@@ -68,3 +73,12 @@ Windows users see step 7 in Gabe's instructions here: http://gabedev.com/3004/so
 Mac users try the "Native Client for MAC using IPSec" instructions here: https://it.umn.edu/downloads-guides-install-ipsec-native
 
 If those don't work, see more options here: https://it.umn.edu/downloads-guides
+
+### Install R on your computer
+Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.com/3004/software_guide/
+
+### Clone/download the course code repository to your home directory
+```
+cd
+git clone https://github.com/danknights/mice5035-2018.git repo
+```

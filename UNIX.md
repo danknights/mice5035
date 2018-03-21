@@ -8,12 +8,12 @@ These are some of the more commonly used UNIX commands.
 cd
 ```
 
-# list the contents of this directory
+### list the contents of this directory
 ```
 ls
 ```
 
-# print out the full “path” to this directory. Also called the "absolute path".
+### print out the full “path” to this directory. Also called the "absolute path".
 ```
 pwd
 ```
@@ -23,32 +23,32 @@ pwd
 mkdir bin
 ```
 
-# make sure it got created
+### make sure it got created
 ```
 ls
 ```
 
-# change into the “bin” directory
+### change into the “bin” directory
 ```
 cd bin
 ```
 
-# change back to the "parent" directory (the one just above this in the file system)
+### change back to the "parent" directory (the one just above this in the file system)
 ```
 cd ..
 ```
 
-# unzip a file
+### unzip a file
 ```
 unzip zippedfile.zip
 ```
 
-# remove a file
+### remove a file
 ```
 rm unwantedfile.txt
 ```
 
-# remove a directory
+### remove a directory
 ```
 rm -r unwanteddirectory
 ```
@@ -58,22 +58,22 @@ rm -r unwanteddirectory
 head myfile.txt
 ```
 
-# view the first 3 columns (fields) of a file, assuming tab delimiters
+### view the first 3 columns (fields) of a file, assuming tab delimiters
 ```
 cut -f 1-3 myfile.txt
 ```
 
-# view the first 3 columns (fields) of a file, assuming comma delimiters
+### view the first 3 columns (fields) of a file, assuming comma delimiters
 ```
 cut -f 1-3 -d "," myfile.txt
 ```
 
-# view the first 10 lines of the first 3 columns
+### view the first 10 lines of the first 3 columns
 ```
 cut -f 1-3 -d myfile.txt | head 
 ```
 
-# scroll through the first 3 columns of the whole file (enter `q` to exit)
+### scroll through the first 3 columns of the whole file (enter `q` to exit)
 ```
 cut -f 1-10 -d "," myfile.txt | less
 ```
@@ -83,62 +83,62 @@ cut -f 1-10 -d "," myfile.txt | less
 less myfile.txt
 ```
 
-# list the contents of another directory inside the current directory
+### list the contents of another directory inside the current directory
 ```
 ls somedirectory
 ```
 
-# list the contents of another directory inside the parent directory
+### list the contents of another directory inside the parent directory
 ```
 ls ../someotherdirectory
 ```
 
-# make a copy of a file
+### make a copy of a file
 ```
 cp file1.txt file2.txt
 ```
 
-# make a copy of a directory
+### make a copy of a directory
 ```
 cp -r directory1 directory2
 ```
 
-# mv (rename) a file
+### mv (rename) a file
 ```
 mv oldname.txt newname.txt
 ```
 
-# see how large files are
+### see how large files are
 ```
 du -hs *
 ```
 
-# edit a file (exit with ctrl-x)
+### edit a file (exit with ctrl-x)
 ```
 nano somefile.txt
 ```
 
-# kill a command that is running
+### kill a command that is running
 ```
 <ctrl>-c
 ```
 
-# start a "screen" session
+### start a "screen" session
 ```
 screen
 ```
 
-# terminate/log out from a commandline session or screen session
+### terminate/log out from a commandline session or screen session
 ```
 <ctrl>-d
 ```
 
-# temporarily detach from a screen session (don't hold ctrl after the `a`)
+### temporarily detach from a screen session (don't hold ctrl after the `a`)
 ```
 <ctrl>-a d
 ```
 
-# re-attach to a screen session
+### re-attach to a screen session
 ```
 screen -r
 ```

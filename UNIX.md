@@ -18,7 +18,7 @@ ls
 pwd
 ```
 
-# make a new directory (aka folder) for your programs (binaries)
+### make a new directory (aka folder) for your programs (binaries)
 ```
 mkdir bin
 ```
@@ -53,7 +53,7 @@ rm unwantedfile.txt
 rm -r unwanteddirectory
 ```
 
-# view the first 10 lines of a file
+### view the first 10 lines of a file
 ```
 head myfile.txt
 ```
@@ -78,7 +78,7 @@ cut -f 1-3 -d myfile.txt | head
 cut -f 1-10 -d "," myfile.txt | less
 ```
 
-# scroll through the whole file
+### scroll through the whole file
 ```
 less myfile.txt
 ```

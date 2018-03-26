@@ -48,6 +48,12 @@ unzip zippedfile.zip
 rm unwantedfile.txt
 ```
 
+### list the number of lines, words, and characters in a file:
+```
+wc filename.txt
+```
+
+
 ### remove a directory
 ```
 rm -r unwanteddirectory

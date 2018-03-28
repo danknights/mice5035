@@ -104,6 +104,11 @@ ls ../someotherdirectory
 cp file1.txt file2.txt
 ```
 
+### copy a file to the current directory (`.` means current directory)
+```
+cp /full/path/to/other/file.txt .
+```
+
 ### make a copy of a directory
 ```
 cp -r directory1 directory2

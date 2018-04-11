@@ -1,0 +1,53 @@
+#SampleID	Subject	BodySite	Day	Gender	Pet owner?	Pet type?	Like spicy food?	Medications?	Use Mouthwash?	Floss daily?	Diet type	Lactose intolerant?	Exercise level?	Stool frequency	Average sleep (hours per night)	Stress level	Nail-biting?
+PMA01	1	Stool	1	Female	No	None	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Not daily	5	4	No
+PMA02	1	Stool	2	Female	No	None	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Not daily	5	4	No
+PMA03	1	Stool	8	Female	No	None	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Not daily	5	4	No
+PMA04	1	Saliva	8	Female	No	None	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Not daily	5	4	No
+PMA05	2	Stool	1	Female	Yes	Cat	Yes	no	No	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	4	No
+PMA06	2	Stool	2	Female	Yes	Cat	Yes	no	No	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	4	No
+PMA07	2	Stool	8	Female	Yes	Cat	Yes	no	No	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	4	No
+PMA08	2	Saliva	8	Female	Yes	Cat	Yes	no	No	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	4	No
+PMA09	3	Stool	1	Male	Yes	Cat	Yes	None	Yes	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	3	No
+PMA10	3	Stool	2	Male	Yes	Cat	Yes	None	Yes	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	3	No
+PMA11	3	Stool	8	Male	Yes	Cat	Yes	None	Yes	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	3	No
+PMA12	3	Saliva	8	Male	Yes	Cat	Yes	None	Yes	No	Omnivore	No	Moderate (3-5 days/week)	Daily	7	3	No
+PMA13	4	Stool	1	Female	No	None	Yes	none	No	Yes	Omnivore	Yes	Low (0-2 days/week)	Daily	6	5	No
+PMA14	4	Stool	2	Female	No	None	Yes	none	No	Yes	Omnivore	Yes	Low (0-2 days/week)	Daily	6	5	No
+PMA15	4	Stool	8	Female	No	None	Yes	none	No	Yes	Omnivore	Yes	Low (0-2 days/week)	Daily	6	5	No
+PMA16	4	Saliva	8	Female	No	None	Yes	none	No	Yes	Omnivore	Yes	Low (0-2 days/week)	Daily	6	5	No
+PMA17	5	Stool	1	Male	Yes	Dog	Yes	none	Yes	No	Omnivore	Yes	High (daily)	Daily	6	4	Yes
+PMA18	5	Stool	2	Male	Yes	Dog	Yes	none	Yes	No	Omnivore	Yes	High (daily)	Daily	6	4	Yes
+PMA19	5	Stool	8	Male	Yes	Dog	Yes	none	Yes	No	Omnivore	Yes	High (daily)	Daily	6	4	Yes
+PMA20	5	Saliva	8	Male	Yes	Dog	Yes	none	Yes	No	Omnivore	Yes	High (daily)	Daily	6	4	Yes
+PMA21	6	Stool	1	Female	Yes	Dog	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	3	Yes
+PMA22	6	Stool	2	Female	Yes	Dog	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	3	Yes
+PMA23	6	Stool	8	Female	Yes	Dog	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	3	Yes
+PMA24	6	Saliva	8	Female	Yes	Dog	No	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	3	Yes
+PMA25	7	Stool	1	Male	Yes	Dog	Yes	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	2	No
+PMA26	7	Stool	2	Male	Yes	Dog	Yes	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	2	No
+PMA27	7	Stool	8	Male	Yes	Dog	Yes	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	2	No
+PMA28	7	Saliva	8	Male	Yes	Dog	Yes	None	No	No	Omnivore	No	Low (0-2 days/week)	Daily	7	2	No
+PMA29	8	Stool	1	Male	Yes	Dog	Yes	Advil	No	Yes	Omnivore	No	Low (0-2 days/week)	Daily	7.5	3	Yes
+PMA30	8	Stool	2	Male	Yes	Dog	Yes	Advil	No	Yes	Omnivore	No	Low (0-2 days/week)	Daily	7.5	3	Yes
+PMA31	8	Stool	8	Male	Yes	Dog	Yes	Advil	No	Yes	Omnivore	No	Low (0-2 days/week)	Daily	7.5	3	Yes
+PMA32	8	Saliva	8	Male	Yes	Dog	Yes	Advil	No	Yes	Omnivore	No	Low (0-2 days/week)	Daily	7.5	3	Yes
+PMA33	9	Stool	1	Male	No	None	Yes	None	No	Yes	Omnivore	No	Moderate (3-5 days/week)	Not daily	7	4	No
+PMA34	9	Stool	2	Male	No	None	Yes	None	No	Yes	Omnivore	No	Moderate (3-5 days/week)	Not daily	7	4	No
+PMA35	9	Stool	8	Male	No	None	Yes	None	No	Yes	Omnivore	No	Moderate (3-5 days/week)	Not daily	7	4	No
+PMA36	9	Saliva	8	Male	No	None	Yes	None	No	Yes	Omnivore	No	Moderate (3-5 days/week)	Not daily	7	4	No
+PMA37	10	Stool	1	Female	Yes	Both	Yes	none	No	No	Omnivore	No	Low (0-2 days/week)	Daily	8	4	No
+PMA38	10	Stool	2	Female	Yes	Both	Yes	none	No	No	Omnivore	No	Low (0-2 days/week)	Daily	8	4	No
+PMA39	10	Stool	8	Female	Yes	Both	Yes	none	No	No	Omnivore	No	Low (0-2 days/week)	Daily	8	4	No
+PMA40	10	Saliva	8	Female	Yes	Both	Yes	none	No	No	Omnivore	No	Low (0-2 days/week)	Daily	8	4	No
+PMA41	11	Stool	1	Female	Yes	Dog	Yes	Nyquil_acetaminophen_ibuprofen	No	Yes	Omnivore	Yes	Moderate (3-5 days/week)	Not daily	6	5	No
+PMA42	11	Stool	2	Female	Yes	Dog	Yes	Nyquil_acetaminophen_ibuprofen	No	Yes	Omnivore	Yes	Moderate (3-5 days/week)	Not daily	6	5	No
+PMA43	11	Stool	8	Female	Yes	Dog	Yes	Amoxicillin	No	Yes	Omnivore	Yes	Moderate (3-5 days/week)	Not daily	6	5	No
+PMA44	11	Saliva	8	Female	Yes	Dog	Yes	Amoxicillin	No	Yes	Omnivore	Yes	Moderate (3-5 days/week)	Not daily	6	5	No
+PMA45	12	Stool	1	Male	Yes	Dog	Yes	Multivitamin 	No	No	Omnivore	No	High (daily)	Daily	7	3	Yes
+PMA46	12	Stool	2	Male	Yes	Dog	Yes	Multivitamin 	No	No	Omnivore	No	High (daily)	Daily	7	3	Yes
+PMA47	12	Stool	8	Male	Yes	Dog	Yes	Multivitamin 	No	No	Omnivore	No	High (daily)	Daily	7	3	Yes
+PMA48	12	Saliva	8	Male	Yes	Dog	Yes	Multivitamin 	No	No	Omnivore	No	High (daily)	Daily	7	3	Yes
+PMA49	13	Stool	1	Female	Yes	Dog	Yes	No	No	No	Omnivore	No	Moderate (3-5 days/week)	Not daily	9	3	Yes
+PMA50	13	Stool	2	Female	Yes	Dog	Yes	No	No	No	Omnivore	No	Moderate (3-5 days/week)	Not daily	9	3	Yes
+PMA51	13	Stool	8	Female	Yes	Dog	Yes	No	No	No	Omnivore	No	Moderate (3-5 days/week)	Not daily	9	3	Yes
+PMA52	13	Saliva	8	Female	Yes	Dog	Yes	No	No	No	Omnivore	No	Moderate (3-5 days/week)	Not daily	9	3	Yes

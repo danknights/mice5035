@@ -3,6 +3,9 @@
 
 These are some of the more commonly used UNIX commands.
 
+### Get a terminal running in your browser by visiting “JS Linux”:
+[JS Linux](https://bellard.org/jslinux/vm.html?url=https://bellard.org/jslinux/buildroot-x86.cfg)
+
 ### change into your “home” directory
 ```
 cd

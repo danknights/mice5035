@@ -49,7 +49,7 @@ Run the following commands on the MSI terminal:
 
 `isub`
 
-`module load qiime/1.8.0`
+`module load qiime/1.9.1`
 
 `print_qiime_config.py`
 
@@ -78,5 +78,6 @@ Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.
 ### Clone/download the course code repository to your home directory
 ```
 cd
-git clone https://github.com/danknights/mice5035.git repo
+git clone https://github.com/danknights/mice5035.git
 ```
+

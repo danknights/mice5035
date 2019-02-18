@@ -45,9 +45,9 @@ This is a short tutorial on how to get started on your individual project. Pleas
     git pull
  ```
 
- Then change directories into the new folder `project1`. This is where you will do all of your work on MSI for this project:
+ Then change directories into the new folder `individual_project/part2`. This is where you will do all of your work on MSI for this project:
  ```bash
-    cd project1
+    cd individual_project/part2
  ```
 
  List the contents of the directory. At first it has only this README.md file:

@@ -1,7 +1,7 @@
 ## MiCE 5992 Project 1
 
 ### Background
-This is a short tutorial on how to get started on your individual project. Please show all work, including all commands run, by entering them into the [Individual Project Word document](https://drive.google.com/open?id=0B_29m5gMd9XBVGJDOVdYT1htRWs).
+This is a short tutorial on how to get started on your individual project. Please show all work, including all commands run, by entering them into the [Individual Project part 2 worksheet](https://docs.google.com/document/d/14bqCKIMScBCUOqWTcrd2xEoX9UGQZpCJRdo0r3grK8U/edit?usp=sharing).
 
 ### Setup
 1. Connect to MSI  
@@ -26,7 +26,7 @@ This is a short tutorial on how to get started on your individual project. Pleas
 3. Go to the course repo directory
  Change to your personal course directory if you are not already there:
  ```bash
-    /home/mice5992/<yourusername>
+    /home/mice5035/<yourusername>
  ```
 
  List the contents of your home directory, if you are curious what's in there:
@@ -36,7 +36,7 @@ This is a short tutorial on how to get started on your individual project. Pleas
 
  Then change directories into the course repository folder that you downloaded:
  ```bash
-    cd mice5992-2017
+    cd mice5035
  ```
 
 4. Update the directory 
@@ -54,7 +54,7 @@ This is a short tutorial on how to get started on your individual project. Pleas
  ```bash
     ls
  ```
-5. Locate your personal project files. The mapping files for the project are in `/home/mice5992/shared/project1/<your username>_map.txt`; the DNA sequences are in `/home/mice5992/shared/project1/seqs_subset.fna`
+5. Locate your personal project files. The mapping files for the project are in the folder `mapping_files`; the DNA sequences are in `seqs_subset.fna.zip`
 
 ### Analysis
 4. Now proceed with the core diversity analyses and a/b testing using the tools you

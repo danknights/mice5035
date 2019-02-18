@@ -56,6 +56,12 @@ Run the following commands on the MSI terminal:
 
 This should print out some details about your QIIME configuration and should not return any errors. If so, you are now ready to use MSI and QIIME.
 
+### Clone/download the course code repository to your home directory
+```
+cd
+git clone https://github.com/danknights/mice5035.git
+```
+
 ### Install Filezilla to transfer files to/from MSI
 Download and install Filezilla from here: https://filezilla-project.org/download.php?type=client
 
@@ -72,12 +78,7 @@ Mac users try the "Native Client for MAC using IPSec" instructions here: https:/
 
 If those don't work, see more options here: https://it.umn.edu/downloads-guides
 
-### Install R on your computer
+### Install R and R studio on your computer 
 Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.com/3004/software_guide/
-
-### Clone/download the course code repository to your home directory
-```
-cd
-git clone https://github.com/danknights/mice5035.git
-```
+Instructions for installing RStudio can be found here: https://www.rstudio.com/
 

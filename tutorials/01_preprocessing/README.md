@@ -83,5 +83,77 @@ cd
 
 # test that shi7.py runs
 shi7.py
+
+# Now change into the course repo directory
+cd
+cd mice5035
+
+# change into the preprocessing tutorials directory
+cd tutorials/01_preprocessing
+
+# We will run SHI7 on several test data sets
+# locations of the 3 example data sets are here:
+/home/knightsd/dknights/mice5035/public/preprocessing/16s/fastq/
+/home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq/
+/home/knightsd/dknights/mice5035/public/preprocessing/wgs-single/fastq/
+
+# run shi7.py on the 16S data
+# located here:  /home/knightsd/dknights/mice5035/public/preprocessing/16s/fastq
+shi7.py -i /home/knightsd/dknights/mice5035/public/preprocessing/16s/fastq -o 16s-output
+
+# list contents of output folder
+ls 16s-output/
+
+# print top 10 lines of output FASTA (.fna) file
+head 16s-output/combined_seqs.fna
+
+# examine the output log file
+# scross down with arrows or space bar
+# what can you learn about the data? 
+less 16s-output/shi7.log
+
+# exit from the "less" program by typing "q" !
+q
+
+# now run shi7 on the paired-end wgs data, allowing stitching
+# located here:  /home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq
+shi7.py -i /home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-output
+
+# list contents of output folder
+ls wgs-paired-output
+
+# print top 10 lines of output FASTA (.fna) file as above
+
+# examine the log file as above
+# What fraction of reads was stitched in each sample?
+# How many bases were trimmed from the left and right of each read?
+
+# Now run paired-end wgs data, no stitching (use a different output folder!)
+time shi7.py -i /home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
+
+# How long were the average reads in each sample?
+# How many bases were trimmed from the left and right of each read?
+
+# Additional exercises
+# Read the SHI7 help output (shi7.py -h) for instructions
+
+# 1. paired-end wgs data, no stitching, produce separate fasta files
+# print out the first sequence of the first R1 fasta file. How long is it?
+
+# 2. paired-end wgs data, no stitching, don't convert to fasta, produce separate fastq files
+# print out the first sequence of the first R1 fastq file. How long is it?
+
+# 3. run on single-end wgs data (need any special flags?)
+# How long were the average reads in each sample?
+# How many bases were trimmed from the left and right of each read?
+
+# 4. run on single-end wgs data and do not trim by quality
+# How long were the average reads in each sample?
+# How many bases were trimmed from the left and right of each read?
+
+# 5. run on single-end wgs data and decrease the minimum quality score for trimming
+# How long were the average reads in each sample?
+# How many bases were trimmed from the left and right of each read?
+
 ```
 

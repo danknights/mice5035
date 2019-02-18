@@ -78,6 +78,6 @@ Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.
 ### Clone/download the course code repository to your home directory
 ```
 cd
-git clone https://github.com/danknights/mice5035.git repo
+git clone https://github.com/danknights/mice5035.git
 ```
 

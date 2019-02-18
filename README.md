@@ -39,8 +39,6 @@ https://the.earth.li/~sgtatham/putty/latest/x86/putty-0.67-installer.msi
 ### Run the setup command
 Copy this command, paste it into your terminal, and press "return"
 
-`wget -O setup.sh z.umn.edu/5035setup && chmod +x setup.sh && ./setup.sh`
-
 Run this additional command. It's OK to get two "File exists" errors:
 ```bash
 mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/matplotlib/matplotlibrc
@@ -80,5 +78,5 @@ Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.
 ### Clone/download the course code repository to your home directory
 ```
 cd
-git clone https://github.com/danknights/mice5035-2018.git repo
+git clone https://github.com/danknights/mice5035.git repo
 ```

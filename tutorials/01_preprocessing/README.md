@@ -44,14 +44,14 @@ cd bin
 
 ```bash
 # download the shi7 installation folder
-wget https://github.com/knights-lab/shi7/releases/download/v0.9.7/shi7_0.9.7_linux_release.zip
+wget https://github.com/knights-lab/shi7/releases/download/v0.9.9/shi7_0.9.9_linux_release.zip
 
 # unzip it (but don’t type the whole filename; type “shi” then hit <tab> to auto-complete.
 # always do that!)
-unzip shi7_0.9.7_linux_release.zip
+unzip shi7_0.9.9_linux_release.zip
 
 # remove the unneeded zip file
-rm shi7_0.9.7_linux_release.zip
+rm shi7_0.9.9_linux_release.zip
 
 # tell the operating system where to find the shi7 programs next time you log in
 # by adding the path to this directory to your system “PATH” variable
@@ -74,11 +74,14 @@ export PATH=$PATH:/home/mice5035/<username>/bin
 
 # exit and save the file with control-x, then “y”, then “enter”.
 
-# log out with control-d 
-# do this twice because you logged in once to the login node
-# and then again with “isub”
+# reload the .bash_profile file
+# You will not need to do this next time you log in.
+source ~/.bash_profile
 
-# when you log back in, SHI7 should be usable.
+# change back to your home directory
+cd
 
+# test that shi7.py runs
+shi7.py
 ```
 

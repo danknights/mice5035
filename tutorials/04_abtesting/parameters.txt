@@ -1,0 +1,6 @@
+summarize_taxa:level 6
+plot_taxa_summary:chart_type bar
+beta_diversity:metrics unweighted_unifrac
+alpha_diversity:metrics PD_whole_tree
+multiple_rarefactions:num_reps 2
+make_distance_boxplots:num_permutations 99

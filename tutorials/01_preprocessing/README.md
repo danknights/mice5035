@@ -40,7 +40,7 @@ ls
 cd bin
 ```
 
-### Download and install SHI7
+### First time only: Download and install SHI7
 
 ```bash
 # download the shi7 installation folder
@@ -84,57 +84,67 @@ cd
 # test that shi7.py runs
 shi7.py
 
-# Now change into the course repo directory
-cd
+# get the course repository, if you have not yet done this.
+git clone https://github.com/danknights/mice5035.git
+```
+
+
+### Using SHI7 to preprocess sequencing data
+
+```bash
+# change into that directory
 cd mice5035
+cd tutorials
+cd 01_preprocessing
 
-# change into the preprocessing tutorials directory
-cd tutorials/01_preprocessing
 
-# We will run SHI7 on several test data sets
-# locations of the 3 example data sets are here:
-/home/knightsd/dknights/mice5035/public/preprocessing/16s/fastq/
-/home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq/
-/home/knightsd/dknights/mice5035/public/preprocessing/wgs-single/fastq/
+# run shi7 on 16S data
+shi7.py -i /home/knightsd/public/mice5035/preprocessing/16s/fastq -o 16s-output
 
-# run shi7.py on the 16S data
-# located here:  /home/knightsd/dknights/mice5035/public/preprocessing/16s/fastq
-shi7.py -i /home/knightsd/dknights/mice5035/public/preprocessing/16s/fastq -o 16s-output
+# print top 10 lines of output FASTA (.fna) file 
+# inspect combined_seqs file (cut -c 1-100 cuts out the first 100 characters of each line)
+head 16s-output/combined_seqs.fna | cut -c 1-100
 
-# list contents of output folder
-ls 16s-output/
-
-# print top 10 lines of output FASTA (.fna) file
-head 16s-output/combined_seqs.fna
-
-# examine the output log file
-# scross down with arrows or space bar
-# what can you learn about the data? 
+# examine the log file as above
+# less lets you scroll up and down in a file without editing
+# exit from less by typing “q”
 less 16s-output/shi7.log
 
-# exit from the "less" program by typing "q" !
+# use the log file to answer these questions:
+# What fraction of reads was stitched in each sample?
+# How many bases were trimmed from the left and right of each read?
+
+# exit from less by typing “q”
 q
 
 # now run shi7 on the paired-end wgs data, allowing stitching
-# located here:  /home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq
-shi7.py -i /home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-output
+# located here:  /home/knightsd/public/mice5035/preprocessing/wgs-paired/fastq
+shi7.py -i /home/knightsd/public/mice5035/preprocessing/wgs-paired/fastq -o wgs-paired-output
 
 # list contents of output folder
 ls wgs-paired-output
 
-# print top 10 lines of output FASTA (.fna) file as above
+# print top 10 lines of output FASTA (.fna) file 
+# inspect combined_seqs file (cut -c 1-100 cuts out the first 100 characters of each line)
+head wgs-paired-output/combined_seqs.fna | cut -c 1-100
 
 # examine the log file as above
-# What fraction of reads was stitched in each sample?
-# How many bases were trimmed from the left and right of each read?
+# less lets you scroll up and down in a file without editing
+less wgs-paired-output/shi7.log
+
+# exit from less by typing “q”
+q
 
 # Now run paired-end wgs data, no stitching (use a different output folder!)
-time shi7.py -i /home/knightsd/dknights/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
+time shi7.py -i /home/knightsd/public/mice5035/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
 
+# use the log file to answer these questions:
 # How long were the average reads in each sample?
 # How many bases were trimmed from the left and right of each read?
+```
 
-# Additional exercises
+### Additional exercises
+```bash
 # Read the SHI7 help output (shi7.py -h) for instructions
 
 # 1. paired-end wgs data, no stitching, produce separate fasta files

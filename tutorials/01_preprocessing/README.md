@@ -92,7 +92,8 @@ git clone https://github.com/danknights/mice5035.git
 ### Using SHI7 to preprocess sequencing data
 
 ```bash
-# change into that directory
+# change into course repository directory
+# the change to this tutorial directory
 cd mice5035
 cd tutorials
 cd 01_preprocessing

@@ -81,6 +81,9 @@ source ~/.bash_profile
 # change back to your home directory
 cd
 
+# make sure you are using a current version of Python
+module load python3
+
 # test that shi7.py runs
 shi7.py
 
@@ -98,6 +101,9 @@ cd mice5035
 cd tutorials
 cd 01_preprocessing
 
+# if you haven't loaded python 3 this session, do it before using shi7.
+# you will have to do this once every time you log in, after running "isub"
+module load python3
 
 # run shi7 on 16S data
 shi7.py -i /home/knightsd/public/mice5035/preprocessing/16s/fastq -o 16s-output

@@ -80,6 +80,12 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  ```bash
     time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
     ls otus
+    
+    # note: if something didn't work right and you need to remove a file, use "rm"
+    rm file_to_remove.txt
+    
+    # if you need to remove a directory:
+    rm -r directory_to_remove
  ```
  
  Get a nice summary of the OTU table, and inspect the first 20 lines using `head`:

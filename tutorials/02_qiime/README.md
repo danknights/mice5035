@@ -76,7 +76,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
 4. Calculate beta diversity
 
  ```bash
-    beta_diversity.py -i otus/ninja_otutable.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis" -t /home/mice5992/shared/97_otus.tree
+    beta_diversity.py -i otus/ninja_otutable.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis" -t /home/knightsd/public/mice5035/databases/97_otus.tree
  ```
 
 5. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
@@ -92,7 +92,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  ```
 
 7. Move the files back from MSI to your computer using Filezilla  
- See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5992/yourusername/mice5992-2017/tutorials/qiime/`. Then drag the `otus`, `beta`, and `3dplots` folders over to your laptop.
+ See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/yourusername/mice5035/tutorials/02_qiime/`. Then drag the `otus`, `beta`, and `3dplots` folders over to your laptop.
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 
@@ -112,8 +112,8 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  
   Now run OTU picking, Beta diversity, Principal Coordinates Analysis, and making the 3D plots on the "Bushman...cafe" study:
  ```bash
-    python /home/mice5992/shared/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
+    python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
     
-    etc.
+    ...etc.
  ```
  

@@ -26,29 +26,9 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
     module load bowtie2
  ```
  
-3. Get the data  
- Download the course repository to your folder on MSI:
+3. Ensure you have the latest files from the github repository:
  ```bash
-    git clone https://github.com/danknights/mice5992-2017.git
- ```
-
- Then change directories into the course repository folder that you downloaded:
- ```bash
-    cd mice5992-2017
- ```
- List the contents of the directory:
- ```bash
-    ls
- ```
-
- Move to the `data` directory:
- ```bash
-    cd data
- ```
-
- Move to the `globalgut` directory:
- ```bash
-    cd globalgut
+    git pull
  ```
 
  Unzip the sequences file; list the directory contents before and after:
@@ -72,20 +52,12 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  ```bash
     wc seqs.fna
  ```
-
- Move up two directories, then down to the `qiime` directory in the `tutorials` directory:
- ```bash
-    cd ..
-    cd ..
-    cd tutorials
-    cd qiime
- ```
  
 3. Pick Operational Taxonomic Units (OTUs)  
  Find the closest match for each sequence in a reference database using NINJA-OPS.
 
  ```bash
-    time python /home/mice5992/shared/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i seqs.fna -o otus -p 4 -z
     ls otus
  ```
  

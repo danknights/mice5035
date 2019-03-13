@@ -78,7 +78,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
 
 
  ```bash
-    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/global_gut/seqs.fna -o otus -p 4 -z
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
     ls otus
  ```
  

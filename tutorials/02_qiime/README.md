@@ -22,6 +22,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
+    module load python3
     module load qiime/1.9.1
     module load bowtie2
  ```

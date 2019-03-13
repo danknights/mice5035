@@ -1,4 +1,4 @@
-## MiCE 5992 Tutorial: QIIME
+## MiCE 5035 Tutorial: QIIME
 
 ### Background
 QIIME is a comprehensive tool for doing microbiome analysis. This tutorial is just an introduction

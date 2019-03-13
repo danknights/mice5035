@@ -26,12 +26,13 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
     module load bowtie2
  ```
  
-3. Ensure you have the latest files from the github repository:
+3. Change in to the course repo. Ensure you have the latest files from the github repository.
  ```bash
+    cd mice5035
     git pull
  ```
-
- Unzip the sequences file; list the directory contents before and after:
+ 
+ Change into the "global_gut" directory. Unzip the sequences file; list the directory contents before and after:
  ```bash
     ls
     unzip seqs.fna.zip
@@ -52,12 +53,21 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  ```bash
     wc seqs.fna
  ```
- 
-3. Pick Operational Taxonomic Units (OTUs)  
+
+4. Pick Operational Taxonomic Units (OTUs)  
+
+ Change to tutorial directory
+ ```bash
+    cd ../tutorials/02_qiime
+    ls
+ ```
+
+
  Find the closest match for each sequence in a reference database using NINJA-OPS.
 
+
  ```bash
-    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i seqs.fna -o otus -p 4 -z
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/global_gut/seqs.fna -o otus -p 4 -z
     ls otus
  ```
  
@@ -73,31 +83,31 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
     head otus/ninja_otutable.txt | cut -f 1-5
  ```
  
-4. Calculate beta diversity
+5. Calculate beta diversity
 
  ```bash
     beta_diversity.py -i otus/ninja_otutable.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis" -t /home/knightsd/public/mice5035/databases/97_otus.tree
  ```
 
-5. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
+6. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
 
  ```bash
     principal_coordinates.py -i beta/unweighted_unifrac_ninja_otutable.txt -o beta/unweighted_unifrac_ninja_otutable_pc.txt
  ```
 
-6. Make the 3D interactive "Emperor" plot
+7. Make the 3D interactive "Emperor" plot
 
  ```bash
     time make_emperor.py -i beta/unweighted_unifrac_ninja_otutable_pc.txt -m ../../data/globalgut/map.txt -o 3dplots
  ```
 
-7. Move the files back from MSI to your computer using Filezilla  
+8. Move the files back from MSI to your computer using Filezilla  
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/yourusername/mice5035/tutorials/02_qiime/`. Then drag the `otus`, `beta`, and `3dplots` folders over to your laptop.
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 
 
-8. Now do it yourself on other data  
+9. Now do it yourself on other data  
  There are dozens of studies with sequence files and mapping files in this directory:
  ```bash
     ls /home/knightsd/public/qiime_db/processed/

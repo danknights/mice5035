@@ -33,8 +33,10 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
     git pull
  ```
  
- Change into the "global_gut" directory. Unzip the sequences file; list the directory contents before and after:
+ Change into the "globalgut" directory. Unzip the sequences file; list the directory contents before and after:
  ```bash
+    ls
+    cd data/globalgut
     ls
     unzip seqs.fna.zip
     ls
@@ -54,6 +56,14 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  ```bash
     wc seqs.fna
  ```
+
+ How many unique samples are there?
+ ```bash
+    grep ">" seqs.fna | cut -f 1 -d "_" | sort | uniq | wc
+    
+ ```
+
+
 
 4. Pick Operational Taxonomic Units (OTUs)  
 

@@ -1,4 +1,4 @@
-## MiCE 5992 Tutorial: A/B testing with QIIME
+## MiCE 5035 Tutorial: A/B testing with QIIME
 
 ### Background
 In this tutorial we will learn how to run tests for statistical significance of alpha diversity, beta diversity, and taxonomic profile using QIIME.

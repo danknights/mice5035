@@ -1,4 +1,4 @@
-## MiCE 5992 Tutorial: QIIME Core diversity analyses
+## MiCE 5035 Tutorial: QIIME Core diversity analyses
 
 ### Background
 In this tutorial we will learn how to run all standard QIIME analyses including alpha diversity, beta diversity, and significance testing.
@@ -144,7 +144,7 @@ We will use a QIIME parameters file to tweak the settings.
  
   Now run OTU picking, and the core diversity analyses above:
  ```bash
-    python /home/mice5992/shared/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
+    python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
     
     etc.
  ```

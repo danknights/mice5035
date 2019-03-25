@@ -27,7 +27,7 @@ We will use a QIIME parameters file to tweak the settings.
 3. Go to the tutorial directory
  Change to your personal course directory if you are not already there:
  ```bash
-    /home/mice5992/<yourusername>
+    /home/mice5035/<yourusername>
  ```
 
  List the contents of your home directory, if you are curious what's in there:
@@ -37,7 +37,7 @@ We will use a QIIME parameters file to tweak the settings.
 
  Then change directories into the course repository folder that you downloaded:
  ```bash
-    cd mice5992-2017
+    cd mice5035
  ```
 
 4. Update the directory 
@@ -63,11 +63,10 @@ We will use a QIIME parameters file to tweak the settings.
  ```
 
 ### Analysis
-4. Pick Operational Taxonomic Units (OTUs) again
- Find the closest match for each sequence in a reference database using NINJA-OPS.
+4. Pick Operational Taxonomic Units (OTUs) again. Find the closest match for each sequence in a reference database using NINJA-OPS.
 
  ```bash
-    time python /home/mice5992/shared/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
     ls otus
  ```
  Note that we added `-z`. What does this do? Run the same command with `-h` to find out.
@@ -113,19 +112,19 @@ We will use a QIIME parameters file to tweak the settings.
 6. Make beta diversity plots
 
  ```bash
-    beta_diversity_through_plots.py -i otus/ninja_otutable_s10_min500.biom -m ../../data/globalgut/map.txt -o betaplots -p parameters.txt -t /home/mice5992/shared/97_otus.tree -v 
+    beta_diversity_through_plots.py -i otus/ninja_otutable_s10_min500.biom -m ../../data/globalgut/map.txt -o betaplots -p parameters.txt -t /home/knightsd/public/mice5035/databases/97_otus.tree -v 
  ```
  
 7.  Run alpha diversity analysis and make plots of rarefaction curves.
 
  ```bash
-    alpha_rarefaction.py -i otus/ninja_otutable_s10_min500.biom --min_rare_depth 100 --max_rare_depth 500 --num_steps 3 -o alphaplots -m ../../data/globalgut/map.txt -v -p parameters.txt -t /home/mice5992/shared/97_otus.tree
+    alpha_rarefaction.py -i otus/ninja_otutable_s10_min500.biom --min_rare_depth 100 --max_rare_depth 500 --num_steps 3 -o alphaplots -m ../../data/globalgut/map.txt -v -p parameters.txt -t /home/knightsd/public/mice5035/databases/97_otus.tree
  ```
 
 8. Move the files back from MSI to your computer using Filezilla  
- See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5992/<yourusername>/mice5992-2017/tutorials/corediv/`. Drag the `betaplots`, `taxaplots`, and `alphaplots` folders to your computer.
+ See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/corediv/`. Drag the `betaplots`, `taxaplots`, and `alphaplots` folders to your computer.
  
-9. Repeat using other data  
+9. (Optional). Repeat using other data  
  Choose one of the many studies with sequence files and mapping files in this directory:
  ```bash
     ls /home/knightsd/public/qiime_db/processed/

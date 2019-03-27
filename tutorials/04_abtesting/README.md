@@ -145,9 +145,9 @@ We can test the same three different types of experimental variables as follows,
  Run an example:
 
  ```bash
-    compare_categories.py -i ../03_corediv/betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c COUNTRY -o beta_country_significance --method adonis
-    compare_categories.py -i ../03_corediv/betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c AGE -o beta_age_significance --method adonis
-    compare_categories.py -i ../03_corediv/betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c AGE_GROUP -o beta_age_group_significance --method adonis
+    compare_categories.py -i ../03_corediv/betaplots/bray_curtis_dm.txt -m ../../data/globalgut/map.txt -c COUNTRY -o beta_country_significance --method adonis
+    compare_categories.py -i ../03_corediv/betaplots/bray_curtis_dm.txt -m ../../data/globalgut/map.txt -c AGE -o beta_age_significance --method adonis
+    compare_categories.py -i ../03_corediv/betaplots/bray_curtis_dm.txt -m ../../data/globalgut/map.txt -c AGE_GROUP -o beta_age_group_significance --method adonis
  ```
  
  Print the significance testing results. The p-value is at the top right under `Pr(>F)`:

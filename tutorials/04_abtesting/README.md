@@ -78,7 +78,7 @@ Then change directories into the course repository folder that you downloaded:
  
  
 ## Overview
-This tutorial folder already contains the folders `alphaplots`, `betaplots`, `taxaplots` that come from the [Core diversity tutorial](../corediv).
+The `03_corediv` tutorial folder already contains the folders `alphaplots`, `betaplots`, `taxaplots` that come from the [Core diversity tutorial](../corediv).
 
 There are three types of statistical testing that we will be doing in QIIME: taxonomic profiles, beta diversity, and alpha diversity.
 
@@ -93,7 +93,7 @@ There are three different types of experimental variables that matter for these 
  Run an example:
 
  ```bash
-    group_significance.py -i taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE_GROUP -o genus_age_group_significance.txt -s mann_whitney_u
+    group_significance.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE_GROUP -o genus_age_group_significance.txt -s mann_whitney_u
  ```
  
  Print the top single most significant genus:
@@ -111,7 +111,7 @@ There are three different types of experimental variables that matter for these 
  Run an example:
 
  ```bash
-    group_significance.py -i taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c COUNTRY -o genus_country_group_significance.txt -s kruskal_wallis
+    group_significance.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c COUNTRY -o genus_country_group_significance.txt -s kruskal_wallis
 ```
 
  Print the top 5 most significant genus:
@@ -126,7 +126,7 @@ There are three different types of experimental variables that matter for these 
  Run an example:
 
  ```bash
-    observation_metadata_correlation.py -i taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE -o genus_age_significance.txt -s spearman
+    observation_metadata_correlation.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE -o genus_age_significance.txt -s spearman
  ```
 
  Print the top 5 most significant genus:
@@ -145,9 +145,9 @@ We can test the same three different types of experimental variables as follows,
  Run an example:
 
  ```bash
-    compare_categories.py -i betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c COUNTRY -o beta_country_significance --method adonis
-    compare_categories.py -i betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c AGE -o beta_age_significance --method adonis
-    compare_categories.py -i betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c AGE_GROUP -o beta_age_group_significance --method adonis
+    compare_categories.py -i ../03_corediv/betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c COUNTRY -o beta_country_significance --method adonis
+    compare_categories.py -i ../03_corediv/betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c AGE -o beta_age_significance --method adonis
+    compare_categories.py -i ../03_corediv/betaplots/unweighted_unifrac_dm.txt -m ../../data/globalgut/map.txt -c AGE_GROUP -o beta_age_group_significance --method adonis
  ```
  
  Print the significance testing results. The p-value is at the top right under `Pr(>F)`:
@@ -168,8 +168,8 @@ QIIME only currently has the ability to handle discrete variable testing for alp
  Run an example:
 
  ```bash
-    compare_alpha_diversity.py -i alphaplots/alpha_div_collated/PD_whole_tree.txt -m ../../data/globalgut/map.txt -c COUNTRY -o alpha_country_significance -t parametric
-    compare_alpha_diversity.py -i alphaplots/alpha_div_collated/PD_whole_tree.txt -m ../../data/globalgut/map.txt -c AGE_GROUP -o alpha_age_group_significance -t parametric
+    compare_alpha_diversity.py -i ../03_corediv/alphaplots/alpha_div_collated/PD_whole_tree.txt -m ../../data/globalgut/map.txt -c COUNTRY -o alpha_country_significance -t parametric
+    compare_alpha_diversity.py -i ../03_corediv/alphaplots/alpha_div_collated/PD_whole_tree.txt -m ../../data/globalgut/map.txt -c AGE_GROUP -o alpha_age_group_significance -t parametric
  ```
  
  Print the significance testing results. The p-value is at the top right:

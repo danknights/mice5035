@@ -58,7 +58,7 @@ This is a short tutorial on how to get started on your individual project. Pleas
 
 ### Analysis
 4. Now proceed with the core diversity analyses and a/b testing using the tools you
- learned in the [Core diversity tutorial](../tutorials/03_corediv) and the [A/B testing tutorial](../tutorials/04_abtesting)
+ learned in the [Core diversity tutorial](../../tutorials/03_corediv) and the [A/B testing tutorial](../../tutorials/04_abtesting)
 
  **Note:** you should copy the mapping file over to your computer using FTP so that you can inspect it before proceeding.
  

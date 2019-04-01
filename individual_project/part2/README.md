@@ -1,4 +1,4 @@
-## MiCE 5992 Project 1
+## MiCE 5035 Project 1 Part 2
 
 ### Background
 This is a short tutorial on how to get started on your individual project. Please show all work, including all commands run, by entering them into the [Individual Project part 2 worksheet](https://docs.google.com/document/d/14bqCKIMScBCUOqWTcrd2xEoX9UGQZpCJRdo0r3grK8U/edit?usp=sharing).

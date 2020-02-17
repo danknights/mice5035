@@ -61,7 +61,7 @@ This should print out some details about your QIIME configuration and should not
 
 ### Clone/download the course code repository to your home directory
 ```
-cd
+cd /home/mice5035/<yourusername>
 git clone https://github.com/danknights/mice5035.git
 ```
 

@@ -85,7 +85,7 @@ cd
 module load python3
 
 # test that shi7.py runs
-shi7.py
+shi7.py -h
 
 # get the course repository, if you have not yet done this.
 git clone https://github.com/danknights/mice5035.git

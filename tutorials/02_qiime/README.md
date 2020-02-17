@@ -10,9 +10,10 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
 
  When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
-    isub -n nodes=1:ppn=4 -m 8GB -w 02:00:00
+    ssh mesabi
+    qsub -I /home/mice5035/public/isub-16gb-2h.pbs
  ```
- This command might take a minute or two because you are waiting in line for an availabe computer node. The `nodes=1:ppn=4` means one computer node with 4 processors. The `-m 8GB` means you need 8GB of RAM, and the `-w 02:00:00` means you want up to 2 hours of time to work before you get kicked off.
+ This command might take a minute or two because you are waiting in line for an availabe computer node. This command by default will give you 2 hours to work and 16GB of RAM. If you need longer, you can make your own version of `/home/mice5035/public/isub-16gb-2h.pbs` by copying it to your own directory using `cp`. Then edit it using `nano` and increase the time limit.
 
  Then make sure that you are in the course directory, and not your home directory. The following command will list your current directory:
  ```bash
@@ -22,8 +23,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
-    module load python3
-    module load qiime/1.9.1
+    module load qiime/1.8.0
     module load bowtie2
  ```
  

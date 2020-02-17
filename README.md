@@ -47,9 +47,11 @@ mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/ma
 ### Run a test script
 Run the following commands on the MSI terminal:
 
-`isub`
+`ssh mesabi`
 
-`module load qiime/1.9.1`
+`qsub -I /home/mice5035/public/isub-16gb-2h.pbs`
+
+`module load qiime/1.8.0`
 
 `print_qiime_config.py`
 

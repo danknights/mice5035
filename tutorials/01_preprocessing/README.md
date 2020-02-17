@@ -17,7 +17,7 @@ qsub -I /home/mice5035/public/isub-16gb-2h.pbs
 
 ```bash
 # change into your “home” directory
-cd
+cd /home/mice5035/<yourusername>
 
 # list the contents of this directory
 ls

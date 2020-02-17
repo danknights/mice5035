@@ -58,7 +58,7 @@ pwd
 # or /home/<lab name>/<username>/bin
 
 # change back to your home directory
-cd /home/mice5035/<yourusername>
+cd 
 
 # open the file in your home directory called “.bash_profile”
 nano .bash_profile

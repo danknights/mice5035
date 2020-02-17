@@ -73,8 +73,8 @@ export PATH=$PATH:/home/mice5035/<username>/bin
 # You will not need to do this next time you log in.
 source ~/.bash_profile
 
-# change back to your home directory
-cd
+# change back to your course directory
+cd /home/mice5035/<yourusername>
 
 # make sure you are using a current version of Python
 module load python3

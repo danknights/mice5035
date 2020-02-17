@@ -93,6 +93,9 @@ cd mice5035
 cd tutorials
 cd 01_preprocessing
 
+# load python2 for SHI7 (not necessary for everyone, but seems to work universally)
+module load python2
+
 # run shi7 on 16S data
 shi7.py -i /home/knightsd/public/mice5035/preprocessing/16s/fastq -o 16s-output
 

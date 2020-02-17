@@ -9,13 +9,8 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 
 - When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
- isub -n nodes=1:ppn=4 -m 8GB -w 02:00:00
- ```
-
-- Note: if you ever receive an error saying that you have exceeded the available memory, you can increase to 16GB.
- You can also request 8 hours instead of two as follows:
- ```bash
- isub -n nodes=1:ppn=4 -m 16GB -w 08:00:00
+ssh mesabi
+qsub -I /home/mice5035/public/isub-16gb-2h.pbs
  ```
 
 ### Get used to navigating on the command line

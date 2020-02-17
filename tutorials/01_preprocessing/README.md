@@ -76,9 +76,6 @@ source ~/.bash_profile
 # change back to your course directory
 cd /home/mice5035/<yourusername>
 
-# make sure you are using a current version of Python
-module load python3
-
 # test that shi7.py runs
 shi7.py -h
 

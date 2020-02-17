@@ -121,8 +121,8 @@ less 16s-output/shi7.log
 q
 
 # now run shi7 on the paired-end wgs data, allowing stitching
-# located here:  /home/knightsd/public/mice5035/preprocessing/wgs-paired/fastq
-shi7.py -i /home/knightsd/public/mice5035/preprocessing/wgs-paired/fastq -o wgs-paired-output
+# located here:  /home/mice5035/public/preprocessing/wgs-paired/fastq
+shi7.py -i /home/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-output
 
 # list contents of output folder
 ls wgs-paired-output
@@ -139,7 +139,7 @@ less wgs-paired-output/shi7.log
 q
 
 # Now run paired-end wgs data, no stitching (use a different output folder!)
-time shi7.py -i /home/knightsd/public/mice5035/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
+time shi7.py -i /home/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
 
 # use the log file to answer these questions:
 # How long were the average reads in each sample?

@@ -2,7 +2,8 @@
 
 ### Background
 QIIME is a comprehensive tool for doing microbiome analysis. This tutorial is just an introduction
-to the QIIME tool to allow you to try running a few commands and viewing the output.
+to the QIIME tool to allow you to try running a few commands and viewing the output. QIIME2 provides 
+more options for visualizations but performs mostly the same core analyses and has a steeper learning curve.
 
 ### Setup
 1. Connect to MSI  
@@ -72,7 +73,7 @@ Unzip the sequences file from the `globalgut` directory:
 
 
  ```bash
-    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i seqs.fna -o otus -p 4 -z -m normal
     ls otus
     
     # note: if something didn't work right and you need to remove a file, use "rm"

@@ -39,7 +39,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
 
 Unzip the sequences file from the `globalgut` directory:
  ```bash
-    unzip data/globalgut/seqs.fna.zip
+    unzip ../../data/globalgut/seqs.fna.zip
     ls
  ```
 

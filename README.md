@@ -2,14 +2,6 @@
 
 To set up your MSI account for using QIIME, please follow these steps:
 
-### Get your login info for MSI
-
-  * Click on this link: https://www.msi.umn.edu/user-agreement. After you agree to the user agreement you will get your login information. 
-  * If you already have MSI access, log in using your normal username and password, but then change into the course directory with this command:
-  ```bash
-  cd /home/mice5035/<your username>
-  ```
-
 ### Connect to MSI with SSH
 
 **Windows users**
@@ -37,6 +29,10 @@ https://the.earth.li/~sgtatham/putty/latest/w64/putty-64bit-0.73-installer.msi
  * Enter your password
   * You should now be connected.
 
+**Troubleshooting**
+  * If you have trouble connecting, try filling out the MSI user agreement here: https://www.msi.umn.edu/user-agreement.
+  * Make sure you are on the UofM network or eduroam network. Otherwise, MSI will probably block your computer from connecting. To get around this you can also use a UofM VPN, instructions for installing which are below.
+
 ### Run the setup command
 Copy this command, paste it into your terminal, and press "return"
 
@@ -50,7 +46,7 @@ Run the following commands on the MSI terminal:
 
 `ssh mesabi`
 
-`qsub -I /home/mice5035/public/isub-16gb-2h.pbs`
+`qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p`
 
 `module load qiime/1.8.0`
 

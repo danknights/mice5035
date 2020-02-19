@@ -13,7 +13,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
     ssh mesabi
     qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
  ```
- This command might take a minute or two because you are waiting in line for an availabe computer node. This command by default will give you 2 hours to work and 16GB of RAM. If you need longer, you can make your own version of `/home/mice5035/public/isub-16gb-2h.pbs` by copying it to your own directory using `cp`. Then edit it using `nano` and increase the time limit.
+ This command might take a minute or two because you are waiting in line for an availabe computer node. This command by default will give you 2 hours to work and 16GB of RAM. If you need longer or more RAM, you can edit the `walltime` or `mem` parameters. The `nodes=1:ppn=4` parameter says that you want one computing node with 4 processors per node. You can experiment with requesting more resources, but you cannot use more than one node interactively and the more processors/RAM/walltime you request, the longer you will have to wait to get the resources.
 
  Then make sure that you are in the course directory, and not your home directory. The following command will list your current directory:
  ```bash

@@ -72,7 +72,7 @@ cd /home/mice5035/<yourusername>
 
 # change into course repository directory that you cloned from git (above).
 # the change to this tutorial directory
-cd /home/mice5035
+cd mice5035
 cd tutorials
 cd 01_preprocessing
 

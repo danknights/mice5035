@@ -10,7 +10,7 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 - When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
 ssh mesabi
-qsub -I /home/mice5035/public/isub-16gb-2h.pbs
+qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
  ```
 
 ### First time only: Download and install SHI7

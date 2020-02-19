@@ -11,7 +11,7 @@ to the QIIME tool to allow you to try running a few commands and viewing the out
  When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
     ssh mesabi
-    qsub -I /home/mice5035/public/isub-16gb-2h.pbs
+    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
  ```
  This command might take a minute or two because you are waiting in line for an availabe computer node. This command by default will give you 2 hours to work and 16GB of RAM. If you need longer, you can make your own version of `/home/mice5035/public/isub-16gb-2h.pbs` by copying it to your own directory using `cp`. Then edit it using `nano` and increase the time limit.
 

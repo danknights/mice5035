@@ -40,7 +40,7 @@ more options for visualizations but performs mostly the same core analyses and h
 
 Unzip the sequences file from the `globalgut` directory:
  ```bash
-    unzip data/globalgut/seqs.fna.zip
+    unzip ../../data/globalgut/seqs.fna.zip
     ls
  ```
 

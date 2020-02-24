@@ -63,7 +63,7 @@ We will use a QIIME parameters file to tweak the settings.
 4. Pick Operational Taxonomic Units (OTUs) again. Find the closest match for each sequence in a reference database using NINJA-OPS.
 
  ```bash
-    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../data/globalgut/seqs.fna -o otus -p 4 -z
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../02_qiime/seqs.fna -o otus -p 4 -z
     ls otus
  ```
  Note that we added `-z`. What does this do? Run the same command with `-h` to find out.

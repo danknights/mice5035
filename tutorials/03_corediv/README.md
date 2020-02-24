@@ -10,17 +10,14 @@ We will use a QIIME parameters file to tweak the settings.
 
  When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
-    isub -n nodes=1:ppn=4 -m 8GB -w 02:00:00
+    ssh mesabi
+    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
  ```
- Note: if you ever receive an error saying that you have exceeded the available memory, you can increase to 16GB.
- You can also request 8 hours instead of two as follows:
- ```bash
-    isub -n nodes=1:ppn=4 -m 16GB -w 08:00:00
- ```
+
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
-    module load qiime/1.9.1
+    module load qiime/1.9
     module load bowtie2
  ```
 
@@ -49,7 +46,7 @@ We will use a QIIME parameters file to tweak the settings.
  Then change directories into the new tutorial folder:
  ```bash
     cd tutorials
-    cd corediv
+    cd 03_corediv
  ```
 
  List the contents of the directory:
@@ -130,10 +127,10 @@ We will use a QIIME parameters file to tweak the settings.
     ls /home/knightsd/public/qiime_db/processed/
     ls /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8
  ```
- **Note:** If you choose a very large data set you will run out of memory or time. You may need to log out of the interactive node with "control-D" and rerun `isub` requesting more RAM and/or more time:
+ **Note:** If you choose a very large data set you will run out of memory or time. You may need to log out of the interactive node with "control-D" and rerun `qsub` requesting more RAM and/or more time:
 
  ```bash
-    isub -n nodes=1:ppn=4 -m 16GB -w 08:00:00
+    qsub -I -l "nodes=1:ppn=4,mem=32gb,walltime=02:00:00" -m p
  ```
 
  Then on MSI make a new directory to work in and move into it:

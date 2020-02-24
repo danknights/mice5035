@@ -17,7 +17,7 @@ We will use a QIIME parameters file to tweak the settings.
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
-    module load qiime/1.9
+    module load qiime/1.8.0
     module load bowtie2
  ```
 

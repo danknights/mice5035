@@ -4,34 +4,26 @@
 In this tutorial we will learn how to run tests for statistical significance of alpha diversity, beta diversity, and taxonomic profile using QIIME.
 
 ### Setup
-1. Connect to MSI.
+1. Connect to MSI  
  Follow the steps in the [Getting Started Guide](../../README.md) to connect to MSI using SSH.
 
  When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
-    isub -n nodes=1:ppn=4 -m 8GB -w 02:00:00
+    ssh mesabi
+    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
  ```
- Note: if you ever receive an error saying that you have exceeded the available memory, you can increase to 16GB.
- You can also request 8 hours instead of two as follows:
- ```bash
-    isub -n nodes=1:ppn=4 -m 16GB -w 08:00:00
- ```
-2. Load software
+
+2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
-    module load qiime/1.9.1
+    module load qiime/1.8.0
     module load bowtie2
  ```
-
+ 
 3. Go to the tutorial directory
- Change to your personal course directory if you are not already there:
+ Change to your personal tutorial directory:
  ```bash
-    /home/mice5035/<yourusername>
- ```
-
-Then change directories into the course repository folder that you downloaded:
- ```bash
-    cd mice5035
+    cd /home/mice5035/<yourusername>/mice5035/tutorials/04_abtesting
  ```
 
 4. Update the directory 
@@ -47,18 +39,6 @@ Then change directories into the course repository folder that you downloaded:
     git reset --hard origin/master
  ```
  
- 
- Then change directories into the new tutorial folder:
- ```bash
-    cd tutorials
-    cd abtesting
- ```
-
- List the contents of the directory:
- ```bash
-    ls
- ```
-
  Install some needed packages in R. You only have to do this one time. First start `R`:
 
  ```bash
@@ -123,9 +103,10 @@ There are three different types of experimental variables that matter for these 
 
 3. Continuous variable (in the example data, AGE is continuous). Use QIIME script [`observation_metadata_correlation.py`](http://qiime.org/scripts/observation_metadata_correlation.html) with flag `-s spearman`. Spearman correlation is a non-parametric test.
 
- Run an example:
+ Run an example (NOTE, this is currently disabled on MSI -- SKIP):
 
  ```bash
+    # THIS IS CURRENTLY DISABLED ON MSI -- SKIP THIS
     observation_metadata_correlation.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE -o genus_age_significance.txt -s spearman
  ```
 
@@ -140,7 +121,7 @@ There are three different types of experimental variables that matter for these 
 
 The goal of these tests is to answer the question: Is overall microbiome variation statistically associated with a particular experimental variable?
 
-We can test the same three different types of experimental variables as follows, using the same script and method. Use QIIME script [`compare_categories.py`](http://qiime.org/scripts/compare_categories.html) with flag `-s adonis`. This uses the `adonis` test in `R` (http://cc.oulu.fi/~jarioksa/softhelp/vegan/html/adonis.html), which is a non-parametric test for different means across groups, or for association of beta diversity distances with a continuous variable.
+We can test the same three different types of experimental variables as follows, using the same script and method. Use QIIME script [`compare_categories.py`](http://qiime.org/scripts/compare_categories.html) with flag `-s adonis`. This uses the `adonis` test in `R` (http://cc.oulu.fi/~jarioksa/softhelp/vegan/html/adonis.html), which is a non-parametric test for different means across groups, or for association of beta diversity distances with a continuous variable. This is essentially the same as a popular test called PERMANOVA.
 
  Run an example:
 

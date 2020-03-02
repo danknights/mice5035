@@ -9,34 +9,21 @@ This is a short tutorial on how to get started on your individual project. Pleas
 
  When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
-    isub -n nodes=1:ppn=4 -m 8GB -w 02:00:00
- ```
- Note: At home you might want to request 8 hours instead of two as follows:
- ```bash
-    isub -n nodes=1:ppn=4 -m 8GB -w 08:00:00
+    ssh mesabi
+    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
  ```
 
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
-    module load qiime/1.9.1
+    module load qiime/1.8.0
     module load bowtie2
  ```
-
-3. Go to the course repo directory
- Change to your personal course directory if you are not already there:
+ 
+3. Go to the tutorial directory
+ Change to your personal tutorial directory:
  ```bash
-    /home/mice5035/<yourusername>
- ```
-
- List the contents of your home directory, if you are curious what's in there:
- ```bash
-    ls
- ```
-
- Then change directories into the course repository folder that you downloaded:
- ```bash
-    cd mice5035
+    cd /home/mice5035/<yourusername>/mice5035/individual_project/part2
  ```
 
 4. Update the directory 
@@ -45,15 +32,13 @@ This is a short tutorial on how to get started on your individual project. Pleas
     git pull
  ```
 
- Then change directories into the new folder `individual_project/part2`. This is where you will do all of your work on MSI for this project:
+ If you receive an error stating that you have local changes preventing this from working, then try running this:
+
  ```bash
-    cd individual_project/part2
+    git fetch --all
+    git reset --hard origin/master
  ```
 
- List the contents of the directory. At first it has only this README.md file:
- ```bash
-    ls
- ```
 5. Locate your personal project files. The mapping files for the project are in the folder `mapping_files`; the DNA sequences are in `seqs_subset.fna.zip`
 
 ### Analysis

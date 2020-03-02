@@ -144,7 +144,7 @@ We can test the same three different types of experimental variables as follows,
 
 The goal of this test is to answer the question: Is microbiome biodiversity (i.e. diversity within a sample) statistically associated with a particular experimental variable?
 
-QIIME only currently has the ability to handle discrete variable testing for alpha diversity. Use QIIME script [`compare_alpha_diversity.py`](http://qiime.org/scripts/compare_alpha_diversity.html) with flag `-t parametric`. This runs a standard [Student's t-test](https://en.wikipedia.org/wiki/Student's_t-test) for each pair of groups. Alpha diversity tends to be more normally distributed within groups than individual taxa, so a t-test is usually acceptable.
+QIIME only currently has the ability to handle discrete variable testing for alpha diversity. Use QIIME script [`compare_alpha_diversity.py`](http://qiime.org/scripts/compare_alpha_diversity.html) with flag `-t parametric`. This runs a standard [Student's t-test](https://en.wikipedia.org/wiki/Student's_t-test) for each pair of groups. Alpha diversity tends to be more normally distributed within groups than individual taxa, so a parametric t-test is usually acceptable.
 
  Run an example:
 

@@ -76,7 +76,7 @@ There are three different types of experimental variables that matter for these 
     group_significance.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE_GROUP -o genus_age_group_significance.txt -s mann_whitney_u
  ```
  
- Print the top single most significant genus:
+ Print the top single most significant genus. Note: FDR p-values stands for False Discovery Rate. Can sometimes use threshold of up to FDR p < 0.25, but only if you have a lot of significant taxa!
  
  ```bash
     head -n 2 genus_age_group_significance.txt

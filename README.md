@@ -79,6 +79,8 @@ Follow instructions from the university's IT website to install a VPN: https://i
 
 ### Install R and R studio on your computer 
 You do not have to use R but we will demonstrate its capabilities during class. You can optionally install it if you want to follow along and get a light introduction to it.
+
 Instructions for installing R can be found here: https://mirror.las.iastate.edu/CRAN/
+
 Instructions for installing RStudio can be found here: https://www.rstudio.com/
 

@@ -48,9 +48,13 @@ Run the following commands on the MSI terminal:
 
 `qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p`
 
-`module load qiime/1.8.0`
+This will print out a few lines containing something like, `salloc: Nodes cn0123 are ready for job.` This tells you the name of the node to which you need to connect. In this case, the node name is `cn0123`, but you will have a different node. Now you must connect to that node:
 
-`print_qiime_config.py`
+`ssh cn0123` (Replace with your node name).
+
+`module load qiime/1.8.0` (Load QIIME software)
+
+`print_qiime_config.py` (Test that QIIME is working).
 
 
 This should print out some details about your QIIME configuration and should not return any errors. If so, you are now ready to use MSI and QIIME.
@@ -69,15 +73,12 @@ Instructions for connecting to MSI can be found here (Step 4): http://gabedev.co
 Thanks to Gabe Al-Ghalith for these instructions!
 
 ### Get a VPN working
-MSI won't let you connect directly unless you are on campus. To access your files from home, you will need to set up a VPN (Virtual Private Network). 
+MSI won't let you connect directly unless you are on campus. To access your files from home, you will need to set up a VPN (Virtual Private Network). Note: You usually only need to do this if you want to work from off campus. Most of the time when you are on campus you will be able to connect to MSI without a VPN.
 
-Windows users see step 7 in Gabe's instructions here: http://gabedev.com/3004/software_guide/
-
-Mac users try the "Native Client for MAC using IPSec" instructions here: https://it.umn.edu/downloads-guides-install-ipsec-native
-
-If those don't work, see more options here: https://it.umn.edu/downloads-guides
+Follow instructions from the university's IT website to install a VPN: https://it.umn.edu/services-technologies/virtual-private-network-vpn
 
 ### Install R and R studio on your computer 
-Instructions for installing R can be found here (Steps 1 and 2): http://gabedev.com/3004/software_guide/
+You do not have to use R but we will demonstrate its capabilities during class. You can optionally install it if you want to follow along and get a light introduction to it.
+Instructions for installing R can be found here: https://mirror.las.iastate.edu/CRAN/
 Instructions for installing RStudio can be found here: https://www.rstudio.com/
 

@@ -5,9 +5,8 @@ To set up your MSI account for using QIIME, please follow these steps:
 ### Connect to MSI with SSH
 
 **Windows users**
-  * First option: open the command prompt by searching for "command prompt" in the bottom left. Then follow the instructions for Mac users below. If that does not work, use Putty instead:
-    * Visual instructions can be found here: http://gabedev.com/3004/software_guide/ (Step 3)
-    * Alternatively, follow these instructions:
+  * Option 1: open the command prompt by searching for "command prompt" in the bottom left. Then follow the instructions for Mac users below.
+  * Option 2: only if option 1 does not work, use a program called "Putty" instead, as follows:
     * Install "Putty" by downloading this file and running the installer:
 https://www.ssh.com/academy/ssh/putty/windows/install
     * Open the Putty application

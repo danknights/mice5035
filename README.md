@@ -45,11 +45,17 @@ Run the following commands on the MSI terminal:
 
 `ssh mesabi`
 
-`qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p`
+Note: when you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
 
-This will print out a few lines containing something like, `salloc: Nodes cn0123 are ready for job.` This tells you the name of the node to which you need to connect. In this case, the node name is `cn0123`, but you will have a different node. Now you must connect to that node:
+`qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p -q interactive`
 
-`ssh cn0123` (Replace with your node name).
+This may take a while to finish running. It will eventually print out a line like, `salloc: Granted job allocation`. This means that MSI has allocated a node for you to use. Now you just need to find out the name of that node so that you can connect to it. To find the name of your new node, run this:
+
+`squeue -u <your username>`, using your username in place of `<your username>`. In the last column of the output is the name of the node that you want to connect to. It will usually look something like, `cn0123`.
+
+Now you must connect to that node:
+
+`ssh cn0123` (Do not use `cn0123`; replace that with your node name).
 
 `module load qiime/1.8.0` (Load QIIME software)
 

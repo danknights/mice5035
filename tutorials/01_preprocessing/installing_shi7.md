@@ -39,7 +39,7 @@ rm shi7_0.9.9_linux_release.zip
 # the future. You do not need to run this command again the next time you log in.
 
 # BE SURE TO FILL IN YOUR USERNAME where it says "<username>".
-echo "PATH=\$PATH:/home/mice5035/<username>/bin/shi7-1.0.3" >> ~/.bash_profile; source ~/.bash_profile
+echo "PATH=\$PATH:/home/mice5035/<username>/bin" >> ~/.bash_profile; source ~/.bash_profile
 
 # test that shi7.py runs
 shi7.py -h

@@ -6,7 +6,7 @@ You will need to follow these steps once every time you want to get logged in to
 ### Connect to MSI
 - Follow the steps in the [Getting Started Guide](README.md) to get SSH working on your computer. On a Mac this means opening the Terminal app. On Windows this means either using the "Command Prompt," or if SSH doesn't work in your Windows Command Prompt, then using the software called Putty.
 
-- SSH to an MSI login node:
+- SSH to an MSI login node (skip this step if you are using Putty):
 `ssh yourusername@login.msi.umn.edu`. Replace `yourusername` with your actual username.
 
 ### Connect to the Mesabi cluster

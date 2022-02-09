@@ -8,8 +8,7 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
 ### First time only: Download and install SHI7
-- You only need to do this once. Follow the steps in the [guide to installing SHI7](installing_shi7.md) to install the SHI7 software in your local directory.
-
+- Follow the steps in the [guide to installing SHI7](installing_shi7.md) to install the SHI7 software in your local directory. You only need to do this step once. 
 
 ### Using SHI7 to preprocess sequencing data
 

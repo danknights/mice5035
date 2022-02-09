@@ -5,22 +5,14 @@ QIIME is a comprehensive tool for doing microbiome analysis. This tutorial is ju
 to the QIIME tool to allow you to try running a few commands and viewing the output. QIIME2 provides 
 more options for visualizations but performs mostly the same core analyses and has a steeper learning curve.
 
-### Setup
-1. Connect to MSI  
- Follow the steps in the [Getting Started Guide](../../README.md) to connect to MSI using SSH.
+### Connect to an interactive computing node on MSI
+- Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
- When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
- ```bash
-    ssh mesabi
-    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
- ```
- This command might take a minute or two because you are waiting in line for an availabe computer node. This command by default will give you 2 hours to work and 16GB of RAM. If you need longer or more RAM, you can edit the `walltime` or `mem` parameters. The `nodes=1:ppn=4` parameter says that you want one computing node with 4 processors per node. You can experiment with requesting more resources, but you cannot use more than one node interactively and the more processors/RAM/walltime you request, the longer you will have to wait to get the resources.
-
- Then make sure that you are in the course directory, and not your home directory. The following command will list your current directory:
+1. Then make sure that you are in your home directory inside the MICE 5035 course directory (`/home/mice5035`), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
  ```bash
     pwd
  ```
- 
+
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash

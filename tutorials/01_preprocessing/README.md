@@ -10,8 +10,16 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 - When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
  ```bash
 ssh mesabi
-qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
+qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p -q interactive
  ```
+
+This may take a while to finish running. It will eventually print out a line like, `salloc: Granted job allocation`. This means that MSI has allocated a node for you to use. Now you just need to find out the name of that node so that you can connect to it. To find the name of your new node, run this:
+
+`squeue -u <your username>`, using your username in place of `<your username>`. In the last column of the output is the name of the node that you want to connect to. It will usually look something like, `cn0123`.
+
+Now you must connect to that node:
+
+`ssh cn0123` (Do not use `cn0123`; replace that with your node name).
 
 ### First time only: Download and install SHI7
 
@@ -51,7 +59,7 @@ rm shi7_0.9.9_linux_release.zip
 # the future. You do not need to run this command again the next time you log in.
 
 # BE SURE TO FILL IN YOUR USERNAME where it says "<username>".
-echo "PATH=\$PATH:/home/mice5035/<username>/bin" >> ~/.bash_profile; source ~/.bash_profile
+echo "PATH=\$PATH:/home/mice5035/<username>/bin/shi7-1.0.3" >> ~/.bash_profile; source ~/.bash_profile
 
 # test that shi7.py runs
 shi7.py -h

@@ -53,6 +53,9 @@ cd /home/mice5035/<yourusername>
 git clone https://github.com/danknights/mice5035.git
 ```
 
+### Log out
+When you are done using MSI, log out with `exit`. You may have to enter this several times if you are logged in to a special node or cluster.
+
 ### Install Filezilla to transfer files to/from MSI
 Download and install Filezilla from here: https://filezilla-project.org/download.php?type=client
 

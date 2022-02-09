@@ -4,72 +4,11 @@
 In this tutorial we will learn how to use the command line to
 install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun data.
 
-### Connect to MSI
-- Follow the steps in the [Getting Started Guide](../../README.md) to connect to MSI using SSH. On a Mac this means opening the Terminal app and using SSH. On Windows this means either using the "Command Prompt" or SSH doesn't work in your Windows Command Prompt, then using Putty to connect.
-
-- When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
- ```bash
-ssh mesabi
-qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p -q interactive
- ```
-
-This may take a while to finish running. It will eventually print out a line like, `salloc: Granted job allocation`. This means that MSI has allocated a node for you to use. Now you just need to find out the name of that node so that you can connect to it. To find the name of your new node, run this:
-
-`squeue -u <your username>`, using your username in place of `<your username>`. In the last column of the output is the name of the node that you want to connect to. It will usually look something like, `cn0123`.
-
-Now you must connect to that node:
-
-`ssh cn0123` (Do not use `cn0123`; replace that with your node name).
+### Connect to an interactive computing node on MSI
+- Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
 ### First time only: Download and install SHI7
-
-```bash
-# change into your course “home” directory
-cd /home/mice5035/<yourusername>
-
-# list the contents of this directory, just for fun
-ls
-
-# print out the “path” to this directory, just for fun
-pwd
-
-# make a new directory (aka folder) for your programs (binaries)
-mkdir bin
-
-# make sure it got created
-ls
-
-# change into the “bin” directory
-cd bin
-
-# download the shi7 installation folder
-wget https://github.com/knights-lab/shi7/releases/download/v0.9.9/shi7_0.9.9_linux_release.zip
-
-# unzip it (but don’t type the whole filename; type “shi” then hit <tab> to auto-complete.
-# always do that!)
-unzip shi7_0.9.9_linux_release.zip
-
-# remove the unneeded zip file
-rm shi7_0.9.9_linux_release.zip
-
-# tell the operating system where to find the shi7 programs next time you log in
-# by adding the path to this directory to your system “PATH” variable
-# we will send the following text to your ".bash_profile" file in 
-# your official home directory. This will be loaded every time you log in in 
-# the future. You do not need to run this command again the next time you log in.
-
-# BE SURE TO FILL IN YOUR USERNAME where it says "<username>".
-echo "PATH=\$PATH:/home/mice5035/<username>/bin/shi7-1.0.3" >> ~/.bash_profile; source ~/.bash_profile
-
-# test that shi7.py runs
-shi7.py -h
-
-# change back to your course directory
-cd /home/mice5035/<yourusername>
-
-# get the course repository, if you have not yet done this.
-git clone https://github.com/danknights/mice5035.git
-```
+- You only need to do this once. Follow the steps in the [guide to installing SHI7](installing_shi7.md) to install the SHI7 software in your local directory.
 
 
 ### Using SHI7 to preprocess sequencing data

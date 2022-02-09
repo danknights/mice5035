@@ -21,13 +21,11 @@ https://www.ssh.com/academy/ssh/putty/windows/install
 **Mac/Linux users**
 
   * Open the "Terminal" application. On a Mac you can click the search button (magnifying glass) and type "Terminal" to find the application.
-  * Enter this command into the terminal, using your username in place of `yourusername`:
 
-`ssh yourusername@login.msi.umn.edu`
+### Get logged in to an interactive computing node
+  * Follow the steps in the [logging in guide](logging_in.md). 
+
  
- * Enter your password
-  * You should now be connected.
-
 **Troubleshooting**
   * If you have trouble connecting, try filling out the MSI user agreement here: https://www.msi.umn.edu/user-agreement.
   * Make sure you are on the UofM network or eduroam network. Otherwise, MSI will probably block your computer from connecting. To get around this you can also use a UofM VPN, instructions for installing which are below.
@@ -41,21 +39,6 @@ mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/ma
 ```
 
 ### Run a test script
-Run the following commands on the MSI terminal:
-
-`ssh mesabi`
-
-Note: when you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
-
-`qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p -q interactive`
-
-This may take a while to finish running. It will eventually print out a line like, `salloc: Granted job allocation`. This means that MSI has allocated a node for you to use. Now you just need to find out the name of that node so that you can connect to it. To find the name of your new node, run this:
-
-`squeue -u <your username>`, using your username in place of `<your username>`. In the last column of the output is the name of the node that you want to connect to. It will usually look something like, `cn0123`.
-
-Now you must connect to that node:
-
-`ssh cn0123` (Do not use `cn0123`; replace that with your node name).
 
 `module load qiime/1.8.0` (Load QIIME software)
 

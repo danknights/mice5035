@@ -154,3 +154,17 @@ screen
 screen -r
 ```
 
+### search a file for a string or word. e.g. print out all lines that have a ">" character:
+```
+grep ">" input.fna
+```
+
+### print out all lines that DO NOT have a ">" character:
+```
+grep -v ">" input.fna
+```
+
+### count all lines that have a ">" character:
+```
+grep -c ">" input.fna
+```

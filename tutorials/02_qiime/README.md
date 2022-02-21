@@ -112,24 +112,4 @@ Unzip the sequences file from the `globalgut` directory:
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 
-
-10. Now do it yourself on other data  
- There are dozens of studies with sequence files and mapping files in this directory:
- ```bash
-    ls /home/knightsd/public/qiime_db/processed/
-    ls /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8
- ```
-
- First make a new directory to work in and move into it:
- ```bash
-    mkdir bonus
-    cd bonus
- ```
- 
-  Now run OTU picking, Beta diversity, Principal Coordinates Analysis, and making the 3D plots on the "Bushman...cafe" study:
- ```bash
-    python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
-    
-    ...etc.
- ```
  

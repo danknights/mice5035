@@ -121,29 +121,3 @@ We will use a QIIME parameters file to tweak the settings.
 8. Move the files back from MSI to your computer using Filezilla  
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/corediv/`. Drag the `betaplots`, `taxaplots`, and `alphaplots` folders to your computer.
  
-9. (Optional). Repeat using other data  
- Choose one of the many studies with sequence files and mapping files in this directory:
- ```bash
-    ls /home/knightsd/public/qiime_db/processed/
-    ls /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8
- ```
- **Note:** If you choose a very large data set you will run out of memory or time. You may need to log out of the interactive node with "control-D" and rerun `qsub` requesting more RAM and/or more time:
-
- ```bash
-    qsub -I -l "nodes=1:ppn=4,mem=32gb,walltime=02:00:00" -m p
- ```
-
- Then on MSI make a new directory to work in and move into it:
- ```bash
-    mkdir bonus
-    cd bonus
- ```
- 
-  Now run OTU picking, and the core diversity analyses above:
- ```bash
-    python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
-    
-    etc.
- ```
-
- After you finish running all core diversity analyses on the other data set, use Filezilla/FTP to move the outputs over to your computer. Also move the mapping file for that data set over to your computer, and open with Excel (or Google Sheets). Can you find a category that is interesting to run comparisons against? Use this information when examining the core diversity analyses on that study.

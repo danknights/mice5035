@@ -5,13 +5,7 @@ In this tutorial we will learn how to run tests for statistical significance of 
 
 ### Setup
 1. Connect to MSI  
- Follow the steps in the [Getting Started Guide](../../README.md) to connect to MSI using SSH.
-
- When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
- ```bash
-    ssh mesabi
-    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
- ```
+ Follow the steps in the [Getting Started Guide](../../README.md) to connect to MSI using SSH. If you don't have one already, request and connect to an interactive node.
 
 2. Load software  
  Load all of the software "modules" that you will need.
@@ -24,19 +18,6 @@ In this tutorial we will learn how to run tests for statistical significance of 
  Change to your personal tutorial directory:
  ```bash
     cd /home/mice5035/<yourusername>/mice5035/tutorials/04_abtesting
- ```
-
-4. Update the directory 
- The following command will "pull" (download) any updates to the online repository to your local filesystem on MSI:
- ```bash
-    git pull
- ```
-
- If you receive an error stating that you have local changes preventing this from working, then try running this:
-
- ```bash
-    git fetch --all
-    git reset --hard origin/master
  ```
  
  Install some needed packages in R. You only have to do this one time. First start `R`:

@@ -12,7 +12,7 @@ In this tutorial we will learn how to run tests for statistical significance of 
  ```bash
     module load qiime/1.8.0
     module load bowtie2
-    module load R/4.0.4
+    module load R/4.1.0
  ```
  
 3. Go to the tutorial directory

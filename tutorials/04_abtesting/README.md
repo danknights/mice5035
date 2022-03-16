@@ -76,7 +76,7 @@ There are three different types of experimental variables that matter for these 
     group_significance.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c COUNTRY -o genus_country_group_significance.txt -s kruskal_wallis
 ```
 
- Print the top 5 most significant genus:
+ Print the top 5 most significant genera:
  
  ```bash
     head -n 6 genus_country_group_significance.txt

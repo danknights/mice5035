@@ -134,26 +134,29 @@ QIIME only currently has the ability to handle discrete variable testing for alp
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/04_abtesting/`. Drag the `alpha_country_significance`, `alpha_age_group_significance`, `beta_age_group_significance`, `beta_age_significance`, `beta_country_significance`, `genus_age_group_significance.txt`, `genus_age_significance.txt`,`genus_country_group_significance.txt`, files and folders to your computer. Open any text files that you want to view in Excel with right-click --> Open with --> Excel. If you don't have Excel, you can create a new Google Sheet on Google Drive, and then use File --> Import to import the text file as a spreadsheet.
  
 9. Repeat using other data  
- Try running significance tests with the sequence files and mapping files in this directory:
+ Run OTU picking, alpha and beta diversity analysis, and finally significance tests using the Guerrero Negro sequences and mapping file. The files are located here:
  ```bash
-    ls /home/knightsd/public/guerrero-negro/
- ```
- **Note:** If you choose a very large data set you will run out of memory or time. You may need to log out of the interactive node with "control-D" and rerun `isub` requesting more RAM and/or more time:
-
- ```bash
-    isub -n nodes=1:ppn=4 -m 16GB -w 08:00:00
+    # sequences file
+    ls /home/knightsd/public/guerrero-negro/seqs.fna
+    
+    # mapping file
+    ls /home/knightsd/public/guerrero-negro/map.txt
  ```
 
  Then on MSI make a new directory to work in and move into it:
  ```bash
-    mkdir bonus
-    cd bonus
+    mkdir gn
+    cd gn
  ```
  
   Now run OTU picking and the core diversity analyses:
  ```bash
     python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/guerrero-negro/seqs.fna -o otus -p 4 -z
     # etc. (See tutorial 03 first, then 04)
+    # OTU picking
+    # alpha diversity
+    # beta diversity
+    # statistical testing...
  ```
 
  After you have finished running all core diversity analyses on another data set, use Filezilla/FTP to move the outputs over to your computer. Also move the mapping file for that data set over to your computer, and open with Excel (or Google Sheets as described above). Use these visualizations to find a category that is interesting to run significance test againsts. Then proceed with significance testing using taxonomic profiles, alpha diversity profiles, and beta diversity profiles as described in this tutorial.

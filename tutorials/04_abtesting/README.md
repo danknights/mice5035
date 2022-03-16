@@ -131,13 +131,12 @@ QIIME only currently has the ability to handle discrete variable testing for alp
 
 
 8. Move the files back from MSI to your computer using Filezilla  
- See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/abtesting/`. Drag the `alpha_country_significance`, `alpha_age_group_significance`, `beta_age_group_significance`, `beta_age_significance`, `beta_country_significance`, `genus_age_group_significance.txt`, `genus_age_significance.txt`,`genus_country_group_significance.txt`, files and folders to your computer. Open any text files that you want to view in Excel with right-click --> Open with --> Excel. If you don't have Excel, you can create a new Google Sheet on Google Drive, and then use File --> Import to import the text file as a spreadsheet.
+ See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/04_abtesting/`. Drag the `alpha_country_significance`, `alpha_age_group_significance`, `beta_age_group_significance`, `beta_age_significance`, `beta_country_significance`, `genus_age_group_significance.txt`, `genus_age_significance.txt`,`genus_country_group_significance.txt`, files and folders to your computer. Open any text files that you want to view in Excel with right-click --> Open with --> Excel. If you don't have Excel, you can create a new Google Sheet on Google Drive, and then use File --> Import to import the text file as a spreadsheet.
  
 9. Repeat using other data  
- Choose one of the many studies with sequence files and mapping files in this directory:
+ Try running significance tests with the sequence files and mapping files in this directory:
  ```bash
-    ls /home/knightsd/public/qiime_db/processed/
-    ls /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8
+    ls /home/knightsd/public/guerrero-negro/
  ```
  **Note:** If you choose a very large data set you will run out of memory or time. You may need to log out of the interactive node with "control-D" and rerun `isub` requesting more RAM and/or more time:
 
@@ -153,14 +152,9 @@ QIIME only currently has the ability to handle discrete variable testing for alp
  
   Now run OTU picking and the core diversity analyses:
  ```bash
-    python /home/mice5035/shared/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna -o otus -p 4
-    
-    etc.
+    python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i /home/knightsd/public/guerrero-negro/seqs.fna -o otus -p 4 -z
+    # etc. (See tutorial 03 first, then 04)
  ```
-
- **Note:** You will need to specify the full file path to whatever files you are using. These will be very long. For example, in the ninja.py command above, the full path to the sequences file is `/home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_split_library_seqs.fna`. The full path to the mapping file (metadata table) for that study is `/home/knightsd/public/qiime_db/processed/Bushman_enterotypes_cafe_study_1010_ref_13_8/Bushman_enterotypes_cafe_study_1010_mapping_file.txt`. These are examples of _absolute paths_ that begin with a `/` and specify the full file path starting at the very top of the file system. 
-
- You can also use _relative paths_ when it is easier. For example, when you run the core diversity analyses you will need a parameters file for some scripts. If you are in a folder called `bonus` inside the `corediv` tutorial folder, you can pass `-p ../parameters.txt` to reach the parameters file in the directory above your current directory using a _relative path_. Alternatively, you can use an absolute path, which will look something like this: `/home/mice5035/<yourusername>/mice5035/tutorials/corediv/parameters.txt`.
 
  After you have finished running all core diversity analyses on another data set, use Filezilla/FTP to move the outputs over to your computer. Also move the mapping file for that data set over to your computer, and open with Excel (or Google Sheets as described above). Use these visualizations to find a category that is interesting to run significance test againsts. Then proceed with significance testing using taxonomic profiles, alpha diversity profiles, and beta diversity profiles as described in this tutorial.
 

@@ -82,21 +82,7 @@ There are three different types of experimental variables that matter for these 
     head -n 6 genus_country_group_significance.txt
  ```
 
-
-3. Continuous variable (in the example data, AGE is continuous). Use QIIME script [`observation_metadata_correlation.py`](http://qiime.org/scripts/observation_metadata_correlation.html) with flag `-s spearman`. Spearman correlation is a non-parametric test.
-
- Run an example (NOTE, this is currently disabled on MSI -- SKIP):
-
- ```bash
-    # THIS IS CURRENTLY DISABLED ON MSI -- SKIP THIS
-    observation_metadata_correlation.py -i ../03_corediv/taxaplots/ninja_otutable_s10_min500_L6.biom -m ../../data/globalgut/map.txt -c AGE -o genus_age_significance.txt -s spearman
- ```
-
- Print the top 5 most significant genus:
- 
- ```bash
-    head -n 6 genus_age_significance.txt
- ```
+Note: continuous (not categorical) variable testing is currently disabled on MSI. It can be done in R or another statistical package, or in QIIME2.
 
 
 ## Beta diversity significance.

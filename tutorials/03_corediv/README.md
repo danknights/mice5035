@@ -32,19 +32,9 @@ We will use a QIIME parameters file to tweak the settings.
     ls
  ```
 
- Then change directories into the course repository folder that you downloaded:
+ Then change directories into the course repository folder and then the tutorial folder:
  ```bash
     cd mice5035
- ```
-
-4. Update the directory 
- The following command will "pull" (download) any updates to the online repository to your local filesystem on MSI:
- ```bash
-    git pull
- ```
-
- Then change directories into the new tutorial folder:
- ```bash
     cd tutorials
     cd 03_corediv
  ```

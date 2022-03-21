@@ -4,14 +4,7 @@
 This is a short tutorial on how to get started on your individual project. Please show all work, including all commands run, by entering them into the [Individual Project part 2 worksheet](https://docs.google.com/document/d/14bqCKIMScBCUOqWTcrd2xEoX9UGQZpCJRdo0r3grK8U/edit?usp=sharing).
 
 ### Setup
-1. Connect to MSI  
- Follow the steps in the [Getting Started Guide](../../README.md) to connect to MSI using SSH.
-
- When you first log in, you will be on the "login" node. You are not allowed to run computations on this node. Instead, you can get to an interactive node for running computations with this command:
- ```bash
-    ssh mesabi
-    qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p
- ```
+1. Connect to MSI and log in to an interactive computing node.
 
 2. Load software  
  Load all of the software "modules" that you will need.
@@ -45,7 +38,7 @@ This is a short tutorial on how to get started on your individual project. Pleas
 4. Now proceed with the core diversity analyses and a/b testing using the tools you
  learned in the [Core diversity tutorial](../../tutorials/03_corediv) and the [A/B testing tutorial](../../tutorials/04_abtesting)
 
- **Note:** you should copy the mapping file over to your computer using FTP so that you can inspect it before proceeding.
+ **Note:** you may want to copy the mapping file over to your computer using FTP so that you can inspect it before proceeding.
  
 ### Bonus 
 One point each. Follow instructions in the following online [QIIME Tutorials](http://qiime.org/tutorials/index.html):

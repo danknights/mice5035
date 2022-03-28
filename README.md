@@ -40,7 +40,7 @@ mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/ma
 
 ### Run a test script
 
-`module load qiime/1.8.0` (Load QIIME software)
+`module load qiime/1.9.1_centos7` (Load QIIME software)
 
 `print_qiime_config.py` (Test that QIIME is working).
 

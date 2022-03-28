@@ -18,10 +18,10 @@ You will need to follow these steps once every time you want to get logged in to
 - When you first log in to mesabi, you will be on a "login" node. You are not allowed to run computations on this node. Instead, you can launch an interactive node for running computations with this command:
 
  ```bash
-qsub -I -l "nodes=1:ppn=4,mem=16gb,walltime=02:00:00" -m p -q interactive
+srun -N 1 --ntasks-per-node=2 --mem-per-cpu=2gb -t 02:00:00 -p interactive --pty bash
  ```
 
-This may take a while to finish running. It will eventually print out a line like, `salloc: Granted job allocation`. This means that MSI has allocated a node for you to use. Now you just need to find out the name of that node so that you can connect to it. To find the name of your new interactive node, run this:
+This may take a while to finish running. It will usually log you directly in to the interactive node. You can see that this has happened because the start of the line in the terminal will say something like "yourusername@cn0077" and it will be different from what it was on the previous line. If in doubt, you can run `hostname` to print out the name of the node. Login nodes usually start with `login` or `ln`. If you are still on the login node, you just need to find out the name of the new interactive node so that you can connect to it. To find the name of your new interactive node, run this:
 
 `squeue -u <your username>`, using your username in place of `<your username>`.
 

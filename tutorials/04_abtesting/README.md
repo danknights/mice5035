@@ -10,7 +10,7 @@ In this tutorial we will learn how to run tests for statistical significance of 
 2. Load software  
  Load all of the software "modules" that you will need.
  ```bash
-    module load qiime/1.8.0
+    module load qiime/1.9.1_centos7
     module load bowtie2
     module load R/4.1.0
  ```

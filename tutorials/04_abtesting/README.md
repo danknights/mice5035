@@ -40,7 +40,7 @@ In this tutorial we will learn how to run tests for statistical significance of 
  
  
 ## Overview
-The `03_corediv` tutorial folder already contains the folders `alphaplots`, `betaplots`, `taxaplots` that come from the [Core diversity tutorial](../corediv).
+The `03_corediv` tutorial folder already contains the folders `alphaplots`, `betaplots`, `taxaplots` that come from the [Core diversity tutorial](../03_corediv).
 
 There are three types of statistical testing that we will be doing in QIIME: taxonomic profiles, beta diversity, and alpha diversity.
 

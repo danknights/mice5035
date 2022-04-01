@@ -59,9 +59,7 @@ When you are done using MSI, log out with `exit`. You may have to enter this sev
 ### Install Filezilla to transfer files to/from MSI
 Download and install Filezilla from here: https://filezilla-project.org/download.php?type=client
 
-Instructions for connecting to MSI can be found here (Step 4): http://gabedev.com/3004/software_guide/
-
-Thanks to Gabe Al-Ghalith for these instructions!
+Instructions for connecting to MSI can be found here: https://www.msi.umn.edu/support/faq/how-do-i-use-filezilla-transfer-data. You have to set up a new "site" (meaning server) with an interactive login, so that you can use DUO to log in.
 
 ### Get a VPN working
 MSI won't let you connect directly unless you are on campus. To access your files from home, you will need to set up a VPN (Virtual Private Network). Note: You usually only need to do this if you want to work from off campus. Most of the time when you are on campus you will be able to connect to MSI without a VPN.

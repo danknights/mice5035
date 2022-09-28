@@ -7,9 +7,6 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 ### Connect to an interactive computing node on MSI
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
-### First time only: Download and install SHI7
-- Follow the steps in the [guide to installing SHI7](installing_shi7.md) to install the SHI7 software in your local directory. You only need to do this step once. 
-
 ### Using SHI7 to preprocess sequencing data
 
 ```bash
@@ -23,7 +20,7 @@ cd tutorials
 cd 01_preprocessing
 
 # run shi7 on 16S data
-shi7.py -i /home/knightsd/public/mice5035/preprocessing/16s/fastq -o 16s-output
+python /home/knightsd/public/mice5035/shi7/shi7.py -i /home/knightsd/public/mice5035/preprocessing/16s/fastq -o 16s-output
 
 # print top 10 lines of output FASTA (.fna) file 
 # inspect combined_seqs file (cut -c 1-100 cuts out the first 100 characters of each line)
@@ -43,7 +40,7 @@ q
 
 # now run shi7 on the paired-end wgs data, allowing stitching
 # located here:  /home/mice5035/public/preprocessing/wgs-paired/fastq
-shi7.py -i /home/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-output
+python /home/knightsd/public/mice5035/shi7/shi7.py -i /home/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-output
 
 # list contents of output folder
 ls wgs-paired-output
@@ -60,7 +57,7 @@ less wgs-paired-output/shi7.log
 q
 
 # Now run paired-end wgs data, no stitching (use a different output folder!)
-time shi7.py -i /home/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
+python /home/knightsd/public/mice5035/shi7/shi7.py -i /home/mice5035/public/preprocessing/wgs-paired/fastq -o wgs-paired-no-stitching --flash False
 
 # use the log file to answer these questions:
 # How long were the average reads in each sample?

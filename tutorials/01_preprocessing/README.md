@@ -7,6 +7,13 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 ### Connect to an interactive computing node on MSI
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
+### First time only using SHI7
+- Tell the OS where to find SHI7 executables
+```bash
+echo "PATH=/home/knightsd/public/mice5035/shi7:$PATH" >> ~/.bash_profile
+source ~/.bash_profile
+```
+
 ### Using SHI7 to preprocess sequencing data
 
 ```bash

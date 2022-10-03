@@ -84,8 +84,8 @@ Unzip the sequences file from the `globalgut` directory:
 
  Make a text-based version of the OTU table and print out the first 10 rows (with `head`) and the first 5 columns (with `cut`):
  ```bash
-    biom convert -i otus/ninja_otutable.biom -o otus/ninja_otutable.txt -b
-    # note: for qiime 1.9.1 use --to-tsv instead of -b
+    biom convert -i otus/ninja_otutable.biom -o otus/ninja_otutable.txt --to-tsv
+
     head otus/ninja_otutable.txt | cut -f 1-5
  ```
  

@@ -7,12 +7,17 @@ You will need to follow these steps once every time you want to get logged in to
 - Follow the steps in the [Getting Started Guide](README.md) to get SSH working on your computer. On a Mac this means opening the Terminal app. On Windows this means either using the "Command Prompt," or if SSH doesn't work in your Windows Command Prompt, then using the software called Putty.
 
 - SSH to an MSI login node (skip this step if you are using Putty):
-`ssh yourusername@login.msi.umn.edu`. Replace `yourusername` with your actual username.
+
+```bash
+ssh yourusername@login.msi.umn.edu`. Replace `yourusername` with your actual username.
+```
 
 ### Connect to the Mesabi cluster
 - SSH from the login node to the "mesabi" cluster:
 
-`ssh mesabi` (you may have to enter your password).
+```bash
+ssh mesabi
+```
 
 ### Launch and connect to an interactive computing node
 - When you first log in to mesabi, you will be on a "login" node. You are not allowed to run computations on this node. Instead, you can launch an interactive node for running computations with this command:

@@ -60,7 +60,7 @@ We will use a QIIME parameters file to tweak the settings.
  
  Get a nice summary of the OTU table, and inspect the first 20 lines using `head`:
  ```bash
-    biom summarize_table -i otus/ninja_otutable.biom -o otus/stats.txt
+    biom summarize-table -i otus/ninja_otutable.biom -o otus/stats.txt
     head -n 20 otus/stats.txt
  ```
  

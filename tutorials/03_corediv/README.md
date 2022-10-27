@@ -87,9 +87,11 @@ We will use a QIIME parameters file to tweak the settings.
  
  What does this command do?
  
- Compare the default settings with the tweaked settings in `parameters.txt`. What are we changing by using `parameters.txt`?
+ `summarize_taxa_through_plots.py` is one of several "workflow" scripts in QIIME that conveniently run other scripts for you. The other scripts in this case are `summarize_taxa.py` and `plot_taxa_summary.py`. The file `parameters.txt` tells `summarize_taxa_through_plots.py` to set certain parameters when it runs those other scripts.
  
- Now run the command `summarize_taxa_through_plots.py`:
+Try running `summarize_taxa.py -h` and `plot_taxa_summary.py -h` to see the default settings for these scripts. Compare the default settings with the tweaked settings in `parameters.txt`. What are we changing by using `parameters.txt`? Take note that you might need to modify the `parameters.txt` some day to change the settings.
+ 
+Now run the command `summarize_taxa_through_plots.py`:
 
  ```bash
     summarize_taxa_through_plots.py -i otus/ninja_otutable_s10_min500.biom -p parameters.txt -v -o taxaplots/

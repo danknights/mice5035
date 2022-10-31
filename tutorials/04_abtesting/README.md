@@ -102,7 +102,7 @@ We can test the same three different types of experimental variables as follows,
  Print the significance testing results. The p-value is at the top right under `Pr(>F)`:
  
  ```bash
-    cat beta_age_group_significance/adonis_results.txt
+    head beta_age_group_significance/adonis_results.txt
  ```
  
  Was the result significant? What does this mean?
@@ -131,7 +131,7 @@ QIIME only currently has the ability to handle discrete variable testing for alp
 
 
 8. Move the files back from MSI to your computer using Filezilla  
- See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/04_abtesting/`. Drag the `alpha_country_significance`, `alpha_age_group_significance`, `beta_age_group_significance`, `beta_age_significance`, `beta_country_significance`, `genus_age_group_significance.txt`, `genus_age_significance.txt`,`genus_country_group_significance.txt`, files and folders to your computer. Open any text files that you want to view in Excel with right-click --> Open with --> Excel. If you don't have Excel, you can create a new Google Sheet on Google Drive, and then use File --> Import to import the text file as a spreadsheet.
+ See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/<yourusername>/mice5035/tutorials/04_abtesting/`. Drag the `alpha_country_significance`, `alpha_age_group_significance`, `beta_age_group_significance`, `beta_age_significance`, `beta_country_significance`, `genus_age_group_significance.txt`,`genus_country_group_significance.txt`, files and folders to your computer. Open any text files that you want to view in Excel with right-click --> Open with --> Excel. If you don't have Excel, you can create a new Google Sheet on Google Drive, and then use File --> Import to import the text file as a spreadsheet.
  
 9. Repeat using other data  
  Run OTU picking, alpha and beta diversity analysis, and finally significance tests using the Guerrero Negro sequences and mapping file. The files are located here:

@@ -7,6 +7,19 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 ### Connect to an interactive computing node on MSI
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
+## Visualize sequence quality. 
+### Run the fastqc program to visualize sequence quality
+- Tell the OS where to find SHI7 executables
+```bash
+module load fastqc
+fastqc -o 16s-fastqc /home/knightsd/public/mice5035/preprocessing/16s/fastq
+```
+
+### Transfer files and view in a web browser
+- Use FileZilla or another FTP program to drag the entire `16-fastqc` folder to your computer Desktop or class folder. Open the folder, and open the first `html` file.
+- When does the sequence quality begin to drop off? If you had to choose a single length at which to truncate the sequences (trim off the ends, what would it be)? A quality score of 30 or 35 or higher is usually considered good.
+
+## Run actual quality filtering
 ### First time only using SHI7
 - Tell the OS where to find SHI7 executables
 ```bash

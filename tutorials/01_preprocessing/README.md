@@ -20,7 +20,7 @@ fastqc -o 16s-fastqc /home/knightsd/public/mice5035/preprocessing/16s/fastq
 - When does the sequence quality begin to drop off? If you had to choose a single length at which to truncate the sequences (trim off the ends, what would it be)? A quality score of 30 or 35 or higher is usually considered good.
 - Scroll down to view the table of overrepresented sequences. Copy and paste the first one in to [NCBI's BLAST tool](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Does it look suspicious?
 
-## Run actual quality filtering
+## Run actual quality filtering with SHI7
 ### First time only using SHI7
 - Tell the OS where to find SHI7 executables
 ```bash
@@ -40,8 +40,9 @@ cd mice5035
 cd tutorials
 cd 01_preprocessing
 
-# run shi7 on 16S data
-python /home/knightsd/public/mice5035/shi7/shi7.py -i /home/knightsd/public/mice5035/preprocessing/16s/fastq -o 16s-output
+# run shi7 on IMP 16S data, located here:
+# /home/knightsd/public/imp-16s-shallow/
+time python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp-16s-shallow/ -o 16s-output
 
 # print top 10 lines of output FASTA (.fna) file 
 # inspect combined_seqs file (cut -c 1-100 cuts out the first 100 characters of each line)
@@ -108,4 +109,21 @@ python /home/knightsd/public/mice5035/shi7/shi7.py -i /home/mice5035/public/prep
 # How many bases were trimmed from the left and right of each read?
 
 ```
+
+### Appendix
+Kraken2 and Bracken can also be run on the 16S data. For reference, here is how.
+```bash
+# download SILVA database from Ben Langmead
+# https://benlangmead.github.io/aws-indexes/k2
+# Specifically, [SILVA v138 99% ID](https://genome-idx.s3.amazonaws.com/kraken/16S_Silva138_20200326.tgz)
+# is already located here: /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db
+
+# generate stitched, trimmed, per-sample FASTQ files with SHI7
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp-16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
+
+# Run kraken on each per-sample FASTQ files
+module load kraken
+module load bracken
+time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
+bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
 

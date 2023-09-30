@@ -18,6 +18,7 @@ fastqc -o 16s-fastqc /home/knightsd/public/mice5035/preprocessing/16s/fastq
 ### Transfer files and view in a web browser
 - Use FileZilla or another FTP program to drag the entire `16-fastqc` folder to your computer Desktop or class folder. Open the folder, and open the first `html` file.
 - When does the sequence quality begin to drop off? If you had to choose a single length at which to truncate the sequences (trim off the ends, what would it be)? A quality score of 30 or 35 or higher is usually considered good.
+- Scroll down to view the table of overrepresented sequences. Copy and paste the first one in to [NCBI's BLAST tool](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Does it look suspicious?
 
 ## Run actual quality filtering
 ### First time only using SHI7

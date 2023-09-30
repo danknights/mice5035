@@ -126,4 +126,9 @@ module load kraken
 module load bracken
 time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
 bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
+```
 
+Note: when sequence data come off the Illumina sequencer they have a bunch of extra text in the filenames. Instead of `Sample1_R1.fastq`, samples are named `Sample1_Sxxx_R1_001.fastq` where `Sxxx` might have 1, 2, or 3 digits after the `S`. This text is annoying because it makes your sample IDs not match with your metadata file, so you have to get rid of it somehow. One way is to just rename the files, using a command like this:
+```bash
+for f in *.fastq.gz; do echo $f; mv $f "$(echo "${f}" | sed 's/_S[0-9][0-9]*_R\([1-2]\)_001/_R\1/')"; done
+```

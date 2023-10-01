@@ -123,7 +123,7 @@ Note: we may perform relative abundance filtering later when doing statistical t
 11. Make the 3D interactive "Emperor" plot
 
  ```bash
-    time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../map.txt -o 3dplots-weighted-unifrac
+    time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
  ```
 
 12. Move the files back from MSI to your computer using Filezilla  
@@ -152,7 +152,7 @@ filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_
 alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t otus/rep_set.tre -o alpha-diversity.txt
 beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t otus/rep_set.tre
 principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
-time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../map.txt -o 3dplots-weighted-unifrac
+time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
 ## Repeat with WGS data using Kraken to create a taxon table:

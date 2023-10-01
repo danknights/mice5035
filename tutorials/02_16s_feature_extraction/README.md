@@ -132,6 +132,8 @@ Note: we may perform relative abundance filtering later when doing statistical t
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 
+We now have all of the basic features and tables that we will want to use for statistical testing: OTU tables, taxonomy tables, alpha diversity analysis, and beta diversity analyses.
+
 ## Repeat with de-novo OTU picking
 
 First, change directory to the `otus-de-novo` directory

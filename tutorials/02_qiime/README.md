@@ -194,6 +194,13 @@ Merge the separate Kraken outputs to taxon tables
 python ../../../scripts/kraken2table.py kraken/*.txt taxon_tables
 ```
 
+Convert each taxonomy table to biom format to perform beta diversity and alpha diversity analysis.
+```bash
+for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
+```
+
+Alpha and beta diversity analysis can now be performed as above, but with the taxon tables as the input biom files, and without phylogenetic diversity measures.
+
  ## Appendix
  
 Kraken2 and Bracken can also be run on the _16S_ data. For reference, here is how.
@@ -213,6 +220,7 @@ time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --thr
 bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
 
 # the data can then be compiled into a taxonomy table using this script: https://github.com/sipost1/kraken2OTUtable/blob/main/kraken2otu.py
+# or the script in the "scripts" dir in this repo
 ```
 
 Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows. The sequence data need to be imported into QIIME2. There are various approaches, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:

@@ -96,32 +96,37 @@ You should already have the post-qc sequencing data in the tutorial 01 directory
    filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_final.biom -s 4
  ```
 
+7. Collapse OTUs at different taxonomic levels for later taxonomic analysis
+```bash
+summarize_taxa.py -i otus/otu_table_final.biom -o taxon_tables --level 2,3,4,5,6,7
+```
+
 Note: we may perform relative abundance filtering later when doing statistical testing. QIIME1 does not implemement this type of filter.
 
-7. Calculate alpha diversity
+8. Calculate alpha diversity
 ```bash
    alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree -o alpha-diversity.txt
 ```
 
-8. Calculate beta diversity
+9. Calculate beta diversity
 
  ```bash
     beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree
  ```
 
-9. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
+10. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
 
  ```bash
     principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
  ```
 
-10. Make the 3D interactive "Emperor" plot
+11. Make the 3D interactive "Emperor" plot
 
  ```bash
     time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../map.txt -o 3dplots-weighted-unifrac
  ```
 
-11. Move the files back from MSI to your computer using Filezilla  
+12. Move the files back from MSI to your computer using Filezilla  
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/yourusername/mice5035/tutorials/02_qiime/`. Then drag the `otus`, `beta`, and `3dplots` folders over to your laptop.
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
@@ -138,7 +143,7 @@ To pick de novo OTUs:
 ```bash
    time pick_de_novo_otus.py -i ../../01_preprocessing/16s-output/combined_seqs.fna -o otus -O 4 -v -a
 ```
-Then proceed with steps 6-11 above. Note that you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the beta diversity step:
+Then proceed with steps 6-12 above. Note that you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the beta diversity step:
 
 ```bash
 biom convert -i otus/otu_table.biom -o otus/otu_table.txt --to-tsv
@@ -163,32 +168,30 @@ Load the Kraken module
 module load kraken
 ```
 
-Then create and enter a subdirectory for the kraken raw output tables.
+Then create a subdirectory for the kraken raw output tables.
 ```bash
-mkdir kraken-output
-cd kraken-output/
+mkdir kraken
 ```
 
 Run Kraken on each input file. In the future, we will write a `for` loop for this so that we don't have to enter each file manually.
 
 ```bash
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report CS.079.kreport2 -use-names ../../../01_preprocessing/wgs-output/CS.079.S37.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report CS.145.kreport2 -use-names  ../../../01_preprocessing/wgs-output/CS.145.S1.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report CS.146.kreport2 -use-names  ../../../01_preprocessing/wgs-output/CS.146.S12.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report CS.165.kreport2 -use-names  ../../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report CS.166.kreport2 -use-names  ../../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report CS.222.kreport2 -use-names  ../../../01_preprocessing/wgs-output/CS.222.S15.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report T.CS.008.kreport2 -use-names  ../../../01_preprocessing/wgs-output/T.CS.008.S40.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report T.CS.018.kreport2 -use-names  ../../../01_preprocessing/wgs-output/T.CS.018.S17.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report T.CS.030.kreport2 -use-names  ../../../01_preprocessing/wgs-output/T.CS.030.S84.001.fa.fna
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.079.txt --use-names ../../01_preprocessing/wgs-output/CS.079.S37.001.fa.fna
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.145.txt --use-names  ../../01_preprocessing/wgs-output/CS.145.S1.001.fa.fna
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.146.txt --use-names  ../../01_preprocessing/wgs-output/CS.146.S12.001.fa.fna 
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.165.txt --use-names  ../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.166.txt --use-names  ../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.222.txt --use-names  ../../01_preprocessing/wgs-output/CS.222.S15.001.fa.fna
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/T.CS.008.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.008.S40.001.fa.fna
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/T.CS.018.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.018.S17.001.fa.fna
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/T.CS.030.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.030.S84.001.fa.fna
 ```
 
-Merge the separate Kraken outputs to a single table
+Merge the separate Kraken outputs to taxon tables
 ```bash
 # Now we have a single output file per sample;
-# we can merge these using a tool from metaphlan2.py
-module load metaphlan2
-merge_metaphlan_tables.py *.txt > merged.txt
+# we can merge these using the script kraken2table.py in this repo:
+python ../../../scripts/kraken2table.py kraken/*.txt taxon_tables
 ```
 
  ## Appendix

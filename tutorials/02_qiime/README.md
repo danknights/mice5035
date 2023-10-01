@@ -199,7 +199,7 @@ Convert each taxonomy table to biom format to perform beta diversity and alpha d
 for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
 ```
 
-Alpha and beta diversity analysis can now be performed as above, but with the taxon tables as the input biom files, and without phylogenetic diversity measures.
+Alpha and beta diversity analysis can now be performed as above, but with the taxon tables as the input biom files, without tree files, and without phylogenetic diversity measures.
 
  ## Appendix
  

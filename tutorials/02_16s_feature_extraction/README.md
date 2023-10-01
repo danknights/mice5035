@@ -28,7 +28,7 @@ Make sure that you are in your home directory inside the MICE 5035 course direct
 Change directory in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
  ```bash
     cd mice5035
-    cd tutorials/02_qiime
+    cd tutorials/02_16s_feature_extraction
     ls
     git pull
  ```

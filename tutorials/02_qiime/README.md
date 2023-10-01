@@ -201,7 +201,7 @@ qiime tools export --input-path core-metrics-results/weighted_unifrac_distance_m
 mkdir core-metrics-export/alpha
 mv core-metrics-results/shannon_export/alpha-diversity.tsv core-metrics-export/alpha/shannon.tsv
 mv core-metrics-results/observed_otus_export/alpha-diversity.tsv core-metrics-export/alpha/observed_otus.tsv
-mv core-metrics-results/faith_pd__export/alpha-diversity.tsv core-metrics-export/alpha/faith_pd_.tsv
+mv core-metrics-results/faith_pd__export/alpha-diversity.tsv core-metrics-export/alpha/faith_pd.tsv
 
 mkdir core-metrics-export/beta
 mv core-metrics-results/unweighted_unifrac_export/distance-matrix.tsv core-metrics-export/beta/unweighted_unifrac-distance-matrix.tsv

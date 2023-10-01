@@ -20,7 +20,7 @@ fastqc -o 16s-fastqc /home/knightsd/public/imp/16s-shallow/*.fastq.gz
 - When does the sequence quality begin to drop off? If you had to choose a single length at which to truncate the sequences (trim off the ends, what would it be)? A quality score of 30 or 35 or higher is usually considered good.
 - Scroll down to view the table of overrepresented sequences. Copy and paste the first one in to [NCBI's BLAST tool](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Does it look suspicious?
 
-## Run actual quality filtering with SHI7
+## Run quality filtering with SHI7
 
 ### Using SHI7 to preprocess sequencing data
 

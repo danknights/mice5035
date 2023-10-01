@@ -1,16 +1,13 @@
-## MiCE 5035 Tutorial: 16s feature extraction
+## MiCE 5035 Tutorial: WGS feature extraction
 
 ### Background
-This tutorial is an introduction to extracting taxonomic features from 16S or shotgun sequencing data, and 
-performing alpha diversity and beta diversity analysis. 
-
-Some of this tutorial uses QIIME 1.9.1 to perform basic analysis. QIIME2 provides 
-more options for visualizations but performs mostly the same core analyses and has a steeper learning curve.
+This tutorial is an introduction to extracting taxonomic features from shotgun sequencing data, and 
+performing alpha diversity and beta diversity analysis. We will use the Kraken tool to annotate the data.
 
 ### Connect to an interactive computing node on MSI
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
-### Follow the tutorial
+### Tutorial
 
 1. Load software  
  Load all of the software "modules" that you will need.

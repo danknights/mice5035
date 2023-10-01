@@ -1,15 +1,22 @@
 # merges mpa-style kraken2 reports into a single tab-delimited table
 # uses file names as sample names, everything before the last "."
 # tried many different scripts from various packages and none worked.
-# scans file once to 
+# 
+# Note: assumes kraken output taxonomy is pipe | separated
 # usage:
 # python kraken2otu.py report1 report2 ... output-dir
 
 import sys
 import os
 from collections import defaultdict
+import re
 
-files = sys.argv[:-1]
+# will be used to replace multiple spaces
+import re
+_RE_COMBINE_WHITESPACE = re.compile(r" +")
+
+
+files = sys.argv[1:-1]
 outdir = sys.argv[-1]
 if not os.path.exists(outdir):
     os.makedirs(outdir)
@@ -24,12 +31,11 @@ for fname in files:
     counts = defaultdict(int)
     with open(fname,'r') as f:
         for line in f:
-            line.replace(' ','_')
+            line = _RE_COMBINE_WHITESPACE.sub("_", line).strip() # replace multispaces
             words = line.strip().split()
-            print(words)
             taxon = words[0].strip()
             count = words[1].strip()
-            counts[taxon] = count
+            counts[taxon] = int(count)
             taxa.add(taxon)
     samples[sampleID] = counts
 
@@ -46,7 +52,7 @@ f6 = open(os.path.join(outdir,'taxa_table_L6.txt'),'w')
 f7 = open(os.path.join(outdir,'taxa_table_L7.txt'),'w')
 files = [f1, f2, f3, f4, f5, f6, f7]
 for f in files:
-    f.write('Taxon\t' + '\t'.join(sampleIDs) + '\n')
+    f.write('Taxon\t' + '\t'.join(sampleIDs) + 'taxonomy\n')
 
 for taxon in taxa:
     if "|s__" in taxon:
@@ -61,9 +67,17 @@ for taxon in taxa:
         f = f3
     elif "|p__" in taxon:
         f = f2
-    elif "|d__" in taxon:
+    else:
         f = f1
-    f.write(taxon)
-    for sample in sampleIDs:
-        f.write('\t' + str(samples[sampleID][taxon]))
-    f.write('\n')
+    # check that taxon is nonzero
+    maxcount = 0
+    for sampleID in sampleIDs:
+        if samples[sampleID][taxon] > maxcount:
+            maxcount = samples[sampleID][taxon]
+    taxonomy_string = taxon.replace('|','; ')
+    if maxcount > 0:
+        f.write(taxon)
+        for sampleID in sampleIDs:
+            f.write('\t' + str(samples[sampleID][taxon]))
+        f.write('\t' + taxonomy_string)
+        f.write('\n')

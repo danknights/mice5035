@@ -1,8 +1,10 @@
-## MiCE 5035 Tutorial: QIIME
+## MiCE 5035 Tutorial: 16s feature extraction
 
 ### Background
-QIIME is a comprehensive tool for doing microbiome analysis. This tutorial is just an introduction
-to the QIIME tool to allow you to try running a few commands and viewing the output. QIIME2 provides 
+This tutorial is an introduction to extracting taxonomic features from 16S or shotgun sequencing data, and 
+performing alpha diversity and beta diversity analysis. 
+
+Some of this tutorial uses QIIME 1.9.1 to perform basic analysis. QIIME2 provides 
 more options for visualizations but performs mostly the same core analyses and has a steeper learning curve.
 
 ### Connect to an interactive computing node on MSI
@@ -155,55 +157,9 @@ principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/we
 time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
-## Repeat with WGS data using Kraken to create a taxon table:
-
-First, change directory to the `wgs-kraken` directory
-```bash
-cd ..
-cd wgs-kraken
-```
-
-Load the Kraken module
-```bash
-module load kraken
-```
-
-Then create a subdirectory for the kraken raw output tables.
-```bash
-mkdir kraken
-```
-
-Run Kraken on each input file. In the future, we will write a `for` loop for this so that we don't have to enter each file manually.
-
-```bash
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.079.txt --use-names ../../01_preprocessing/wgs-output/CS.079.S37.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.145.txt --use-names  ../../01_preprocessing/wgs-output/CS.145.S1.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.146.txt --use-names  ../../01_preprocessing/wgs-output/CS.146.S12.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.165.txt --use-names  ../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.166.txt --use-names  ../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/CS.222.txt --use-names  ../../01_preprocessing/wgs-output/CS.222.S15.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/T.CS.008.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.008.S40.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/T.CS.018.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.018.S17.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken/T.CS.030.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.030.S84.001.fa.fna
-```
-
-Merge the separate Kraken outputs to taxon tables
-```bash
-# Now we have a single output file per sample;
-# we can merge these using the script kraken2table.py in this repo:
-python ../../../scripts/kraken2table.py kraken/*.txt taxon_tables
-```
-
-Convert each taxonomy table to biom format to perform beta diversity and alpha diversity analysis.
-```bash
-for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
-```
-
-Alpha and beta diversity analysis can now be performed as above, but with the taxon tables as the input biom files, without tree files, and without phylogenetic diversity measures.
-
- ## Appendix
+ ## Extra exercises
  
-Kraken2 and Bracken can also be run on the _16S_ data. For reference, here is how.
+Kraken2 and Bracken can be run on the _16S_ data. For reference, here is how.
 ```bash
 # download SILVA database from Ben Langmead
 # https://benlangmead.github.io/aws-indexes/k2
@@ -219,8 +175,7 @@ module load bracken
 time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
 bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
 
-# the data can then be compiled into a taxonomy table using this script: https://github.com/sipost1/kraken2OTUtable/blob/main/kraken2otu.py
-# or the script in the "scripts" dir in this repo
+# the data can then be compiled into a taxonomy table using the script kraken2table.py in the "scripts" dir in this repo. See the WGS feature extraction tutorial 03_feature_extraction with Kraken.
 ```
 
 Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows. The sequence data need to be imported into QIIME2. There are various approaches, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:

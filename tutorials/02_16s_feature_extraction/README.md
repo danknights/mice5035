@@ -1,7 +1,7 @@
 ## MiCE 5035 Tutorial: 16s feature extraction
 
 ### Background
-This tutorial is an introduction to extracting taxonomic features from 16S or shotgun sequencing data, and 
+This tutorial is an introduction to extracting taxonomic features from 16S sequencing data, and 
 performing alpha diversity and beta diversity analysis. 
 
 Some of this tutorial uses QIIME 1.9.1 to perform basic analysis. QIIME2 provides 
@@ -10,21 +10,22 @@ more options for visualizations but performs mostly the same core analyses and h
 ### Connect to an interactive computing node on MSI
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
-### Follow the tutorial
+### Tutorial
 
-1. make sure that you are in your home directory inside the MICE 5035 course directory (`/home/mice5035`), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
- ```bash
-    pwd
- ```
-
-2. Load software  
+1. Load software  
  Load all of the software "modules" that you will need.
  ```bash
     module load qiime/1.9.1_centos7
     module load bowtie2
  ```
  
-3. Change directory in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
+2. Navigate to the correct directory
+Make sure that you are in your home directory inside the MICE 5035 course directory (`/home/mice5035`), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
+ ```bash
+    pwd
+ ```
+
+Change directory in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
  ```bash
     cd mice5035
     cd tutorials/02_qiime
@@ -32,11 +33,10 @@ more options for visualizations but performs mostly the same core analyses and h
     git pull
  ```
 
-Let's set up three folders for our analyses: closed-ref 16S OTUs, de novo 16S OTUs, and WGS taxa with the Kraken tool, so that we can keep our files organized.
+Let's set up two folders for our analyses: closed-ref 16S OTUs, and de novo 16S OTUs, so that we can keep our files organized.
  ```bash
     mkdir 16s-closed-ref
     mkdir 16s-de-novo
-    mkdir wgs-kraken
  ```
 
 Change directory into the 16s-closed-ref directory.
@@ -44,7 +44,7 @@ Change directory into the 16s-closed-ref directory.
     cd 16s-closed-ref
  ```
 
-4. Find the sequencing data
+3. Examine the sequencing data
 You should already have the post-qc sequencing data in the tutorial 01 directory. Check to see that it is there:
  ```bash
     ls ../../01_preprocessing/16s-output/
@@ -61,9 +61,8 @@ You should already have the post-qc sequencing data in the tutorial 01 directory
     
  ```
 
-5. Pick Operational Taxonomic Units (OTUs)
-### Closed-reference
- Find the closest match for each sequence in a reference database using NINJA-OPS. We can also use the QIIME `pick_closed_reference_otus.py` workflow script, but NINJA-OPS is faster.
+4. Pick Operational Taxonomic Units (OTUs) (Closed-reference)
+ We will start with closed-reference OTU picking. This means we will find the closest match for each sequence in a reference database using NINJA-OPS. We can also use the QIIME `pick_closed_reference_otus.py` workflow script, but NINJA-OPS is faster. The default reference database is Greengenes version 13_8, which is now 10 years old. There is a newer Greengenes database, but there is no publicly shared clustered version (OTUs picked on the reference database), only the raw database, which as 20m+ sequences. [Silva](https://www.arb-silva.de/) has alternative 16S databases clustered at the 99% level, but they do not make it easy to download a pre-built phylogeny for their representative sequences. NCBI has a nice alternative in the [RefSeq targeted locus project](https://www.ncbi.nlm.nih.gov/refseq/targetedloci/), but again, no phylogeny is provided. Therefore, for ease of use, we are using the old Greengenes 97% representative sequences and phylogeny.
 
  ```bash
     time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../01_preprocessing/16s-output/combined_seqs.fna -o otus -p 4 -z -m normal
@@ -86,7 +85,7 @@ You should already have the post-qc sequencing data in the tutorial 01 directory
     head -n 30 otus/stats.txt
  ```
 
- 6. Rarefy and filter the OTU table
+ 5. Rarefy and filter the OTU table
  We will subsample the observations in each sample so that they have the same effective sequencing depth. This controls for differences in alpha diversity and beta diversity that might show up as artifacts if one group of samples had much higher depth than another. We will use a depth of 140 chosen by inspecting the `stats.txt` file above. In a full data set, this would be much higher.
 
  ```bash
@@ -98,37 +97,37 @@ You should already have the post-qc sequencing data in the tutorial 01 directory
    filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_final.biom -s 4
  ```
 
-7. Collapse OTUs at different taxonomic levels for later taxonomic analysis
+6. Collapse OTUs at different taxonomic levels for later taxonomic analysis
 ```bash
 summarize_taxa.py -i otus/otu_table_final.biom -o taxon_tables --level 2,3,4,5,6,7
 ```
 
 Note: we may perform relative abundance filtering later when doing statistical testing. QIIME1 does not implemement this type of filter.
 
-8. Calculate alpha diversity
+7. Calculate alpha diversity
 ```bash
    alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree -o alpha-diversity.txt
 ```
 
-9. Calculate beta diversity
+8. Calculate beta diversity
 
  ```bash
     beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree
  ```
 
-10. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
+9. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
 
  ```bash
     principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
  ```
 
-11. Make the 3D interactive "Emperor" plot
+10. Make the 3D interactive "Emperor" plot
 
  ```bash
     time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
  ```
 
-12. Move the files back from MSI to your computer using Filezilla  
+11. Move the files back from MSI to your computer using Filezilla  
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/yourusername/mice5035/tutorials/02_qiime/`. Then drag the `otus`, `beta`, and `3dplots` folders over to your laptop.
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
@@ -145,7 +144,7 @@ To pick de novo OTUs:
 ```bash
    time pick_de_novo_otus.py -i ../../01_preprocessing/16s-output/combined_seqs.fna -o otus -O 4 -v -a
 ```
-Then proceed with steps 6-12 above. Note that you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the beta diversity step:
+Then proceed with steps 5-11 above. Note that you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the beta diversity step:
 
 ```bash
 biom convert -i otus/otu_table.biom -o otus/otu_table.txt --to-tsv
@@ -159,25 +158,6 @@ time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../..
 
  ## Extra exercises
  
-Kraken2 and Bracken can be run on the _16S_ data. For reference, here is how.
-```bash
-# download SILVA database from Ben Langmead
-# https://benlangmead.github.io/aws-indexes/k2
-# Specifically, [SILVA v138 99% ID](https://genome-idx.s3.amazonaws.com/kraken/16S_Silva138_20200326.tgz)
-# is already located here: /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db
-
-# generate stitched, trimmed, per-sample FASTQ files with SHI7
-python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp-16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
-
-# Run kraken on each per-sample FASTQ files
-module load kraken
-module load bracken
-time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
-bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
-
-# the data can then be compiled into a taxonomy table using the script kraken2table.py in the "scripts" dir in this repo. See the WGS feature extraction tutorial 03_feature_extraction with Kraken.
-```
-
 Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows. The sequence data need to be imported into QIIME2. There are various approaches, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:
 ```bash
 # Don't run this -- just for future reference
@@ -258,6 +238,25 @@ mv rooted-tree-export/tree.nwk core-metrics-export/tree.nwk
 # switch to QIIME 1, make 3d plot (although there are some buried in one of the .qza files of QIIME2)
 principal_coordinates.py -i core-metrics-results/weighted_unifrac-distance-matrix.tsv -o core-metrics-results/weighted_unifrac_pc.txt
 time make_emperor.py -i core-metrics-results/weighted_unifrac_pc.txt -m map.txt -o core-metrics-results/3dplots-weighted-unifrac
+```
+
+Kraken2 and Bracken can be run on the _16S_ data (paper here)[https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00900-2]. For reference, here is how.
+```bash
+# download SILVA database from Ben Langmead
+# https://benlangmead.github.io/aws-indexes/k2
+# Specifically, [SILVA v138 99% ID](https://genome-idx.s3.amazonaws.com/kraken/16S_Silva138_20200326.tgz)
+# is already located here: /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db
+
+# generate stitched, trimmed, per-sample FASTQ files with SHI7
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp-16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
+
+# Run kraken on each per-sample FASTQ files
+module load kraken
+module load bracken
+time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
+bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
+
+# the data can then be compiled into a taxonomy table using the script kraken2table.py in the "scripts" dir in this repo. See the WGS feature extraction tutorial 03_feature_extraction with Kraken.
 ```
 
     

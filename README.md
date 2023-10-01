@@ -30,14 +30,20 @@ https://www.ssh.com/academy/ssh/putty/windows/install
   * If you have trouble connecting, try filling out the MSI user agreement here: https://www.msi.umn.edu/user-agreement.
   * Make sure you are on the UofM network or eduroam network. Otherwise, MSI will probably block your computer from connecting. To get around this you can also use a UofM VPN, instructions for installing which are below.
 
-### Run the setup command
-Copy this command, paste it into your terminal, and press "return"
-
-Run this additional command. It's OK to get two "File exists" errors:
+### Set some default parameters
+Set a parameter that lets the data visualization software work better. Copy this command, paste it into your terminal, and press "return". It's OK to get a "File exists" error:
 ```bash
 mkdir ~/.config; mkdir ~/.config/matplotlib; echo "backend: agg" >> ~/.config/matplotlib/matplotlibrc
 ```
 
+Tell the operating system where to find executables for the SHI7 tool:
+```bash
+echo "PATH=/home/knightsd/public/shi7:$PATH" >> ~/.bash_profile
+source ~/.bash_profile
+```
+
+
+###
 ### Run a test script
 
 `module load qiime/1.9.1_centos7` (Load QIIME software)

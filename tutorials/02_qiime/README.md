@@ -112,4 +112,56 @@ Unzip the sequences file from the `globalgut` directory:
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 
+
+ ## Appendix
  
+Kraken2 and Bracken can also be run on the 16S data. For reference, here is how.
+```bash
+# download SILVA database from Ben Langmead
+# https://benlangmead.github.io/aws-indexes/k2
+# Specifically, [SILVA v138 99% ID](https://genome-idx.s3.amazonaws.com/kraken/16S_Silva138_20200326.tgz)
+# is already located here: /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db
+
+# generate stitched, trimmed, per-sample FASTQ files with SHI7
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp-16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
+
+# Run kraken on each per-sample FASTQ files
+module load kraken
+module load bracken
+time kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
+bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
+
+# the data can then be compiled into a taxonomy table using this script: https://github.com/sipost1/kraken2OTUtable/blob/main/kraken2otu.py
+```
+
+Dada2 can be run using QIIME2 to pick amplicon sequence variants (ASVs).
+
+Then the sequence data need to be imported into QIIME2. There are various approaches, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:
+```bash
+# Don't run this -- just for future reference
+# for f in *.fastq.gz; do echo $f; mv $f "$(echo "${f}" | sed 's/_S[0-9][0-9]*_R\([1-2]\)/_1_L001_R\1/')"; done
+```
+
+There is already a version of the 16s data with the files in the correct format in the folder `/home/knightsd/public/imp/16s-shallow-for-dada2`. Therefore we can move ahead with importing the data, and running dada2 using QIIME2.
+
+```bash
+# Unload the QIIME 1.9 module, and load the QIIME2 module:
+module unload qiime/1.9.1_centos7
+module load qiime2
+
+# Import the data
+qiime tools import --input-path /home/knightsd/public/imp/16s-shallow-for-dada22/  --output-path seqs.qza --type 'SampleData[PairedEndSequencesWithQuality]' --input-format CasavaOneEightSingleLanePerSampleDirFmt
+
+# then run Dada2
+# Need to choose the start position/truncation length for the forward and reverse reads
+# Below we have 5 and 200 for each
+# these were chosen by running fastqc on the raw data and then viewing the
+# resulting HTML files in a browser
+time qiime dada2 denoise-paired --i-demultiplexed-seqs seqs.qza --p-n-threads 0 --p-trim-left-f 5 --p-trim-left-r 5 --p-trunc-len-f 200 --p-trunc-len-r 200 --o-representative-sequences rep-seqs-dada2.qza --o-table table-dada2.qza --o-denoising-stats stats-dada2.qza
+
+# export the OTU table and convert to tab-delimited format.
+qiime tools export --input-path table-dada2.qza --output-path table
+biom convert --to-tsv -i table/feature-table.biom -o table/otu-table.tsv
+
+```
+

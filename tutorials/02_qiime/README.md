@@ -9,6 +9,7 @@ more options for visualizations but performs mostly the same core analyses and h
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
 
 ### Follow the tutorial
+
 1. make sure that you are in your home directory inside the MICE 5035 course directory (`/home/mice5035`), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
  ```bash
     pwd
@@ -21,7 +22,7 @@ more options for visualizations but performs mostly the same core analyses and h
     module load bowtie2
  ```
  
-3. Change in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
+3. Change directory in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
  ```bash
     cd mice5035
     cd tutorials/02_qiime
@@ -29,93 +30,129 @@ more options for visualizations but performs mostly the same core analyses and h
     git pull
  ```
 
+Let's set up three folders for our analyses: closed-ref 16S OTUs, de novo 16S OTUs, and WGS taxa with the Kraken tool, so that we can keep our files organized.
+ ```bash
+    mkdir 16s-closed-ref
+    mkdir 16s-de-novo
+    mkdir wgs-kraken
+ ```
+
+Change directory into the 16s-closed-ref directory.
+```bash
+    cd 16s-closed-ref
+ ```
+
 4. Find the sequencing data
-
-Unzip the sequences file from the `globalgut` directory:
+You should already have the post-qc sequencing data in the tutorial 01 directory. Check to see that it is there:
  ```bash
-    unzip ../../data/globalgut/seqs.fna.zip
-    ls
+    ls ../../01_preprocessing/16s-output/
  ```
 
- Test how large the files are:
+ Count the number of lines, words, and characters in the sequence file. How many sequences are in the file?
  ```bash
-    du -hs *
+    wc ../../01_preprocessing/16s-output/combined_seqs.fna
  ```
 
- Peek at the first 10 lines of the file:
+ How many unique samples are there? Note: this involves a few bash scripting tricks: using pipe `|` to feed the output from one program to another; using `cut` to cut each line into fields based on a given delimiter ("_" in this case), etc.
  ```bash
-    head seqs.fna
- ```
-
- Count the number of lines, words, and characters in the file. How many sequences are in the file?
- ```bash
-    wc seqs.fna
- ```
-
- How many unique samples are there?
- ```bash
-    grep ">" seqs.fna | cut -f 1 -d "_" | sort | uniq | wc
+    grep ">" ../../01_preprocessing/16s-output/combined_seqs.fna | cut -f 1 -d "_" | sort | uniq | wc
     
  ```
 
 
-
-5. Pick Operational Taxonomic Units (OTUs)  
-
- Find the closest match for each sequence in a reference database using NINJA-OPS.
-
+5. Pick Operational Taxonomic Units (OTUs)
+### Closed-reference
+ Find the closest match for each sequence in a reference database using NINJA-OPS. We can also use the QIIME `pick_closed_reference_otus.py` workflow script, but NINJA-OPS is faster.
 
  ```bash
-    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i seqs.fna -o otus -p 4 -z -m normal
+    time python /home/knightsd/public/mice5035/NINJA-OPS-1.5.1/bin/ninja.py -i ../../01_preprocessing/16s-output/combined_seqs.fna -o otus -p 4 -z -m normal
     ls otus
-    
-    # note: if something didn't work right and you need to remove a file, use "rm"
-    rm file_to_remove.txt
-    
-    # if you need to remove a directory:
-    rm -r directory_to_remove
+
+    # rename the output table so that it is consistent with other QIIME commands
+    mv otus/ninja_otutable.biom otus/otu_table.biom
  ```
  
- Get a nice summary of the OTU table, and inspect the first 20 lines using `head`:
- ```bash
-    biom summarize-table -i otus/ninja_otutable.biom -o otus/stats.txt
-    head -n 20 otus/stats.txt
- ```
-
  Make a text-based version of the OTU table and print out the first 10 rows (with `head`) and the first 5 columns (with `cut`):
  ```bash
-    biom convert -i otus/ninja_otutable.biom -o otus/ninja_otutable.txt --to-tsv
+    biom convert -i otus/otu_table.biom -o otus/otu_table.txt --to-tsv
 
-    head otus/ninja_otutable.txt | cut -f 1-5
+    head otus/otu_table.txt | cut -f 1-5
  ```
- 
-6. Calculate beta diversity
+
+ Get a nice summary of the OTU table, and inspect the first 30 lines using `head`. Can you find a good depth cutoff for rarefaction?
+ ```bash
+    biom summarize-table -i otus/otu_table.biom -o otus/stats.txt
+    head -n 30 otus/stats.txt
+ ```
+
+ 6. Rarefy and filter the OTU table
+ We will subsample the observations in each sample so that they have the same effective sequencing depth. This controls for differences in alpha diversity and beta diversity that might show up as artifacts if one group of samples had much higher depth than another. We will use a depth of 140 chosen by inspecting the `stats.txt` file above. In a full data set, this would be much higher.
 
  ```bash
-    beta_diversity.py -i otus/ninja_otutable.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis" -t /home/knightsd/public/mice5035/databases/97_otus.tree
+    single_rarefaction.py -i otus/otu_table.biom -d 140 -o otus/otu_table_rarefied.biom
  ```
 
-7. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
+ Remove OTUs not present in at least 4 samples (in practice we might choose 10% or 25% of all samples).
+ ```bash
+   filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_final.biom -s 4
+ ```
+
+Note: we may perform relative abundance filtering later when doing statistical testing. QIIME1 does not implemement this type of filter.
+
+7. Calculate alpha diversity
+```bash
+   alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree -o alpha
+```
+
+7. Calculate beta diversity
 
  ```bash
-    principal_coordinates.py -i beta/unweighted_unifrac_ninja_otutable.txt -o beta/unweighted_unifrac_ninja_otutable_pc.txt
+    beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree
  ```
 
-8. Make the 3D interactive "Emperor" plot
+8. Run principal coordinates analysis on beta diversity distances to collapse to 3 dimensions
 
  ```bash
-    time make_emperor.py -i beta/unweighted_unifrac_ninja_otutable_pc.txt -m ../../data/globalgut/map.txt -o 3dplots
+    principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
  ```
 
-9. Move the files back from MSI to your computer using Filezilla  
+9. Make the 3D interactive "Emperor" plot
+
+ ```bash
+    time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../map.txt -o 3dplots-weighted-unifrac
+ ```
+
+10. Move the files back from MSI to your computer using Filezilla  
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/yourusername/mice5035/tutorials/02_qiime/`. Then drag the `otus`, `beta`, and `3dplots` folders over to your laptop.
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 
+10. Repeat with de-novo OTU picking, and WGS taxa
+
+To pick de novo OTUs:
+```bash
+   time pick_de_novo_otus.py -i ../../01_preprocessing/16s-output/combined_seqs.fna -o otus -O 4 -v -a
+```
+Then proceed with steps 6-10. Note that you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the beta diversity step:
+
+```bash
+biom convert -i otus/otu_table.biom -o otus/otu_table.txt --to-tsv
+single_rarefaction.py -i otus/otu_table.biom -d 140 -o otus/otu_table_rarefied.biom
+filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_final.biom -s 4
+alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t /home/knightsd/public/gg_13_8_otus/trees/97_otus.tree -o alpha
+beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t otus/rep_set.tre
+principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
+time make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../map.txt -o 3dplots-weighted-unifrac
+```
+
+To get genus labels for the WGS data using Kraken:
+```bash
+
+```
 
  ## Appendix
  
-Kraken2 and Bracken can also be run on the 16S data. For reference, here is how.
+Kraken2 and Bracken can also be run on the _16S_ data. For reference, here is how.
 ```bash
 # download SILVA database from Ben Langmead
 # https://benlangmead.github.io/aws-indexes/k2
@@ -134,9 +171,7 @@ bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS
 # the data can then be compiled into a taxonomy table using this script: https://github.com/sipost1/kraken2OTUtable/blob/main/kraken2otu.py
 ```
 
-Dada2 can be run using QIIME2 to pick amplicon sequence variants (ASVs).
-
-Then the sequence data need to be imported into QIIME2. There are various approaches, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:
+Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows. The sequence data need to be imported into QIIME2. There are various approaches, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:
 ```bash
 # Don't run this -- just for future reference
 # for f in *.fastq.gz; do echo $f; mv $f "$(echo "${f}" | sed 's/_S[0-9][0-9]*_R\([1-2]\)/_1_L001_R\1/')"; done
@@ -212,5 +247,17 @@ mv core-metrics-results/bray_curtis_export/distance-matrix.tsv core-metrics-expo
 # export the tree
 qiime tools export --input-path rooted-tree.qza --output-path rooted-tree-export
 mv rooted-tree-export/tree.nwk core-metrics-export/tree.nwk
+
+# switch to QIIME 1, make 3d plot (although there are some buried in one of the .qza files of QIIME2)
+principal_coordinates.py -i core-metrics-results/weighted_unifrac-distance-matrix.tsv -o core-metrics-results/weighted_unifrac_pc.txt
+time make_emperor.py -i core-metrics-results/weighted_unifrac_pc.txt -m map.txt -o core-metrics-results/3dplots-weighted-unifrac
 ```
 
+    
+Note: In bash/unix, if something didn't work right and you need to remove a file, use "rm"
+```bash
+   rm file_to_remove.txt
+    
+   # if you need to remove a directory:
+   rm -r directory_to_remove
+```

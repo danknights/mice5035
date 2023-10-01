@@ -159,9 +159,54 @@ qiime tools import --input-path /home/knightsd/public/imp/16s-shallow-for-dada22
 # resulting HTML files in a browser
 time qiime dada2 denoise-paired --i-demultiplexed-seqs seqs.qza --p-n-threads 0 --p-trim-left-f 5 --p-trim-left-r 5 --p-trunc-len-f 200 --p-trunc-len-r 200 --o-representative-sequences rep-seqs-dada2.qza --o-table table-dada2.qza --o-denoising-stats stats-dada2.qza
 
+# extract the otu table summary stats and view the depths file
+# this is used to determine rarefaction depth later
+# Note the lowest depths are at the bottom, hence we use "tail -n 30"
+# Could also use less to view the whole file
+time qiime tools extract --input-path table-dada2.qzv --output-path table-dada2
+tail -n 30 table-dada2/*/data/sample-frequency-detail.csv
+
+# Build tree
+qiime phylogeny align-to-tree-mafft-fasttree --i-sequences rep-seqs-dada2.qza --o-alignment aligned-rep-seqs.qza --o-masked-alignment masked-aligned-rep-seqs.qza --o-tree unrooted-tree.qza --o-rooted-tree rooted-tree.qza --output-dir tree
+
+# Run core diversity analysis
+# Note: this has a very low rarefaction depth (300) set!
+# that is for tutorial purposes only. Need to determine the
+# appropriate depth by summarizing the otu table as shown above.
+time qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table-dada2.qza --p-sampling-depth 300 --m-metadata-file map.txt --output-dir core-metrics-results
+
+# to get the data out in tab-delimited format (to read in to R, for example):
+mkdir core-metrics-export
+
 # export the OTU table and convert to tab-delimited format.
 qiime tools export --input-path table-dada2.qza --output-path table
-biom convert --to-tsv -i table/feature-table.biom -o table/otu-table.tsv
+biom convert --to-tsv -i table/feature-table.biom -o core-metrics-export/otu-table.tsv
+mv table/feature-table.biom core-metrics-export/otu-table.biom
 
+# export the rarefied OTU table as well
+qiime tools export --input-path core-metrics-results/rarefied_table.qza --output-path core-metrics-results/table_export
+biom convert --to-tsv -i core-metrics-results/table_export/feature-table.biom -o core-metrics-export/otu-table-rarefied.tsv
+mv core-metrics-results/table_export/feature-table.biom core-metrics-export/otu-table-rarefied.biom
+
+# export each distance metric/diversity metric
+qiime tools export --input-path core-metrics-results/shannon_vector.qza --output-path core-metrics-results/shannon_export
+qiime tools export --input-path core-metrics-results/observed_otus_vector.qza --output-path core-metrics-results/observed_otus_export
+qiime tools export --input-path core-metrics-results/faith_pd_vector.qza --output-path core-metrics-results/faith_pd__export
+qiime tools export --input-path core-metrics-results/bray_curtis_distance_matrix.qza --output-path core-metrics-results/bray_curtis_export
+qiime tools export --input-path core-metrics-results/jaccard_distance_matrix.qza --output-path core-metrics-results/jaccard_export
+qiime tools export --input-path core-metrics-results/unweighted_unifrac_distance_matrix.qza --output-path core-metrics-results/unweighted_unifrac_export
+qiime tools export --input-path core-metrics-results/weighted_unifrac_distance_matrix.qza --output-path core-metrics-results/weighted_unifrac_export
+
+# move and rename each file to the core-metrics-export folder
+mkdir core-metrics-export/alpha
+mv core-metrics-results/shannon_export/alpha-diversity.tsv core-metrics-export/alpha/shannon.tsv
+mv core-metrics-results/observed_otus_export/alpha-diversity.tsv core-metrics-export/alpha/observed_otus.tsv
+mv core-metrics-results/faith_pd__export/alpha-diversity.tsv core-metrics-export/alpha/faith_pd_.tsv
+
+mkdir core-metrics-export/beta
+mv core-metrics-results/unweighted_unifrac_export/distance-matrix.tsv core-metrics-export/beta/unweighted_unifrac-distance-matrix.tsv
+mv core-metrics-results/weighted_unifrac_export/distance-matrix.tsv core-metrics-export/beta/weighted_unifrac-distance-matrix.tsv
+mv core-metrics-results/jaccard_export/distance-matrix.tsv core-metrics-export/beta/jaccard-distance-matrix.tsv
+mv core-metrics-results/bray_curtis_export/distance-matrix.tsv core-metrics-export/beta/bray_curtis-distance-matrix.tsv
 ```
 

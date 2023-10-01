@@ -52,7 +52,7 @@ f6 = open(os.path.join(outdir,'taxa_table_L6.txt'),'w')
 f7 = open(os.path.join(outdir,'taxa_table_L7.txt'),'w')
 files = [f1, f2, f3, f4, f5, f6, f7]
 for f in files:
-    f.write('Taxon\t' + '\t'.join(sampleIDs) + 'taxonomy\n')
+    f.write('Taxon\t' + '\t'.join(sampleIDs) + '\t' + 'taxonomy\n')
 
 for taxon in taxa:
     if "|s__" in taxon:

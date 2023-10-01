@@ -11,7 +11,8 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 ### Run the fastqc program to visualize sequence quality
 ```bash
 module load fastqc
-fastqc -o 16s-fastqc /home/knightsd/public/mice5035/preprocessing/16s/fastq
+mkdir 16s-fastqc
+fastqc -o 16s-fastqc /home/knightsd/public/imp/16s-shallow/*.fastq.gz
 ```
 
 ### Transfer files and view in a web browser

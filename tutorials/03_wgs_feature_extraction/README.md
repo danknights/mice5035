@@ -25,7 +25,7 @@ Make sure that you are in your home directory inside the MICE 5035 course direct
  ```
  ```bash
     cd mice5035
-    cd tutorials/02_qiime
+    cd tutorials/03_wgs_feature_extraction
     ls
     git pull
  ```

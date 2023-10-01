@@ -208,5 +208,9 @@ mv core-metrics-results/unweighted_unifrac_export/distance-matrix.tsv core-metri
 mv core-metrics-results/weighted_unifrac_export/distance-matrix.tsv core-metrics-export/beta/weighted_unifrac-distance-matrix.tsv
 mv core-metrics-results/jaccard_export/distance-matrix.tsv core-metrics-export/beta/jaccard-distance-matrix.tsv
 mv core-metrics-results/bray_curtis_export/distance-matrix.tsv core-metrics-export/beta/bray_curtis-distance-matrix.tsv
+
+# export the tree
+qiime tools export --input-path rooted-tree.qza --output-path rooted-tree-export
+mv rooted-tree-export/tree.nwk core-metrics-export/tree.nwk
 ```
 

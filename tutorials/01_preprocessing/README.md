@@ -9,7 +9,6 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 
 ## Visualize sequence quality. 
 ### Run the fastqc program to visualize sequence quality
-- Tell the OS where to find SHI7 executables
 ```bash
 module load fastqc
 fastqc -o 16s-fastqc /home/knightsd/public/mice5035/preprocessing/16s/fastq
@@ -21,12 +20,6 @@ fastqc -o 16s-fastqc /home/knightsd/public/mice5035/preprocessing/16s/fastq
 - Scroll down to view the table of overrepresented sequences. Copy and paste the first one in to [NCBI's BLAST tool](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Does it look suspicious?
 
 ## Run actual quality filtering with SHI7
-### First time only using SHI7
-- Tell the OS where to find SHI7 executables
-```bash
-echo "PATH=/home/knightsd/public/mice5035/shi7:$PATH" >> ~/.bash_profile
-source ~/.bash_profile
-```
 
 ### Using SHI7 to preprocess sequencing data
 

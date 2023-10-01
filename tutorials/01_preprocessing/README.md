@@ -60,7 +60,7 @@ q
 
 # now run shi7 on the paired-end wgs data, allowing stitching, keep separate fastq files
 # located here:  /home/mice5035/
-python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False --convert_fasta False
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-for-kraken --combine_fasta False
 
 # list contents of output folder
 ls wgs-output

@@ -37,6 +37,11 @@ cd 01_preprocessing
 # /home/knightsd/public/imp-16s-shallow/
 time python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/16s-shallow/ -o 16s-output
 
+# Unfortunately there are some extra characters (".fa") in the sample IDs in this file
+# We can remove them manually later but it's easiest to clean them out of the seqs file now
+# Note: this uses the bash command sed, to replace .fa_ with _ in every line.
+sed -i -e 's/.fa_/_/' 16s-output/combined_seqs.fna
+
 # print top 10 lines of output FASTA (.fna) file 
 # inspect combined_seqs file (cut -c 1-100 cuts out the first 100 characters of each line)
 head 16s-output/combined_seqs.fna | cut -c 1-100
@@ -55,7 +60,7 @@ q
 
 # now run shi7 on the paired-end wgs data, allowing stitching, keep separate fastq files
 # located here:  /home/mice5035/
-python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False --convert_fasta False
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False
 
 # list contents of output folder
 ls wgs-output

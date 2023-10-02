@@ -269,3 +269,6 @@ Note: In bash/unix, if something didn't work right and you need to remove a file
    # if you need to remove a directory:
    rm -r directory_to_remove
 ```
+
+### Next: Tutorial 3
+When you are finished, move on to [Tutorial 03, WGS Feature Extraction](../03_WGS_feature_extraction)

@@ -268,10 +268,21 @@ for f in 16s-output-fastq-sep/*.fq; do
   bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken-out/${sampleid}.kreport2 -o bracken-out/${sampleid}.bracken -w bracken-out/${sampleid}.bracken.kreport2 -r 250 -l G;
 done
 
-# the data can then be compiled into a taxonomy table using the script kraken2table.py in the "scripts" dir in this repo. See the WGS feature extraction tutorial 03_feature_extraction with Kraken.
+# the "bracken.kreport2" output files in the bracken-out folder then need to be converted to mpa format (Metaphlan format?).
+# We can do this with a script from https://github.com/jenniferlu717/KrakenTools
+wget https://github.com/jenniferlu717/KrakenTools/raw/master/kreport2mpa.py
+for f in bracken-out/*.bracken.kreport2; do python kreport2mpa.py -r $f -o bracken-out/`basename $f .bracken.kreport2`.mpa; done
+
+# then we need to merge all of the mpa files into one table, with sampleIDs as the column headers.
+# we will use our own script for this
+python ../../../scripts/kraken2table.py bracken-out/*.mpa taxon_tables
+
+# Finally, convert taxon tables to biom format for use instead of OTU table in QIIME
+for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
+
 ```
 
-    
+### Random tip on deleting files    
 Note: In bash/unix, if something didn't work right and you need to remove a file, use "rm"
 ```bash
    rm file_to_remove.txt

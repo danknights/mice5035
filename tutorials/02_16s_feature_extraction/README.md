@@ -217,49 +217,25 @@ qiime phylogeny align-to-tree-mafft-fasttree --i-sequences rep-seqs-dada2.qza --
 # appropriate depth by summarizing the otu table as shown above.
 qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table-dada2.qza --p-sampling-depth 175 --m-metadata-file ../../../data/imp/map.txt --output-dir core-metrics-results
 
-# to get the data out in tab-delimited format (to read in to R, for example):
-mkdir core-metrics-export
+# export the OTU table and convert to tab-delimited format. Rename for convenience.
+qiime tools export --input-path table-dada2.qza --output-path otus
+mv otus/feature-table.biom otus/otu_table.biom
 
-# export the OTU table and convert to tab-delimited format.
-qiime tools export --input-path table-dada2.qza --output-path table
-biom convert --to-tsv -i table/feature-table.biom -o core-metrics-export/otu-table.tsv
-mv table/feature-table.biom core-metrics-export/otu-table.biom
-
-# export the rarefied OTU table as well
-qiime tools export --input-path core-metrics-results/rarefied_table.qza --output-path core-metrics-results/table_export
-biom convert --to-tsv -i core-metrics-results/table_export/feature-table.biom -o core-metrics-export/otu-table-rarefied.tsv
-mv core-metrics-results/table_export/feature-table.biom core-metrics-export/otu-table-rarefied.biom
-
-# export each distance metric/diversity metric
-qiime tools export --input-path core-metrics-results/shannon_vector.qza --output-path core-metrics-results/shannon_export
-qiime tools export --input-path core-metrics-results/observed_otus_vector.qza --output-path core-metrics-results/observed_otus_export
-qiime tools export --input-path core-metrics-results/faith_pd_vector.qza --output-path core-metrics-results/faith_pd__export
-qiime tools export --input-path core-metrics-results/bray_curtis_distance_matrix.qza --output-path core-metrics-results/bray_curtis_export
-qiime tools export --input-path core-metrics-results/jaccard_distance_matrix.qza --output-path core-metrics-results/jaccard_export
-qiime tools export --input-path core-metrics-results/unweighted_unifrac_distance_matrix.qza --output-path core-metrics-results/unweighted_unifrac_export
-qiime tools export --input-path core-metrics-results/weighted_unifrac_distance_matrix.qza --output-path core-metrics-results/weighted_unifrac_export
-
-# move and rename each file to the core-metrics-export folder
-mkdir core-metrics-export/alpha
-mv core-metrics-results/shannon_export/alpha-diversity.tsv core-metrics-export/alpha/shannon.tsv
-mv core-metrics-results/observed_otus_export/alpha-diversity.tsv core-metrics-export/alpha/observed_otus.tsv
-mv core-metrics-results/faith_pd__export/alpha-diversity.tsv core-metrics-export/alpha/faith_pd.tsv
-
-mkdir core-metrics-export/beta
-mv core-metrics-results/unweighted_unifrac_export/distance-matrix.tsv core-metrics-export/beta/unweighted_unifrac-distance-matrix.tsv
-mv core-metrics-results/weighted_unifrac_export/distance-matrix.tsv core-metrics-export/beta/weighted_unifrac-distance-matrix.tsv
-mv core-metrics-results/jaccard_export/distance-matrix.tsv core-metrics-export/beta/jaccard-distance-matrix.tsv
-mv core-metrics-results/bray_curtis_export/distance-matrix.tsv core-metrics-export/beta/bray_curtis-distance-matrix.tsv
-
-# export the tree
+# export the tree in case we need it later
 qiime tools export --input-path rooted-tree.qza --output-path rooted-tree-export
-mv rooted-tree-export/tree.nwk core-metrics-export/tree.nwk
 
-# switch to QIIME 1, make 3d plot (although there are some buried in one of the .qza files of QIIME2)
+# Now that we have the OTU table and tree, switch to QIIME 1, proceed as above
 module unload qiime2
 module load qiime/1.9.1_centos7
-principal_coordinates.py -i core-metrics-results/weighted_unifrac-distance-matrix.tsv -o core-metrics-results/weighted_unifrac_pc.txt
-make_emperor.py -i core-metrics-results/weighted_unifrac_pc.txt -m map.txt -o core-metrics-results/3dplots-weighted-unifrac
+
+biom summarize-table -i otus/otu_table.biom -o otus/stats.txt
+biom convert -i otus/otu_table.biom -o otus/otu_table.txt --to-tsv
+single_rarefaction.py -i otus/otu_table.biom -d 175 -o otus/otu_table_rarefied.biom
+filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_final.biom -s 4
+alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t rooted-tree-export/tree.nwk-o alpha-diversity.txt
+beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t rooted-tree-export/tree.nwk
+principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
+make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
 Kraken2 and Bracken can be run on the _16S_ data (paper here)[https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00900-2]. For reference, here is how.

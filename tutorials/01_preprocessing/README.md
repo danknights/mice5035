@@ -10,8 +10,11 @@ install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun dat
 
 ### Navigate to the correct directory
 ```bash
+# print the current working directory
+pwd
+
 # change to your course directory if you are not already there.
-cd /home/mice5035/<yourusername>
+cd /home/mice5035/yourusername
 
 # change into course repository directory that you cloned from git (above).
 # the change to this tutorial directory

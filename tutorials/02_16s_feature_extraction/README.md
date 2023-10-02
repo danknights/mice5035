@@ -271,4 +271,4 @@ Note: In bash/unix, if something didn't work right and you need to remove a file
 ```
 
 ### Next: Tutorial 3
-When you are finished, move on to [Tutorial 03, WGS Feature Extraction](../03_WGS_feature_extraction)
+When you are finished, move on to [Tutorial 03, WGS Feature Extraction](../03_wgs_feature_extraction)

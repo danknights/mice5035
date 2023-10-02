@@ -245,14 +245,28 @@ Kraken2 and Bracken can be run on the _16S_ data (paper here)[https://microbiome
 # Specifically, [SILVA v138 99% ID](https://genome-idx.s3.amazonaws.com/kraken/16S_Silva138_20200326.tgz)
 # is already located here: /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db
 
-# generate stitched, trimmed, per-sample FASTQ files with SHI7
-python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp-16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
-
-# Run kraken on each per-sample FASTQ files
+# load modules
 module load kraken
 module load bracken
-kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken/CS.126.kreport2 CS.126.fa.fq > kraken/CS.126.kraken2
-bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken/CS.126.kreport2 -o bracken/CS.126.bracken -w bracken/CS.126.bracken.kreport2 -r 250 -l G
+
+# make and enter sub-directory
+mkdir 16s-kraken
+cd 16s-kraken
+
+# generate stitched, trimmed, per-sample FASTQ files with SHI7
+python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
+# unfortunately we have an extra ".fa" in each sample name; remove with this
+for f in 16s-output-fastq-sep/*.fq; do echo $f; mv $f "$(echo "${f}" | sed 's/.fa.fq/.fq/')"; done
+
+# Run kraken on each per-sample FASTQ files
+mkdir kraken-out
+mkdir bracken-out
+for f in 16s-output-fastq-sep/*.fq; do
+  echo $f;
+  sampleid=`basename $f .fq`;
+  kraken2 --db /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db --threads 4 --report kraken-out/${sampleid}.kreport2 $f > kraken-out/${sampleid}.kreport2
+  bracken -d /home/knightsd/public/kraken/16s/silva/16S_SILVA138_k2db -i kraken-out/${sampleid}.kreport2 -o bracken-out/${sampleid}.bracken -w bracken-out/${sampleid}.bracken.kreport2 -r 250 -l G;
+done
 
 # the data can then be compiled into a taxonomy table using the script kraken2table.py in the "scripts" dir in this repo. See the WGS feature extraction tutorial 03_feature_extraction with Kraken.
 ```

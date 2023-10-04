@@ -130,6 +130,7 @@ Note: when sequence data come off the Illumina sequencer they have a bunch of ex
 ```bash
 for f in *.fastq.gz; do echo $f; mv $f "$(echo "${f}" | sed 's/_S[0-9][0-9]*_R\([1-2]\)_001/_R\1/')"; done
 ```
+In MICE 5035, you are not expected to learn how to write advanced commands like this for yourself; the command is only provided here for future reference.
 
 ### Next: Tutorial 2
 When you are finished, move on to [Tutorial 02, 16s Feature Extraction](../02_16s_feature_extraction)

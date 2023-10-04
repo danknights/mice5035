@@ -2,7 +2,7 @@
 
 ### Background
 In this tutorial we will learn how to use the command line to
-install the SHI7 preprocessing tool and use it to preprocess 16S and shotgun data.
+use a preprocessing tool to perform quality trimming and filtering on 16S and shotgun data.
 
 ### Connect to an interactive computing node on MSI
 - Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.

@@ -1,6 +1,6 @@
 # MiCE 5035 Getting Started Guide
 
-To set up your MSI account for using QIIME, please follow these steps:
+To set up your MSI account for using the supercomputer, please follow these steps:
 
 ### Connect to MSI with SSH
 

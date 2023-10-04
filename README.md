@@ -46,12 +46,12 @@ source ~/.bash_profile
 ###
 ### Run a test script
 
-`module load qiime/1.9.1_centos7` (Load QIIME software)
+`module load qiime/1.9.1_centos7` (Load the "QIIME" software)
 
-`print_qiime_config.py` (Test that QIIME is working).
+`print_qiime_config.py` (to test that this package is working).
 
 
-This should print out some details about your QIIME configuration and should not return any errors. If so, you are now ready to use MSI and QIIME.
+This should print out some details about your system configuration and should not return any errors. If so, you are now ready to use MSI and all of the bioinformatics packages they have available.
 
 ### Clone/download the course code repository to your home directory
 ```

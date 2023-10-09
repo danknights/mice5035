@@ -168,8 +168,11 @@ principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/we
 make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
- ## Extra exercises (optional)
- 
+ ### Additional exercises
+1. Explore the options for the `pick_de_novo_otus.py` by running it with `-h`. Change one parameter setting, and send the output to a new folder. Then examine the output OTU table and describe the differences from the original de-novo table. If possible, explain why changing that parameter changed the OTU table in that way.
+
+2. Run Dada2 or Kraken on the input data, as follows:
+   
 Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows.
 
 The raw sequence data need to be imported into QIIME2. There are various approaches to importing data, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:

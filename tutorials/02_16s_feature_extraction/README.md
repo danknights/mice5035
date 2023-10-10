@@ -180,6 +180,11 @@ mkdir 16s-de-novo-94
 cd 16s-de-novo-94
 ```
 
+Then make sure you pull down the latest files from github (in case you don't have the `parameters.txt` file yet):
+```bash
+git pull
+```
+
 Now examine the `parameters.txt` file to see what it contains. You can use `less` (but don't forget to quit), or you can print the contents to the screen using `cat`. `cat` is a command that just prints an entire file to the screen, so it's fine for small files:
 ```bash
 cat ../parameters.txt

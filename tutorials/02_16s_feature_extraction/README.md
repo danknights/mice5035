@@ -168,10 +168,40 @@ principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/we
 make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
- ### Additional exercises
-1. Explore the options for the `pick_de_novo_otus.py` by running it with `-h`. Change one parameter setting, and send the output to a new folder. Then examine the output OTU table and describe the differences from the original de-novo table. If possible, explain why changing that parameter changed the OTU table in that way.
+## Additional exercises
+### Rerun de-novo OTU picking at 94% similarity instead of 97%.
 
-2. Run Dada2 or Kraken on the input data, as follows:
+To do this, you will need to use a *parameters file*. There is already one called `parameters.txt` in the tutorial directory. The script you ran above, `pick_de_novo_otus.py`, is actually a *workflow* script that calls other QIIME commands: `pick_otus.py`, `pick_rep_set.py`, `parallel_assign_taxonomy_uclust.py`, `make_otu_table.py`, `parallel_align_seqs_pynast.py`, `filter_alignment.py`, and `make_phylogeny.py`, as you can see when you look at the printed output. The *parameters file* is necessary to tell the script what parameters to pass on to the sub-commands. 
+
+First, change back to the tutorial directory, make a new output directory, and change into it:
+```bash
+cd ..
+mkdir 16s-de-novo-94
+cd 16s-de-novo-94
+```
+
+Now examine the `parameters.txt` file to see what it contains. You can use `less` (but don't forget to quit), or you can print the contents to the screen using `cat`. `cat` is a command that just prints an entire file to the screen, so it's fine for small files:
+```bash
+cat ../parameters.txt
+```
+
+What does this file contain? It shows that the `--similarity` flag will be set to `0.94` for the sub-command `pick_otus.py`. This means 94% OTU clusters, instead of the default 97%.
+
+Now run the workflow script again, as above, but with the parameters file:
+```bash
+pick_de_novo_otus.py -p ../parameters.txt -i ../../01_preprocessing/16s-output/combined_seqs.fna -o otus -O 4 -v -a
+```
+
+Run the rest of the QIIME commands to get statistics about the OTU table and perform alpha and beta diversity analysis. 
+
+Use the outputs to answer these questions:
+1. How many unique OTUs (called "observations" in the `otus/stats.txt` file) resulted from 94% OTU clustering and 97% OTU clustering? Does the difference make sense?
+2. Compare the table density (in `otus/stats.txt`) between the 94% and 97% clusters. Do the results make sense?
+3. Copy all of the 16s analysis folders back to your own computer using Filezilla.
+4. For each analysis, open the 3D beta diversity plot, and color the points by "Sample.Group". Look for a separation between the Thai samples (red and blue by default) and the US samples (orange and green by default). Does one of the methods seem to work better than the others? Worse than the others? 
+
+
+### Run Dada2 or Kraken on the input data, as follows:
    
 Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows.
 
@@ -241,7 +271,7 @@ principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/we
 make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
-Kraken2 and Bracken can be run on the _16S_ data (paper here)[https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00900-2]. For reference, here is how.
+Kraken2 and Bracken can be run on the _16S_ data (paper here)[https://microbiomejournal.biomedcentral.com/articles/10.1186/s40168-020-00900-2], even though they were originally published for WGS data. For reference, here is how.
 ```bash
 # download SILVA database from Ben Langmead
 # https://benlangmead.github.io/aws-indexes/k2

@@ -1,0 +1,2 @@
+pick_otus:otu_picking_method uclust
+pick_otus:similarity 0.99

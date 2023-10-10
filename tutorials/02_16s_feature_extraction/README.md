@@ -219,9 +219,12 @@ The raw sequence data need to be imported into QIIME2. There are various approac
 There is already a version of the 16s data with the files in the correct format in the folder `/home/knightsd/public/imp/16s-shallow-for-dada2`. Therefore we can move ahead with importing the data, and running dada2 using QIIME2.
 
 ```bash
-# Unload the QIIME 1.9 module, and load the QIIME2 module:
+# Unload the QIIME 1.9 module:
 module unload qiime/1.9.1_centos7
-module load qiime2
+
+# load the newest QIIME module (2023.2) because
+# Dada2 doesn't work with the default QIIME2 module:
+module load qiime2/2023.2
 
 # Make a new directory for Dada2 analysis and change into it
 cd ..
@@ -237,23 +240,16 @@ qiime tools import --input-path /home/knightsd/public/imp/16s-shallow-for-dada2/
 # these were chosen by running fastqc on the raw data and then viewing the
 # resulting HTML files in a browser.
 # This will take around 5 minutes on the shallow data.
-qiime dada2 denoise-paired --i-demultiplexed-seqs seqs.qza --p-n-threads 0 --p-trim-left-f 5 --p-trim-left-r 5 --p-trunc-len-f 200 --p-trunc-len-r 200 --o-representative-sequences rep-seqs-dada2.qza --o-table table-dada2.qza --o-denoising-stats stats-dada2.qza
+qiime dada2 denoise-paired --i-demultiplexed-seqs seqs.qza --p-n-threads 0 --p-trim-left-f 5 --p-trim-left-r 5 --p-trunc-len-f 200 --p-trunc-len-r 200 --o-representative-sequences rep-seqs-dada2.qza --o-table table-dada2.qza --o-denoising-stats stats-dada2.qza --verbose
 
-# Summarize the depths of the table and use them to choose a rarefaction depth
-qiime feature-table summarize --i-table table-dada2.qza --o-visualization table-dada2.qzv
-qiime tools export --input-path table-dada2.qzv --output-path table-viz-export
-# inspect the sample-frequency-detail.csv file to see depths
-# 175 seems like a reasonable rarefaction depth
-tail -n 30 table-viz-export/sample-frequency-detail.csv
+# switch to the default QIIME2 module because
+# the phylogeny construction doesn't work with qiime2/2023.2:
+module unload qiime2/2023.2
+module load qiime2
 
 # Build tree
 qiime phylogeny align-to-tree-mafft-fasttree --i-sequences rep-seqs-dada2.qza --o-alignment aligned-rep-seqs.qza --o-masked-alignment masked-aligned-rep-seqs.qza --o-tree unrooted-tree.qza --o-rooted-tree rooted-tree.qza --output-dir tree
 
-# Run core diversity analysis
-# Note: this has a very low rarefaction depth (300) set!
-# that is for tutorial purposes only. Need to determine the
-# appropriate depth by summarizing the otu table as shown above.
-qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table-dada2.qza --p-sampling-depth 175 --m-metadata-file ../../../data/imp/map.txt --output-dir core-metrics-results
 
 # export the OTU table and convert to tab-delimited format. Rename for convenience.
 qiime tools export --input-path table-dada2.qza --output-path otus
@@ -327,6 +323,21 @@ Note: In bash/unix, if something didn't work right and you need to remove a file
     
    # if you need to remove a directory:
    rm -r directory_to_remove
+```
+
+### Random extra commands in QIIME2 
+```bash
+# Summarize the depths of the table and use them to choose a rarefaction depth
+qiime feature-table summarize --i-table table-dada2.qza --o-visualization table-dada2.qzv
+qiime tools export --input-path table-dada2.qzv --output-path table-viz-export
+
+# inspect the output sample-frequency-detail.csv file to see
+# possible rarefaction depths
+tail -n 30 table-viz-export/sample-frequency-detail.csv
+
+# Run core diversity analysis with QIIME2
+# given the output from dada2
+qiime diversity core-metrics-phylogenetic --i-phylogeny rooted-tree.qza --i-table table-dada2.qza --p-sampling-depth 175 --m-metadata-file ../../../data/imp/map.txt --output-dir core-metrics-results
 ```
 
 ### Next: Tutorial 3

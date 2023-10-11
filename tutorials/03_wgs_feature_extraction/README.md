@@ -76,6 +76,12 @@ for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirnam
 ```
 
 6. Continue with core diversity analyses
-Alpha and beta diversity analysis can now be performed as in [Tutorial 2](../02_16s_feature_extraction), but with the taxon tables as the input biom files, without tree files, and without phylogenetic diversity measures.
+Alpha and beta diversity analysis can now be performed as in [Tutorial 2](../02_16s_feature_extraction), but with the species-level taxon tables as the input biom files. There will be a few differences:
+- There are no tree files, so no phylogenetic diversity measures
+- Be sure to check the sequencing depths after creating the summary of the OTU (species) table to choose an appropriate rarefaction depth before you run rarefaction. Note: we only have 9 samples, so you should try to include all of them when you choose the rarefaction depth. Samples below the rarefaction depth would be discarded.
+- You don't need to run `summarize_taxa.py` to create taxon-level tables, because you already have them from Kraken.
+- When you run `filter_otus_from_otu_table.py`, change the minimum number of samples for an OTU from 4 to 2. This is because we only have 9 samples, so requiring an OTU to be present in at least 4 samples is too stringent.
+
+7. Move the final beta diversity files, alpha diversity file, and 3D plots over to your own computer using Filezilla or scp. 
 
 

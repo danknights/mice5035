@@ -8,6 +8,11 @@ These are some of the more commonly used UNIX commands.
 <up/down arrow>
 ```
 
+### kill the current process (or delete what you have written on the command line)
+```
+<control>-c
+```
+
 ### search your command history
 ```
 <control>-r (then type the search string)

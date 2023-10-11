@@ -3,6 +3,21 @@
 
 These are some of the more commonly used UNIX commands.
 
+### scroll through your command history
+```
+<up/down arrow>
+```
+
+### search your command history
+```
+<control>-r (then type the search string)
+```
+
+### clear your screen
+```
+clear
+```
+
 ### change into your “home” directory
 ```
 cd
@@ -11,6 +26,16 @@ cd
 ### list the contents of this directory
 ```
 ls
+```
+
+### list the contents of the parent directory
+```
+ls ..
+```
+
+### list the contents of some other directory
+```
+ls /path/to/other/directory
 ```
 
 ### print out the full “path” to this directory. Also called the "absolute path".
@@ -89,16 +114,6 @@ cut -f 1-10 -d "," myfile.txt | less
 less myfile.txt
 ```
 
-### list the contents of another directory inside the current directory
-```
-ls somedirectory
-```
-
-### list the contents of another directory inside the parent directory
-```
-ls ../someotherdirectory
-```
-
 ### make a copy of a file
 ```
 cp file1.txt file2.txt
@@ -134,9 +149,39 @@ nano somefile.txt
 <ctrl>-c
 ```
 
-### start a "screen" session
+### search a file for a string or word. e.g. print out all lines that have a ">" character:
+```
+grep ">" input.fna
+```
+
+### print out all lines that DO NOT have a ">" character:
+```
+grep -v ">" input.fna
+```
+
+### count all lines that have a ">" character:
+```
+grep -c ">" input.fna
+```
+
+### start a "screen" session (like opening a tab, conceptually)
 ```
 screen
+```
+
+### start another screen "tab" (like having multiple tabs open)
+```
+<ctrl>-a d
+```
+
+### move to the next screen "tab"
+```
+<ctrl>-a n
+```
+
+### move to the previous screen "tab"
+```
+<ctrl>-a p
 ```
 
 ### terminate/log out from a commandline session or screen session
@@ -151,20 +196,5 @@ screen
 
 ### re-attach to a screen session
 ```
-screen -r
-```
-
-### search a file for a string or word. e.g. print out all lines that have a ">" character:
-```
-grep ">" input.fna
-```
-
-### print out all lines that DO NOT have a ">" character:
-```
-grep -v ">" input.fna
-```
-
-### count all lines that have a ">" character:
-```
-grep -c ">" input.fna
+screen -Dr
 ```

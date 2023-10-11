@@ -206,9 +206,9 @@ Use the outputs to answer these questions:
 4. For each analysis, open the 3D beta diversity plot, and color the points by "Sample.Group". Look for a separation between the Thai samples (red and blue by default) and the US samples (orange and green by default). Does one of the methods seem to work better than the others? Worse than the others? 
 
 
-### Run Dada2 or Kraken on the input data, as follows:
+### Run Dada2 or Kraken on the input data
    
-Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows.
+Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows. Note: Dada2 may not have enough input data to do proper inference of ASVs given that these data are very shallow. 
 
 The raw sequence data need to be imported into QIIME2. There are various approaches to importing data, but an easy one is just to have all of one's fastq files in the following file format: `sampleID_1_L001_R1_001.fastq.gz` or `sampleID_1_L001_R2_001.fastq.gz`. If one has files with this format: `Sample1_Sxxx_R1_001.fastq`, one can modify these to the correct format with:
 ```bash
@@ -265,8 +265,14 @@ module load qiime/1.9.1_centos7
 biom summarize-table -i otus/otu_table.biom -o otus/stats.txt
 biom convert -i otus/otu_table.biom -o otus/otu_table.txt --to-tsv
 single_rarefaction.py -i otus/otu_table.biom -d 175 -o otus/otu_table_rarefied.biom
-filter_otus_from_otu_table.py -i otus/otu_table_rarefied.biom -o otus/otu_table_final.biom -s 4
-alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t rooted-tree-export/tree.nwk-o alpha-diversity.txt
+
+# Note: we skip filtering rare OTUs,
+# because the table is so spare that it would leave many samples empty.
+# Instead we just rename the rarefied OTU table to "final":
+mv otus/otu_table_rarefied.biom otus/otu_table_final.biom
+
+
+alpha_diversity.py -m "chao1,observed_otus,shannon,PD_whole_tree" -i otus/otu_table_final.biom -t rooted-tree-export/tree.nwk -o alpha-diversity.txt
 beta_diversity.py -i otus/otu_table_final.biom -o beta -m "unweighted_unifrac,weighted_unifrac,bray_curtis,binary_jaccard" -t rooted-tree-export/tree.nwk
 principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/weighted_unifrac_otu_table_final_pc.txt
 make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac

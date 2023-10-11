@@ -28,6 +28,14 @@ clear
 cd
 ```
 
+### switch groups if you have a research lab group also
+This makes sure you're not using your lab's computing allotment
+This is only if you already have an MSI account through a research lab.
+```
+newgrp mice5035
+```
+
+
 ### list the contents of this directory
 ```
 ls

@@ -12,13 +12,6 @@ You will need to follow these steps once every time you want to get logged in to
 ssh yourusername@login.msi.umn.edu 
 ```
 
-### Connect to the Mesabi cluster
-- SSH from the login node to the "mesabi" cluster:
-
-```bash
-ssh mesabi
-```
-
 ### Launch and connect to an interactive computing node
 - When you first log in to mesabi, you will be on a "login" node. You are not allowed to run computations on this node. Instead, you can launch an interactive node for running computations with this command:
 

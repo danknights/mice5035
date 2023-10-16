@@ -19,10 +19,4 @@ ssh yourusername@login.msi.umn.edu
 srun -N 1 --ntasks-per-node=2 --mem-per-cpu=8gb -t 02:00:00 -p interactive --pty bash
  ```
 
-This may take a while to finish running. It will usually log you directly in to the interactive node. You can see that this has happened because the start of the line in the terminal will say something like "yourusername@cn0077" and it will be different from what it was on the previous line. If in doubt, you can run `hostname` to print out the name of the node. Login nodes usually start with `login` or `ln`. If you are still on the login node, you just need to find out the name of the new interactive node so that you can connect to it. To find the name of your new interactive node, run this:
-
-`squeue -u <your username>`, using your username in place of `<your username>`.
-
-In the last column of the output is the name of the node that you want to connect to. It will usually look something like, `cn0123`. Now you must connect to that node:
-
-`ssh cn0123` (Do not use `cn0123`; replace that with your node name).
+This may take a while to finish running. It will log you directly in to the interactive node. Often you can see that this has happened because the start of the line in the terminal will say something like "yourusername@cn0077" or "yourusename@acn001" and it will be different from what it was on the previous line. If in doubt, you can run `hostname` to print out the name of the node. Login nodes usually start with `login` or `ln`. 

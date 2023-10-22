@@ -8,10 +8,10 @@ You must have R and RStudio installed as described in the [Getting Started Guide
 
 ### Tutorial
 
-1. Open RStudio and start a new Project
+#### Open RStudio and start a new Project
 Click the "Project" dropdown in the top right; In the resulting popup window, click "New Directory", "New Project", and then name the directory "Tutorials_04_05". You should place it in a folder on your computer where you know how to find it, and you know it will be backed up safely, with Google Drive, DropBox, or OneDrive, for example. If you are not using automatic backups to protect your work, please do so! The University of Minnesota provides [free storage on Google Drive](https://it.umn.edu/services-technologies/google-drive-desktop) using your University Google account.
  
-2. Download and clean up the Immigration Microbiome Project data
+#### Download and clean up the Immigration Microbiome Project data
 We will download all of the output files from the [Immigration Microbiome Project code repository](https://github.com/knights-lab/IMP_analyses).
 
 Create a new R file called `download_data.r`. On a Mac, you can do this with "File", "New File", "R Script". Windows should be similar. You should now have a blank text file open in the top left quadrant of the display. Paste these commands into the file, then click the "Source" above the file to run all of them. Note that we transposed the OTU table and taxon tables so that the samples are in the rows, and the features are in the columns. Also note: the `<-` is an assignment operator. It stores the output of the command on the right in the variable on the left.

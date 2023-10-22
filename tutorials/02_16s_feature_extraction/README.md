@@ -205,7 +205,24 @@ Use the outputs to answer these questions:
 3. Copy all of the 16s analysis folders back to your own computer using Filezilla.
 4. For each analysis, open the 3D beta diversity plot, and color the points by "Sample.Group". Look for a separation between the Thai samples (red and blue by default) and the US samples (orange and green by default). Does one of the methods seem to work better than the others? Worse than the others? 
 
+### Editing a parameters file
+When running an individual QIIME command, such as single_rarefaction.py, you can view all of its available parameters with `-h` and then alter its parameters directly by changing its commandline arguments. However, as discussed in the previous section, when you want to change the behavior of a command that is part of a *workflow script*, you need to use a *parameters* file. These are common workflow scripts:
 
+ - [pick_de_novo_otus.py](http://qiime.org/scripts/pick_de_novo_otus.html): Run de novo OTU picking, select a representative sequence for each OTU, and build a phylogeny from those sequences.
+ - [alpha_rarefaction.py](http://qiime.org/scripts/alpha_rarefaction.html): Generate rarefied OTU tables repeatedly at many different depths; compute alpha diversity metrics for each rarefied OTU table; generate alpha rarefaction plots.
+ - [beta_diversity_through_plots.py](http://qiime.org/scripts/beta_diversity_through_plots.html): Run beta diversity, principal coordinates analysis, and make 3D emperor plots (note: we could have run this above, but we run the commands separately).
+ - [summarize_taxa_through_plots.py](http://qiime.org/scripts/summarize_taxa_through_plots.html): Collapses the OTU table down to a desired taxonomic level (e.g. genus), then makes taxonomic bar plots.
+
+Each of these workflow scripts runs "Several individual commands. You can see the commands that they run by giving them basic inputs and running them with `-w`. In order to change the parameters for one of the commands _run by_ a workflow script, you need to add the name of the command, the long-form name of the parameter you want to change, and the new value of the parameter, to the _parameters_ file, like this:
+commandname:parametername value
+
+For example, if you want to run `pick_de_novo_otus.py` with the `swarm` OTU picking method, you would first note that the relevant command run by the workflow script is `pick_otus.py`. Then you would run that command with `-h` and see that the parameter you want to change is called `otu_picking_method`, and the value you want to use is `swarm`. So you would create a new parameters file (or edit an existing one) containing this line:
+
+`pick_otus:otu_picking_method swarm`
+
+ The _parameters_ file can be named anything, but let's assume it is named `parameters.txt`. The easiest way to create or edit such a file is using the tool `nano`. You would run `nano parameters.txt`, make the desired edits, then exit with `control-x`, type `y` to save the modified file, and hit `return` to accept the proposed filename. Then you would run `pick_otus.py` with the additional argument `-p parameters.txt`, and it would pass along your modified parameter to the command `pick_otus.py`. 
+
+ 
 ### Run Dada2 or Kraken on the input data
    
 Dada2 can be run on the 16s data to pick amplicon sequence variants (ASVs) using QIIME2 as follows. Note: Dada2 may not have enough input data to do proper inference of ASVs given that these data are very shallow. 

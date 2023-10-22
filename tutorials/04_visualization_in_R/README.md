@@ -10,7 +10,17 @@ You must have R and RStudio installed as described in the [Getting Started Guide
 
 #### Open RStudio and start a new Project
 Click the "Project" dropdown in the top right; In the resulting popup window, click "New Directory", "New Project", and then name the directory "Tutorials_04_05". You should place it in a folder on your computer where you know how to find it, and you know it will be backed up safely, with Google Drive, DropBox, or OneDrive, for example. If you are not using automatic backups to protect your work, please do so! The University of Minnesota provides [free storage on Google Drive](https://it.umn.edu/services-technologies/google-drive-desktop) using your University Google account.
- 
+
+#### Install some needed packages
+Click in the bottom left window. This is the console where you can run R commands interactively. For this tutorial we will need the `car` package and the `vegan` package. Install the `vegan` package like this:
+```bash
+install.packages('vegan')
+```
+If that proceeds without errors, then install the `car` package:
+```bash
+install.packages('car')
+```
+
 #### Download and clean up the Immigration Microbiome Project data
 We will download all of the output files from the [Immigration Microbiome Project code repository](https://github.com/knights-lab/IMP_analyses).
 
@@ -97,7 +107,26 @@ write.table(genus,'genus.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 write.table(phylum,'phylum.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 ```
 
-4. Make a Beta diversity plot
+#### Make a Beta diversity plot
+Create a new R source file and call it, `tutorial_04.r`.
+
+Load in the two packages that we installed at the start of the tutorial. It's a good practice to load these at the top of your source file, so that you know right away if you have the required packages installed. Paste these into your source file and execute them. 
+```bash
+library('car')
+library('vegan')
+```
+
+We will begin by loading in the data tables, even though technically they are still loaded into R from the downloading step above. This way when we run this file alone, it will load the data properly. Paste these into your source file, and execute them. 
+```bash
+map <- read.delim(map,'map.txt')
+otus <- read.delim(otus,'otu_table.txt',check=F)
+alpha <- read.delim(alpha,'alpha.txt')
+beta_uuf <- read.delim(beta_uuf,'beta_uuf.txt')
+beta_wuf <- read.delim(beta_wuf,'beta_wuf.txt')
+genus <- read.delim(genus,'genus.txt')
+phylum <- read.delim(phylum,'phylum.txt')
+```
+
 
 5. Add colors to the groups
 

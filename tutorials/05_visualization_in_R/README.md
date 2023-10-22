@@ -39,6 +39,10 @@ phylum <- read.delim(phylum,'phylum.txt')
 ```
 
 #### Make a Beta diversity plot
+First, tell R to show sample groups in a certain order. The column "Sample.Group" is what's called a "factor". This is just a categorical variable. R automatically detected that it was a categorical variable when it loaded the mapping file. R also keeps track of what order it should use to display the categories in plots. By default, it used alphabetical order, but we want to use a different order that makes sense for our visualizations. we can fix this by telling our that it is a factor and telling it the order of the levels, or categories, in the factor. Paste this into your source file and execute it. 
+```bash
+map$Sample.Group <- factor(map$Sample.Group,levels=c('KarenThai','Karen1st','HmongThai','Hmong1st','Hmong2nd','Control'))
+```
 
 
 5. Add colors to the groups

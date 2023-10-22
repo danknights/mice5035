@@ -34,11 +34,30 @@ Answer these questions about the data tables:
 3. How many distinct genera?
 4. Are there any _continuous_ (not categorical) variables in the mapping file (metadata) that you expect to be related to the microbiome?
 
-We need to remove the longitudinal subjects. These are subjects that have `NA` or `1` in the "Sample.Order" column in the mapping file. Note: the `|` means "or" and it makes keep.ix TRUE for every row where either the value is `NA` or `1`.
-keep.ix <- is.na(map$Sample.Order) | map$Sample.Order==1
-map <- droplevels(map[keep.ix,])
+The bottom left quadrant is the console. When you enter a command, _R_ evaluates the command and prints the result. We can use the console to run commands that we don't need to save permanently in our source file.
 
-Make sure each table has the same samples in the exact same order. This is a critical step that you must do before analyzing almost any data set!
+We can access an individual element in a table with square brackets `[]`. For example, this prints the relative abundance of the 9th genus in the 10th sample:
+```bash
+genus[10,9]
+```
+
+We can also access a arange of elements in a table by passing in a vector of numerical indices, or a vector of TRUE/FALSE values. For example, this prints the first 3 rows and first 6 columns of the map table...
+```bash
+map[1:3,1:6]
+```
+
+..and this prints the first 3 rows and columns 1, 2, 3, and 6. The `c()` function concatenates individual values (the TRUE's and FALSE's) into a vector:
+```bash
+map[1:3,c(TRUE, TRUE, TRUE, FALSE, FALSE, TRUE)]
+```
+
+Before we continue, we need to remove the longitudinal subjects from all of the tables. These are subjects that have `NA` or `1` in the "Sample.Order" column in the mapping file. Note: the `|` means "or" and it makes keep.ix TRUE for every row where either the value is `NA` or `1`. Paste this command into your source file. You can type command-Return (Mac) or control-Return (Windows) to run each single line immediately in the terminal. 
+```bash
+keep.ix <- is.na(map$Sample.Order) | map$Sample.Order==1
+map <- map[keep.ix,]
+```
+
+We will now make sure that each table has the same samples in the exact same order. This is a critical step that you must do before analyzing almost any data set! Paste these into your source file and then execute them. 
 ```bash
 common.rownames <- rownames(map)
 common.rownames <- intersect(rownames(otus), common.rownames)
@@ -52,20 +71,23 @@ genus <- genus[common.rownames,]
 phylum <- phylum[common.rownames,]
 ```
 
-Note that the taxonomy names are long and hard to read. Let's shorten them. You don't need to understand how this command works.
+Note that the taxonomy names are long and hard to read. Let's shorten them. You don't need to understand how this command works at this point. Paste these into your source file and then execute them. 
 ```bash
 colnames(genus) <- sapply(strsplit(colnames(genus),";"),function(xx) xx[length(xx)])
 colnames(phylum) <- sapply(strsplit(colnames(phylum),";"),function(xx) xx[length(xx)])
 ```
 
-Let's make a new column that is just "Generation" (Thai/1st/2nd/Control)
+Let's make a new column that is just "Generation" (Thai/1st/2nd/Control). The `|` in `map$Sample.Group == "Karen1st" | map$Sample.Group == "HmongThai"` is a logical "OR" operator. It makes the statement TRUE for every row in the mapping table where Sample.Group is "Karen1st" or "HmongThai", and FALSE otherwise. Paste these into your source file and then execute them. 
+```bash
 map$Generation <- "Thai" # fill with Thai to start
 map$Generation[map$Sample.Group == "Karen1st" | map$Sample.Group == "HmongThai"] <- "1stGen"
 map$Generation[map$Sample.Group == "Hmong2nd"] <- "2ndGen"
 map$Generation[map$Sample.Group == "Control"] <- "Control"
 map$Generation <- factor(map$Generation, levels=c('Thai','1stGen','2ndGen','Control'))
+```
 
-# save these
+Finally, we will save these tables as text files on your computer so that you don't have to download them again later. Paste these into your source file and then execute them. 
+```bash
 write.table(map,'map.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 write.table(otus,'otu_table.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 write.table(alpha,'alpha.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
@@ -73,8 +95,7 @@ write.table(beta_uuf,'beta_uuf.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\
 write.table(beta_wuf,'beta_wuf.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 write.table(genus,'genus.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 write.table(phylum,'phylum.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
-
-
+```
 
 4. Make a Beta diversity plot
 

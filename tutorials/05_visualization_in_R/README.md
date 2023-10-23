@@ -7,13 +7,15 @@ This tutorial is an introduction to visualizing microbiome data in _R_.
 You must have completed [Tutorial 4](../04_visualization_in_R).
 
 
-#### Install some needed packages (SKIP THIS IF YOU DID IT IN TUTORIAL 4)
-Make sure you (stil) have open your Tutorials project. Create a new R source file and call it, `tutorial_05.r`. Click in the console window. For this tutorial we will need the car package and the vegan package. Install the vegan package like this:
+#### Install some needed packages
+Make sure you (stil) have open your Tutorials project.
+
+Create a new R source file and call it, `tutorial_05.r`. Click in the console window. For this tutorial we will need the car package and the vegan package. Install the vegan package like this (OK to skip if you have already installed this):
 ```bash
 install.packages('vegan')
 ```
 
-If that proceeds without errors, then install the car package:
+If that proceeds without errors, then install the car package (OK to skip if you have already installed this):
 ```bash
 install.packages('car')
 ```

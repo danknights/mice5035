@@ -67,7 +67,7 @@ map$Sample.Group
 map[,"Sample.Group"]
 ```
 
-Before we continue, we need to remove the longitudinal samples from all of the tables. These are subjects that have `NA` or `1` in the "Sample.Order" column in the mapping file. Note: the `|` means "or" and it makes keep.ix TRUE for every row where either the value is `NA` or `1`. Paste this command into your source file. You can type command-Return (Mac) or control-Return (Windows) to run each single line immediately in the terminal. 
+Before we continue, we need to remove the longitudinal samples from all of the tables. These are subjects that have `NA` or `1` in the "Sample.Order" column in the mapping file. Note: the `|` means "or" and it makes `keep.ix` `TRUE` for every row where either the value is `NA` or `1`. Paste this command into your source file. You can type command-Return (Mac) or control-Return (Windows) to run each single line immediately in the terminal. 
 ```bash
 keep.ix <- is.na(map$Sample.Order) | map$Sample.Order==1
 map <- map[keep.ix,]

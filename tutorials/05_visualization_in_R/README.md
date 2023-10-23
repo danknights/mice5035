@@ -83,7 +83,6 @@ GROUP.COLORS <- c("#A300FF",  "#A300FF", "#00A696","#00A696", "#FE42AD", "#2E191
 - It would be nice to use hollow points for the 1st gen samples, and solid points for the others, since the 1st gen samples are spread across the plot. Search the web for "R plot symbols" to find other options for `pch`. Can you make choose different symbols to make your plot look exactly like this one? Also notice that the axes are labeled "PC1" and "PC2". Search the web to find out how to change the axis labels in an R plot, and modify your code accordingly.
 
 <img src="../../supporting_files/Tutorial05-final-beta-diversity-plot.png" width="600" />
-
   
 
 ### Add ellipses
@@ -91,6 +90,11 @@ If you couldn't figure out how to match the plot above, ask for help from me or 
 ```bash
 dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels=0.68,robust=TRUE,col=GROUP.COLORS,segments=100)
 ```
+
+Your final plot should look approximately like this:
+<img src="../../supporting_files/Tutorial05-final-beta-diversity-plot-ellipses.png" width="600" />
+
+
 
 #### Exercise
 - Try changing some of the parameters and replotting your data to see what effect they have. What does `levels=.95` do? What does `segments=10` do? What does `plot.points=TRUE` do? 

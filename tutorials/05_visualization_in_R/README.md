@@ -8,7 +8,7 @@ You must have completed [Tutorial 4](../04_visualization_in_R).
 
 
 #### Install some needed packages
-Make sure you (stil) have open your Tutorials project.
+Make sure you (still) have open your Tutorials project.
 
 Create a new R source file and call it, `tutorial_05.r`. Click in the console window. For this tutorial we will need the car package and the vegan package. Install the vegan package like this (OK to skip if you have already installed this):
 ```bash

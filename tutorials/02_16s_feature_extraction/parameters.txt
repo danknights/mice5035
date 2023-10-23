@@ -1,2 +1,2 @@
 pick_otus:otu_picking_method uclust
-pick_otus:similarity 0.90
+pick_otus:similarity 0.94

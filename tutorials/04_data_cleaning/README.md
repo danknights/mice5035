@@ -84,7 +84,9 @@ beta_wuf <- beta_wuf[common.rownames,common.rownames]
 genus <- genus[common.rownames,]
 phylum <- phylum[common.rownames,]
 ```
-
+#### Exercise
+- How many samples are left (you can check the map table or other tables)?
+  
 Note that the taxonomy names are long and hard to read. Let's shorten them. You don't need to understand how this command works at this point. Paste these into your source file and then execute them. 
 ```bash
 colnames(genus) <- sapply(strsplit(colnames(genus),";"),function(xx) xx[length(xx)])

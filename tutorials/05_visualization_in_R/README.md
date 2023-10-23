@@ -96,10 +96,27 @@ GROUP.COLORS.FADED <- c("#A300FF99",  "#A300FF99",  "#A300FF99",  "#FBB40099",  
 ```
 
 Now we make the actual boxplot. We use a _formula_ of the form `y ~ x` to describe the values we want to show (`y`) on the y-axis and the categories that we want to use to make the boxes (`x`). Here, we are using an _interaction_ of two categories by multiplying them together with `*`. Add this to your source file and run the commands.
+```bash
 boxplot(alpha$PD_whole_tree ~ map$BMI.Class * map$Generation,las=2, col=GROUP.COLORS.FADED, xlab='')
-par(oma=c(4,2,0,2))
-
 ```
 
-9. Subset; visualize only a subset of samples
+There is one issue: the bottom of the labels is getting cut off unless we have a very large window. Some web searching about increasing plot margins shows that we can increase the size of the bottom margin using this command:
+```bash
+par(oma=c(4,0,0,0))
+```
 
+Then we must rerun the `boxplot` command above.
+
+### Plot a taxon across groups
+Finally, we will plot a single genus across groups. We will plot the _Parabacteroides_ genus across generations. Add this to your code and then run it:
+```bash
+boxplot(genus[,'g__Parabacteroides'] ~ map$Generation)
+```
+
+#### Exercise
+- Modify the boxplot to have nicer labels for the x-axis and y-axis (see above exercise).
+- It is hard to see the difference between the small amounts of _Parabacteroides_ in the Thai and 1stGen groups. Apply a log transform to the genus relative abundances when you make the barplot. If you're not sure how to do this, try a web search for how to log-transform R data.
+
+### Conclusion
+There are many other aspects of data visualization that we have not covered yet, such as histograms, barplots, network diagrams, and transparency. We also have not covered subsetting data, which will be covered in a future statistical testing tutorial. This exercise is not meant to leave you completely ready to do R visualization on your own, but instead to start giving you some practice with it, and to help serve as a guide for future projects. 
+  

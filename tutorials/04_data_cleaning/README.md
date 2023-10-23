@@ -77,7 +77,6 @@ We will now make sure that each table has the same samples in the exact same ord
 ```bash
 common.rownames <- rownames(map)
 common.rownames <- intersect(rownames(otus), common.rownames)
-common.rownames <- intersect(rownames(alpha), common.rownames)
 map <- map[common.rownames,]
 otus <- otus[common.rownames,]
 alpha <- alpha[common.rownames,]

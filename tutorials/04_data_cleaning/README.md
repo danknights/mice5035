@@ -40,7 +40,7 @@ Each of these objects is now a data table with samples in rows. Think spreadshee
 #### Exercise
 Answer these questions about the data tables:
 1. How many samples are there?
-2. How many OTUs?
+2. How many OTUs (hint: you can run `dim(otus)` to get the dimensions)?
 3. How many distinct genera?
 4. Are there any _continuous_ (not categorical) variables in the mapping file (metadata) that you expect to be related to the microbiome?
 

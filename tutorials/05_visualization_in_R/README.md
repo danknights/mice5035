@@ -78,14 +78,28 @@ GROUP.COLORS <- c("#A300FF",  "#A300FF", "#00A696","#00A696", "#FE42AD", "#2E191
   
 
 ### Add ellipses
-Let's add some ellipses to show the 2D center and standard deviation of the points in each group.
+If you couldn't figure out how to match the plot above, ask for help from me or one of your neighbors. Now let's add some ellipses to show the 2D center and standard deviation of the points in each group. We will use the `dataEllipse` function in the `car` package that we loaded at the start of the tutorial.
 ```bash
 dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels=0.68,robust=TRUE,col=GROUP.COLORS,segments=100)
 ```
 
-7. Make a histogram of alpha diversity values
+#### Exercise
+- Try changing some of the parameters and replotting your data to see what effect they have. What does `levels=.95` do? What does `segments=10` do? What does `plot.points=TRUE` do? 
 
-8. Make a boxplot of alpha diversity values colored by group
+
+### Make a boxplot of alpha diversity values
+We will now make a boxplot of alpha diversity values, colored by sample group. First we need to tell _R_ in what order we want to display the different generations and different BMI classes, as we did above with `Sample.Group`. We also need to set up a list of 12 colors since we have 4 generations times 3 BMI classes.  Add this to your source file and run the commands.
+```bash
+map$Generation <- factor(map$Generation,levels=c('Thai','1stGen','2ndGen','Control'))
+map$BMI.Class <- factor(map$BMI.Class,levels=c('Normal','Overweight','Obese'))
+GROUP.COLORS.FADED <- c("#A300FF99",  "#A300FF99",  "#A300FF99",  "#FBB40099",  "#FBB40099", "#FBB40099", "#FE42AD99", "#FE42AD99", "#FE42AD99","#2E191599","#2E191599","#2E191599")
+```
+
+Now we make the actual boxplot. We use a _formula_ of the form `y ~ x` to describe the values we want to show (`y`) on the y-axis and the categories that we want to use to make the boxes (`x`). Here, we are using an _interaction_ of two categories by multiplying them together with `*`. Add this to your source file and run the commands.
+boxplot(alpha$PD_whole_tree ~ map$BMI.Class * map$Generation,las=2, col=GROUP.COLORS.FADED, xlab='')
+par(oma=c(4,2,0,2))
+
+```
 
 9. Subset; visualize only a subset of samples
 

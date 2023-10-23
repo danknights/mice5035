@@ -67,6 +67,9 @@ We will also add a legend using the `legend` command that shows which symbol bel
 plot(pc[,1],pc[,2],pch=c(1, 2, 3, 4, 5, 6)[map$Sample.Group])
 legend('topleft',levels(map$Sample.Group),pch=c(1,2,3,4,5,6), cex=.75)
 ```
+Now you should have a plot that looks approximately like this:
+
+<img src="../../supporting_files/Tutorial05-beta-plot-symbols-only.png" width="600" />
 
 OK it's still very hard to see any patterns. Let's add some colors. We can do this with the `col` parameter. It will work the same way as the `pch` parameter. We just need to pass in a list (vector) of 5 colors, and use `map$Sample.Group` to provide the indices that pick the right color for each point. We will store the list of five colors in a variable called `GROUP.COLORS`. Edit the commandS in your source file and run them again.
 ```bash

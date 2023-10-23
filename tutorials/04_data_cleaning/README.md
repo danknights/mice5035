@@ -1,4 +1,4 @@
-## MiCE 5035 Tutorial: Data cleaning and visualization in R
+## MiCE 5035 Tutorial: Data cleaning in R
 
 ### Background
 This tutorial is an introduction to loading, filtering, and visualizing microbiome data in _R_.

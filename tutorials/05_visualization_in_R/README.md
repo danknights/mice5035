@@ -31,13 +31,13 @@ library('vegan')
 
 We will begin by loading in the data tables, even though technically they are still loaded into R from the downloading step above. This way when we run this file alone, it will load the data properly. Paste these into your source file, and execute them. 
 ```bash
-map <- read.delim(map,'map.txt')
-otus <- read.delim(otus,'otu_table.txt',check=F)
-alpha <- read.delim(alpha,'alpha.txt')
-beta_uuf <- read.delim(beta_uuf,'beta_uuf.txt')
-beta_wuf <- read.delim(beta_wuf,'beta_wuf.txt')
-genus <- read.delim(genus,'genus.txt')
-phylum <- read.delim(phylum,'phylum.txt')
+map <- read.delim('map.txt')
+otus <- read.delim('otu_table.txt',check=F)
+alpha <- read.delim('alpha.txt')
+beta_uuf <- read.delim('beta_uuf.txt')
+beta_wuf <- read.delim('beta_wuf.txt')
+genus <- read.delim('genus.txt')
+phylum <- read.delim('phylum.txt')
 ```
 
 #### Make a Beta diversity plot

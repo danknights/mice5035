@@ -69,17 +69,19 @@ GROUP.COLORS <- c("#A300FF",  "#A300FF", "#00A696","#00A696", "#FE42AD", "#2E191
 
 #### Exercise
 
-- Modify your `plot` command to use the `col` parameter with the `GROUP.COLORS` variable, in a similar manner to how we used the `pch` above, so that your points are colored.
-- Can you also figure out how to add the colors to the legend?
-- It would be nice to use hollow points for the 1st gen samples, and solid points for the others, since the 1st gen samples are spread across the plot. Search the web for "R plot symbols" to find other options for `pch`. Can you make your plot look exactly like this one? Also notice that the axes are labeled "PC1" and "PC2". Search the web to find out how to change the axis labels in an R plot, and modify your code accordingly.
+- Modify your `plot` command by adding the `col` parameter with the `GROUP.COLORS` variable, in a similar manner to how we used the `pch` above, so that your points are colored. If you're not sure how to do this, look carefully at how we set `pch` to be 1, 2, 3, 4, 5, or 6, according to the `map$Sample.Group` categories. Here you want to set `col` to be the 6 colors we just stored in `GROUP.COLORS`, also according to the `map$Sample.Group` categories.
+- Modify your code to add the colors to the legend. Don't forget that you can search the web for examples!
+- It would be nice to use hollow points for the 1st gen samples, and solid points for the others, since the 1st gen samples are spread across the plot. Search the web for "R plot symbols" to find other options for `pch`. Can you make choose different symbols to make your plot look exactly like this one? Also notice that the axes are labeled "PC1" and "PC2". Search the web to find out how to change the axis labels in an R plot, and modify your code accordingly.
 
-<img src=["https://user-images.githubusercontent.com/link-to-your-image.png](https://github.com/danknights/mice5035/blob/master/supporting_files/Tutorial05-final-beta-diversity-plot.png)" width="400" />
+<img src="../../supporting_files/Tutorial05-final-beta-diversity-plot.png" width="600" />
 
   
 
-5. Add colors to the groups
-
-6. Add ellipses to the groups
+### Add ellipses
+Let's add some ellipses to show the 2D center and standard deviation of the points in each group.
+```bash
+dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels=0.68,robust=TRUE,col=GROUP.COLORS,segments=100)
+```
 
 7. Make a histogram of alpha diversity values
 

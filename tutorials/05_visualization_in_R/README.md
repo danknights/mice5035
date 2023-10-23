@@ -56,9 +56,16 @@ pc <- cmdscale(beta_uuf)
 plot(pc[,1],pc[,2],pch=3)
 ```
 
-But this is not what we want. We want to use a different symbol for each sample group. We can do this by listing the symbols we want in the order of the groups that we gave to R above ('KarenThai', 'Karen1st', 'HmongThai', 'Hmong1st', 'Hmong2nd', 'Control'). Then we use the square brackets `[]` to select the right symbol for each sample by using the `Sample.Group` column as the indices. How does this work? It works because when you use a factor in R (categorical variable) in a place where numbers are expected (like in the indices in a table), R automatically converts the categories to numbers, based on the order of the categories for that factor. So in our case, every entry of 'KarenThai' will be converted to `1`, every entry of 'Karen1st' will be converted to `2`, and so on. Let's start with the symbols 1, 2, 3, 4, 5. Edit the command in your source file and run it again.
+But this is not quite what we want. We want to use a different symbol for each sample group. We can do this by listing the symbols we want in the order of the groups that we gave to R above ('KarenThai', 'Karen1st', 'HmongThai', 'Hmong1st', 'Hmong2nd', 'Control'). Then we use the square brackets `[]` to select the right symbol for each sample by using the `Sample.Group` column as the indices. How does this work? It works because when you use a factor in R (categorical variable) in a place where numbers are expected (like in the indices in a table), R automatically converts the categories to numbers, based on the order of the categories for that factor. So in our case, every entry of 'KarenThai' will be converted to `1`, every entry of 'Karen1st' will be converted to `2`, and so on. Let's start with the symbols 1, 2, 3, 4, 5, 6 for the 6 groups. We will also add a legend using the `legend` command that shows which symbol belongs to which group. The `cex` parameter makes the font slightly smaller in the legend. Edit the commands in your source file and run them again.
 ```bash
-plot(pc[,1],pc[,2],pch=pch=c(1, 2, 3, 4 ,5)[map$Sample.Group])
+plot(pc[,1],pc[,2],pch=pch=c(1, 2, 3, 4, 5, 6)[map$Sample.Group])
+legend('topleft',levels(map$Sample.Group),pch=c(1,2,3,4,5,6), cex=.75)
+```
+
+OK it's still very hard to see any patterns. Let's add some colors. We can do this with the `col` parameter. It will work the same way as the `pch` parameter. We just need to pass in a list (vector) of 5 colors, and use `map$Sample.Group` to provide the indices that pick the right color for each point. We will store the list of five colors in a variable called `GROUP.COLORS`. Edit the commandS in your source file and run them again.
+```bash
+GROUP.COLORS <- c("#A300FF",  "#A300FF", "#00A696","#00A696", "#FE42AD", "#2E1915")
+plot(pc[,1],pc[,2],pch=c(16,1,17,2,15,15)[map$Sample.Group],col=GROUP.COLS[map$Sample.Group])
 ```
 
 

@@ -86,7 +86,7 @@ GROUP.COLORS <- c("#A300FF",  "#A300FF", "#00A696","#00A696", "#FE42AD", "#2E191
   
 
 ### Add ellipses
-If you couldn't figure out how to match the plot above, ask for help from me or one of your neighbors. Now let's add some ellipses to show the 2D center and standard deviation of the points in each group. We will use the `dataEllipse` function in the `car` package that we loaded at the start of the tutorial.
+If you couldn't figure out how to match the plot above, ask for help from me or one of your neighbors. Now let's add some ellipses to show the 2D center and standard deviation of the points in each group. We are using `level=0.68` to show one standard deviation, assuming a normal distribution (of 2D distances). This is following the [68-95-99.7](https://en.wikipedia.org/wiki/68%E2%80%9395%E2%80%9399.7_rule) rule for standard deviations and area under the normal curve.  We will use the `dataEllipse` function in the `car` package that we loaded at the start of the tutorial.
 ```bash
 dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels=0.68,robust=TRUE,col=GROUP.COLORS,segments=100)
 ```

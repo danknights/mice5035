@@ -75,8 +75,7 @@ map <- map[keep.ix,]
 
 We will now make sure that each table has the same samples in the exact same order. This is a critical step that you must do before analyzing almost any data set! Paste these into your source file and then execute them. 
 ```bash
-common.rownames <- rownames(map)
-common.rownames <- intersect(rownames(otus), common.rownames)
+common.rownames <- intersect(rownames(map),rownames(otus))
 map <- map[common.rownames,]
 otus <- otus[common.rownames,]
 alpha <- alpha[common.rownames,]

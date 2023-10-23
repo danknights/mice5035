@@ -92,6 +92,7 @@ dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels
 ```
 
 Your final plot should look approximately like this:
+
 <img src="../../supporting_files/Tutorial05-final-beta-diversity-plot-ellipses.png" width="600" />
 
 

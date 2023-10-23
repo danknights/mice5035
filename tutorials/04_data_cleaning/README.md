@@ -51,7 +51,7 @@ We can access an individual element in a table with square brackets `[]`. For ex
 genus[10,9]
 ```
 
-We can also access a arange of elements in a table by passing in a vector of numerical indices, or a vector of TRUE/FALSE values. For example, this prints the first 3 rows and first 6 columns of the map table...
+We can also access a arange of elements in a table by passing in a vector of numerical indices, or a vector of TRUE/FALSE values. For example, this prints the first 3 rows and first 6 columns of the map table. The `1:6` expression is shorthand for 1, 2, 3, 4, 5, 6. 
 ```bash
 map[1:3,1:6]
 ```
@@ -59,6 +59,12 @@ map[1:3,1:6]
 ..and this prints the first 3 rows and columns 1, 2, 3, and 6. The `c()` function concatenates individual values (the TRUE's and FALSE's) into a vector:
 ```bash
 map[1:3,c(TRUE, TRUE, TRUE, FALSE, FALSE, TRUE)]
+```
+
+There is another important and convenient way that we can access data in a table. R allows tables to have row names and column names, and these can be used to access data. For example, if we want to print out the `Sample.Group` column in the `map` table, there are two different ways:
+```bash
+map$Sample.Group
+map[,"Sample.Group"]
 ```
 
 Before we continue, we need to remove the longitudinal subjects from all of the tables. These are subjects that have `NA` or `1` in the "Sample.Order" column in the mapping file. Note: the `|` means "or" and it makes keep.ix TRUE for every row where either the value is `NA` or `1`. Paste this command into your source file. You can type command-Return (Mac) or control-Return (Windows) to run each single line immediately in the terminal. 

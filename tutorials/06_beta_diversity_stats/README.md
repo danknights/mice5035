@@ -148,15 +148,28 @@ Based on the beta diversity plot above, at appears that Thailand residents are o
 
 First, get the indices of all of the samples that don't have `NA` listed for Years.in.US. Note: the `!` before `is.na` means "not". So this will return TRUE for any row where Years.in.US is _not_ `NA`. Copy this into your source file and then run it.
 ```bash
+# Get the indices where there is a known (not NA) duration of US residence
 ix <- !is.na(map$Years.in.US)
 ```
 
 Now run the correlation test. We will test whether _PC1_, the first column of the `pc` matrix, is significantly correlated with _Years.in.US_. Copy this into your source file and then run it.
 ```bash
+# test whether PC1 is correlated with Years.in.US
 cor.test(pc[ix,1], map$Years.in.US[ix])
 ```
 
 What is the p-value? What is the correlation? Does the direction of the correlation (positive or negative) make sense, based on the location of the Thai and US Control samples on your beta diversity plot? 
+
+We may also want a visualization to accompany our statistical test. We could simply do a scatterplot, as follows. Copy this into your source file and then run it.
+```bash
+# scatterplot of Years.in.US vs PC1
+plot(pc[ix,1], map$Years.in.US[ix])
+```
+
+We could even add a best-fit line. `lm` fits a linear model, and `abline` draws it. Copy this into your source file and then run it.
+```bash
+abline(lm(map$Years.in.US[ix] ~ pc[ix,1]))
+```
 
 ### Conclusion
 These examples cover the most common types of statistical tests during beta diversity analysis. Some additional exercises to explore on your own include coloring the points according to a continuous variable, repeating these analysis with different diversity metrics, or doing [procrustes analysis](https://john-quensen.com/tutorials/procrustes-analysis/) to compare two different beta diversity matrices.

@@ -163,12 +163,20 @@ What is the p-value? What is the correlation? Does the direction of the correlat
 We may also want a visualization to accompany our statistical test. We could simply do a scatterplot, as follows. Copy this into your source file and then run it.
 ```bash
 # scatterplot of Years.in.US vs PC1
-plot(pc[ix,1], map$Years.in.US[ix])
+plot(pc[ix,1], map$Years.in.US[ix], xlab='PC1 of unweighted UniFrac distance', ylab='Years in US')
 ```
 
 We could even add a best-fit line. `lm` fits a linear model, and `abline` draws it. Copy this into your source file and then run it.
 ```bash
 abline(lm(map$Years.in.US[ix] ~ pc[ix,1]))
+```
+
+By the way, if you want to automatically save a figure to a PDF, you can do so like this:
+```bash
+pdf('years_in_us_v_pc1.pdf', width=5, height=5)
+plot(pc[ix,1], map$Years.in.US[ix], xlab='PC1 of unweighted UniFrac distance', ylab='Years in US')
+abline(lm(map$Years.in.US[ix] ~ pc[ix,1]))
+dev.off()
 ```
 
 ### Conclusion

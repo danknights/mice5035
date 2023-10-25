@@ -4,7 +4,7 @@
 This tutorial is an introduction to univariate statistical analysis of microbiome data in _R_. Univariate features include alpha diversity and OTU/taxon abundances.
 
 ### Requirements
-You must have completed [Tutorial 5](../06_beta_diversity_stats).
+You must have completed [Tutorial 6](../06_beta_diversity_stats).
 
 ### Create a separate script for loading data
 Make sure you (still) have open your Tutorials project.

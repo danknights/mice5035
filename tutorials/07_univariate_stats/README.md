@@ -39,7 +39,7 @@ boxplot(alpha$PD_whole_tree[ix] ~ BMI.Class * Generation, data=droplevels(map[ix
 
 You should have a plot that looks approximately like this:
 
-<img src="../../supporting_files/Tutorial07-alpha-boxplot.png" width="600" />
+<img src="../../supporting_files/Tutorial07-alpha-boxplot-2-classes.png" width="600" />
 
 
 We now wish to test whether alpha diversity (phylogenetic diversity) is significantly associated with Generation, BMI status, or their interaction. To make it easier to read, we will first store the values in new variables. Copy these into your file and execute them.

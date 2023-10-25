@@ -89,7 +89,7 @@ The output should look like this:
 We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index class (BMI.Class; Lean/Overweight/Obese). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable. Copy this into your source file and then run it.
 ```bash
 # Test if variation in beta diversity is associated with 
-# sample group or subject BMI
+# sample group or subject BMI Class
 adonis2(beta_uuf ~ Sample.Group + BMI.Class, data=map)
 ```
 

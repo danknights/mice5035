@@ -6,7 +6,6 @@ This tutorial is an introduction to univariate statistical analysis of microbiom
 ### Requirements
 You must have completed [Tutorial 6](../06_beta_diversity_stats).
 
-### Create a separate script for loading data
 Make sure you (still) have open your Tutorials project.
 
 ### Load the data

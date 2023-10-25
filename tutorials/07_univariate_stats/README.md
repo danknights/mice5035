@@ -129,6 +129,10 @@ Let's start by generating the boxplot from tutorial 5 again of _Parabacteroides_
  boxplot(genus[,'g__Parabacteroides'] ~ map$Generation)
  ```
 
+The boxplot should look like this:
+
+<img src="../../supporting_files/Tutorial07-parabacteroides-output.png" width="500" />
+
 To test for statistical association of this genus with Generation group, we will need to use the Kruskal-Wallis test, because there are more than 2 groups. We will run it as follows. Copy this to your source file and run it. 
 ```bash
 kruskal.test(genus[,'g__Parabacteroides'] ~ map$Generation)

@@ -86,15 +86,15 @@ The output should look like this:
 
 
 ### Add a covariate to the test
-We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index (BMI). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable. Copy this into your source file and then run it.
+We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index class (BMI.Class; Lean/Overweight/Obese). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable. Copy this into your source file and then run it.
 ```bash
 # Test if variation in beta diversity is associated with 
 # sample group or subject BMI
-adonis2(beta_uuf ~ Sample.Group + BMI, data=map)
+adonis2(beta_uuf ~ Sample.Group + BMI.Class, data=map)
 ```
 
 #### Exercises
-- What was the result? Which is more highly significant, Sample.Group or BMI? 
+- What was the result? Which is more highly significant, Sample.Group or BMI.Class? 
 - Rerun the `adonis2` test using only the `Generation` variable (Thai, 1st, 2nd, or Control). Is this also significant? What is the p-value?
 
 

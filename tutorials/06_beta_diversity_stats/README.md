@@ -42,7 +42,7 @@ source('load_data.r')
 ```
 
 ### Make a Beta diversity plot and test for significance
-We will start with the final plot from tutorial 5. Paste these into your file and execute them.
+We will start with the final beta diversity plot (minus the ellipses) from tutorial 5. Paste these into your file and execute them.
 ```bash
 # These colors correspond to the order of sample groups in map$Sample.Group:
 # KarenThai, Karen1st, HmongThai, Hmong1st, Hmong2nd, Control

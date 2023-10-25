@@ -88,7 +88,7 @@ The output should look like this:
 
 
 ### Add a covariate to the test
-We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index (BMI). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable:
+We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index (BMI). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable. Copy this into your source file and then run it.
 ```bash
 # Test if variation in beta diversity is associated with 
 # sample group or subject BMI
@@ -108,7 +108,7 @@ So far we have only tested for associations across the entire data set. Often, w
 ix <- map$Generation == "2ndGen" | map$Generation == "Control"
 ```
 
-Let us now examine how many subjects are in each group in the `Generation` variable. We can use the `table` command to show us the size of each group in a categorical variable. Run these in the console:
+Let us now examine how many subjects are in each group in the `Generation` variable. We can use the `table` command to show us the size of each group in a categorical variable. Run these in the console (no need to save them in your source file).
 ```bash
 # How many subjects belonging to each generation?
 table(map$Generation)
@@ -118,7 +118,7 @@ table(map$Generation)
 table(map$Generation[ix])
 ```
 
-This should show that there are 54 subjects in the 2ndGen group and 36 subjects in the Control group. Now let us run the `adonis2` test, only in these two groups. Note that we had to use `ix` in both the rows and columns of `beta_uuf`. Check your understanding: can you explain why? 
+This should show that there are 54 subjects in the 2ndGen group and 36 subjects in the Control group. Now let us run the `adonis2` test, only in these two groups. Note that we had to use `ix` in both the rows and columns of `beta_uuf`. Check your understanding: can you explain why? Copy this into your source file and then run it.
 ```bash
 adonis2(beta_uuf[ix,ix] ~ Generation, data=map[ix,])
 ```  
@@ -130,7 +130,7 @@ The output shows that beta diversity variation is highly associated with Generat
 - Read the documentation for `adonis2` again, and scroll down to the "Note" near the bottom. What function do the authors suggest to test for differences in dispersion of beta diversity across groups? 
 
 
-We will now run the `betadisper` test to test whether differences in dispersion may be confounding our test for significant differences in beta diversity between 2ndGen and US Controls. Copy this into your source file and run it:
+We will now run the `betadisper` test to test whether differences in dispersion may be confounding our test for significant differences in beta diversity between 2ndGen and US Controls. Copy this into your source file and run it.
 ```bash
 # run a permutation test on the output of the beta dispersion analysis
 # this was taken from the example in the documentation of betadisper
@@ -158,7 +158,6 @@ cor.test(pc[ix,1], map$Years.in.US[ix])
 ```
 
 What is the p-value? What is the correlation? Does the direction of the correlation (positive or negative) make sense, based on the location of the Thai and US Control samples on your beta diversity plot? 
-
 
 ### Conclusion
 These examples cover the most common types of statistical tests during beta diversity analysis. Some additional exercises to explore on your own include coloring the points according to a continuous variable, repeating these analysis with different diversity metrics, or doing [procrustes analysis](https://john-quensen.com/tutorials/procrustes-analysis/) to compare two different beta diversity matrices.

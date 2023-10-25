@@ -6,9 +6,7 @@ This tutorial is an introduction to statistical analysis of microbiome data in _
 ### Requirements
 You must have completed [Tutorial 5](../05_visualization_in_R).
 
-### Tutorial
-
-#### Create a separate script for loading data
+### Create a separate script for loading data
 Make sure you (still) have open your Tutorials project.
 
 The first step will be to create a separate script that will load in the data tables and get them ready for analysis. Then we can call that script from any other scripts without having to copy all of the commands each time.
@@ -34,7 +32,7 @@ map$BMI.Class <- factor(map$BMI.Class,levels=c('Normal','Overweight','Obese'))
 ```
 
 
-#### Load the data
+### Load the data
 Create a new R source file and call it, `tutorial_06.r`. Load in the `vegan` package that we used in tutorial 5, and use `source` to tell _R_ to run the commands that you stored in `load_data.r`.
 ```bash
 library('vegan')
@@ -43,7 +41,7 @@ library('vegan')
 source('load_data.r')
 ```
 
-#### Make a Beta diversity plot and test for significance
+### Make a Beta diversity plot and test for significance
 We will start with the final plot from tutorial 5. Paste these into your file and execute them.
 ```bash
 # These colors correspond to the order of sample groups in map$Sample.Group:

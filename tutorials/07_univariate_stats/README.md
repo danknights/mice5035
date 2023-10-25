@@ -23,7 +23,7 @@ An important note: when we subset a factor (categorial variable), R will keep ar
 Copy these into your file and execute them.
 ```bash
 # These colors represent Thai, 1stGen, 2ndGen, US
-# The 2 copies will color tbe boxes for Lean, Obese
+# The 2 copies will color the boxes for Lean, Obese
 GROUP.COLORS.FADED <- c("#A300FF99", "#A300FF99", "#FBB40099", "#FBB40099", "#FE42AD99", "#FE42AD99", "#2E191599", "#2E191599")
 
 # Select only Lean and Obese subjects (not overweight)

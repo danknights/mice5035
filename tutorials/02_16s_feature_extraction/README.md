@@ -131,6 +131,8 @@ Note: we may perform relative abundance filtering later when doing statistical t
 
 11. Move the files back from MSI to your computer using Filezilla  
  See instructions on [Getting Started Guide](../../README.md) to connect to MSI using Filezilla. Navigate to `/home/mice5035/yourusername/mice5035/tutorials/02_16s_feature_extraction/`. Then drag the `alpha-diversity.txt` file and `beta`, `otus`, and `taxon_tables` folders over to your local computer.
+
+Note: make sure you copy THE WHOLE `3dplots` (or `3dplots-weighted-unifrac`) folder, not just the `index.html` file.
  
  ![Filezilla example](https://raw.githubusercontent.com/danknights/mice5992-2017/master/supporting_files/qiime_tutorial_FTP_screenshot.png "Filezilla example")
 

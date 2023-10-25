@@ -182,5 +182,5 @@ dev.off()
 ### Conclusion
 These examples cover the most common types of statistical tests during beta diversity analysis. Some additional exercises to explore on your own include coloring the points according to a continuous variable, repeating these analysis with different diversity metrics, or doing [procrustes analysis](https://john-quensen.com/tutorials/procrustes-analysis/) to compare two different beta diversity matrices.
   
-Continue to (Tutorial 7)[../07_univariate_stats]
+Continue to [Tutorial 7](../07_univariate_stats)
 

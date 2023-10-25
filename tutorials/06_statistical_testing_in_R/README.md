@@ -6,8 +6,9 @@ This tutorial is an introduction to statistical analysis of microbiome data in _
 ### Requirements
 You must have completed [Tutorial 5](../05_visualization_in_R).
 
+### Tutorial
 
-#### Install some needed packages
+#### Create a separate script for loading data
 Make sure you (still) have open your Tutorials project.
 
 The first step will be to create a separate script that will load in the data tables and get them ready for analysis. Then we can call that script from any other scripts without having to copy all of the commands each time.
@@ -32,7 +33,6 @@ map$Generation <- factor(map$Generation,levels=c('Thai','1stGen','2ndGen','Contr
 map$BMI.Class <- factor(map$BMI.Class,levels=c('Normal','Overweight','Obese'))
 ```
 
-### Tutorial
 
 #### Load the data
 Create a new R source file and call it, `tutorial_06.r`. Load in the `vegan` package that we used in tutorial 5, and use `source` to tell _R_ to run the commands that you stored in `load_data.r`.

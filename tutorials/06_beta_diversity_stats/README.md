@@ -55,10 +55,10 @@ pc <- cmdscale(beta_uuf)
 # The pch symbols are solid circle, empty circle,
 # solid triangle, empty triangle, solid square, solid square,
 # corresponding to KarenThai, Karen1st, HmongThai, Hmong1st, Hmong2nd, Control
-plot(pc[,1],pc[,2],pch=c(16,1,17,2,15,15)[map$Sample.Group],col=GROUP.COLS[map$Sample.Group], xlab='PC1', ylab='PC2')
+plot(pc[,1],pc[,2],pch=c(16,1,17,2,15,15)[map$Sample.Group],col=GROUP.COLORS[map$Sample.Group], xlab='PC1', ylab='PC2')
 
 # add a legend with the appropriate symbols and colors
-legend('topleft', levels(map$Sample.Group), pch=c(16,1,17,2,15,15), col=GROUP.COLS, cex=.75)
+legend('topleft', levels(map$Sample.Group), pch=c(16,1,17,2,15,15), col=GROUP.COLORS, cex=.75)
 ```
 
 You should now have a plot that looks approximately like this:

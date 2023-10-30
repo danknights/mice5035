@@ -123,8 +123,9 @@ Clearly this taxon is not normally distributed which violates the assumptions of
 
 Let's start by generating the boxplot from tutorial 5 again of _Parabacteroides_. Copy this to your source file and run it:
 ```bash
- boxplot(genus[,'g__Parabacteroides'] ~ map$Generation)
- ```
+# boxplot of genus Parabacteroides split by Generation
+boxplot(genus[,'g__Parabacteroides'] ~ map$Generation)
+```
 
 The boxplot should look like this:
 
@@ -132,6 +133,7 @@ The boxplot should look like this:
 
 To test for statistical association of this genus with Generation group, we will need to use the Kruskal-Wallis test, because there are more than 2 groups. We will run it as follows. Copy this to your source file and run it. 
 ```bash
+# non-parametric KW test of differential Parabacteroides abundance by Generation
 kruskal.test(genus[,'g__Parabacteroides'] ~ map$Generation)
 ```
 
@@ -149,7 +151,7 @@ So far we have discussed testing continuous dependent variables (taxa or alpha d
 What would be an interesting correlation to test in this data set? One continuous independent variable is Years of US residence ("Years.in.US"). As in tutorial 6, we have to select the samples without `NA` for their "Years.in.US". Copy this to your source file and run it.
 ```bash
 # Get the indices where there is a known (not NA) duration of US residence
-ix <- !is.na(map$Years.in.US)
+ix <- map$Generation == '1stGen'
 ```
 
 Now we can use `cor.test` to test whether alpha diversity decreases the longer a person has lived in the US. Copy this to your source file and run it. 

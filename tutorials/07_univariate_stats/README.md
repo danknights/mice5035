@@ -80,9 +80,13 @@ There is an excellent explanation of how to interpret the various outputs of an 
 ---
 
 ## Exercise 1
-- Take a screenshot of your test results for the two ANOVA tests above and add it to your worksheet.
-- What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity?
-- Write a one-sentence explanation of what this result means about diversity, obesity, and U.S. immigration.
+<ol type="a">
+<li>Take a screenshot of your test results for the two ANOVA tests above and add it to your worksheet.</li>
+   
+<li>What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity?</li>
+   
+<li>Write a one-sentence explanation of what this result means about diversity, obesity, and U.S. immigration.</li>
+</ol>
 
 ---
 
@@ -123,9 +127,11 @@ t.test(alpha$PD_whole_tree[ix] ~ map$Generation[ix])
 ---
 
 ## Exercise 2
-- Was the result significant? If so, was it highly significant or just barely significant?
-- How does the result compare to the result from testing beta diversity between these two groups (2ndGen and Controls) in tutorial 6?
-- Why is this interesting from a study perspective?
+<ol type="a">
+<li>Was the result significant? If so, was it highly significant or just barely significant?</li>
+<li>How does the result compare to the result from testing beta diversity between these two groups (2ndGen and Controls) in tutorial 6?</li>
+<li>Why is this interesting from a study perspective?</li>
+</ol>
 
 ---
 
@@ -136,7 +142,9 @@ We can follow a similar approach to the statistical testing of taxa (e.g. OTUs, 
 ---
 
 ## Exercise 3
-- Recall in tutorial 5 that we made a boxplot of the genus _Parabacteroides_ across generation groups. Check for normality of this genus visually using `hist`. Copy your code and screen capture of your histogram into your worksheet.
+<ol type="a">
+<li>Recall in tutorial 5 that we made a boxplot of the genus _Parabacteroides_ across generation groups. Check for normality of this genus visually using `hist`. Copy your code and screen capture of your histogram into your worksheet.</li>
+</ol>
 
 ---
 
@@ -157,8 +165,10 @@ To test for statistical association of this genus with Generation group, we will
 ---
 
 ## Exercise 4
-- Run the Kruskal-Wallis test using `kruskal.test`. You may want to view the instructions by entering `?kruskal.test` into your console. Copy the commands you ran and a screen capture of the output to your worksheet.
-- Was the test significant? What was the p-value? What does this tell you about the genus _Parabacteroides_ and immigration to the U.S.A.?
+<ol type="a">
+<li>Run the Kruskal-Wallis test using `kruskal.test`. You may want to view the instructions by entering `?kruskal.test` into your console. Copy the commands you ran and a screen capture of the output to your worksheet.</li>
+<li>Was the test significant? What was the p-value? What does this tell you about the genus _Parabacteroides_ and immigration to the U.S.A.?</li>
+</ol>
 
 ---
 
@@ -178,10 +188,12 @@ boxplot(genus[ix,'g__Prevotella'] ~ droplevels(map$Generation[ix]))
 ---
 
 ## Exercise 5
-- Test whether _Prevotella_ is differentially abundant between 2ndGen and Control subjects. Find out how to run a Mann-Whitney U test in R (hint: it's not called a Mann-Whitney U test), and then test for differential abundance between these two study groups. Copy the commands you ran and a screen capture of the output to your worksheet.
-- Why did we use a Mann-Whitney U test instead of a t-test?
-- Why did we use a Mann-Whitney U test instead of a Kruskal-Wallis test?
-- Was the test significant? What is the p-value? 
+<ol type="a">
+<li>Test whether _Prevotella_ is differentially abundant between 2ndGen and Control subjects. Find out how to run a Mann-Whitney U test in R (hint: it's not called a Mann-Whitney U test), and then test for differential abundance between these two study groups. Copy the commands you ran and a screen capture of the output to your worksheet.</li>
+<li>Why did we use a Mann-Whitney U test instead of a t-test?</li>
+<li>Why did we use a Mann-Whitney U test instead of a Kruskal-Wallis test?</li>
+<li>Was the test significant? What is the p-value?</li>
+</ol>
 
 ---
 
@@ -193,9 +205,11 @@ What would be an interesting correlation to test in this data set? One continuou
 ---
 
 ## Exercise 6
-- Test whether phylogenetic alpha diversity is significantly associated with years of U.S. residence. Follow the approach you used in tutorial 6 for testing for correlation of years of US residence with PC1 score, but with alpha diversity in place of PC1 score. Copy your answer to your source file and run it.
-- Actually, we hypothesized that diversity would go _down_ the longer a person lived in the US, so we should make this a one-tailed test. This means we ignoring the possibility that diversity could have gone up with duration of residence. This gives us more statistical power. Find out how to modify this command to run a one-tailed correlation test for the desired alternative. You can search the web, or you can run `?cor.test` in _R_ to read the documentation. What happened to the correlation statistic? What happened to the p-value, and why? If you need an additional reference, see the related [Wikipedia page](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests).
-- Using the same subset of subjects, test whether _Parabacteroides_ goes up the longer someone lives in the US. You will need to run `cor.test` with the additional `method=spearman` argmument as described above. Is it significant? What is the p-value? Does this fit your expectations after viewing the boxplot above?
+<ol type="a">
+<li>Test whether phylogenetic alpha diversity is significantly associated with years of U.S. residence. Follow the approach you used in tutorial 6 for testing for correlation of years of US residence with PC1 score, but with alpha diversity in place of PC1 score. Copy your answer to your source file and run it.</li>
+<li>Actually, we hypothesized that diversity would go _down_ the longer a person lived in the US, so we should make this a one-tailed test. This means we ignoring the possibility that diversity could have gone up with duration of residence. This gives us more statistical power. Find out how to modify this command to run a one-tailed correlation test for the desired alternative. You can search the web, or you can run `?cor.test` in _R_ to read the documentation. What happened to the correlation statistic? What happened to the p-value, and why? If you need an additional reference, see the related [Wikipedia page](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests).</li>
+<li>Using the same subset of subjects, test whether _Parabacteroides_ goes up the longer someone lives in the US. You will need to run `cor.test` with the additional `method=spearman` argmument as described above. Is it significant? What is the p-value? Does this fit your expectations after viewing the boxplot above?</li>
+</ol>
 
 ---
 

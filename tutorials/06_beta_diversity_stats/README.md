@@ -11,7 +11,7 @@ Make sure you (still) have open your Tutorials project.
 
 The first step will be to create a separate script that will load in the data tables and get them ready for analysis. Then we can call that script from any other scripts without having to copy all of the commands each time.
 
-Create a new R source file and call it, `load_data.r`. Add all of the commands from tutorial 5 that load the data and get some of the categorical variables ready to use. Paste the following commands into `load_data.r` and then save the file.
+Create a new R source file and call it, `load_data.r`. Add all of the commands from tutorial 5 that load the data and get some of the categorical variables ready to use. Paste the following commands into `load_data.r` and then save the file. Note: you will need to change the `XXX` to your unique project identifier in the URL for each of the four data tables.
 ```bash
 # load clean preprocessed data tables
 # Replace XXX with your project ID

@@ -13,14 +13,12 @@ The first step will be to create a separate script that will load in the data ta
 
 Create a new R source file and call it, `load_data.r`. Add all of the commands from tutorial 5 that load the data and get some of the categorical variables ready to use. Paste the following commands into `load_data.r` and then save the file.
 ```bash
-# load all of the clean, preprocessed data tables
-map <- read.delim("map.txt",row=1, as.is=FALSE)
-otus <- read.delim("otu_table.txt", row=1)
-alpha <- read.delim("alpha.txt",row=1)
-beta_uuf <- read.delim("beta_uuf.txt",row=1)
-beta_wuf <- read.delim("beta_wuf.txt",row=1)
-phylum <- read.delim("phylum.txt",row=1)
-genus <- read.delim("genus.txt",row=1)
+# load clean preprocessed data tables
+# Replace XXX with your project ID
+map <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/data_tables/XXX/map.txt"),row=1, as.is=FALSE)
+alpha <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/data_tables/XXX/alpha.txt"),row=1)
+beta_uuf <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/data_tables/XXX/beta_uuf.txt"),row=1)
+genus <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/data_tables/XXX/genus.txt"),row=1)
 
 # Let's tell R to show sample groups in a certain order. 
 # This is to ensure that when we make plots, R puts
@@ -56,6 +54,9 @@ pc <- cmdscale(beta_uuf)
 # solid triangle, empty triangle, solid square, solid square,
 # corresponding to KarenThai, Karen1st, HmongThai, Hmong1st, Hmong2nd, Control
 plot(pc[,1],pc[,2],pch=c(16,1,17,2,15,15)[map$Sample.Group],col=GROUP.COLORS[map$Sample.Group], xlab='PC1', ylab='PC2')
+
+# Add ellipses for the sample groups
+dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels=0.68,robust=TRUE,col=GROUP.COLORS,segments=100)
 
 # add a legend with the appropriate symbols and colors
 legend('topleft', levels(map$Sample.Group), pch=c(16,1,17,2,15,15), col=GROUP.COLORS, cex=.75)

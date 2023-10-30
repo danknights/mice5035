@@ -82,11 +82,9 @@ The output should look like this:
 ---
 
 ## Exercise 1
-<ol type="a">
-<li>Examine the output from `adonis2`. Find the _p-value_ in the output. Did the test show a statistically significant association between Sample.Group and beta diversity?</li>
-<li>`adonis2` took a few seconds to run. This is because it is a permutation-based test. It randomly permutes the sample IDs many times, and uses those permutations to generate a null distribution for the difference between groups. Then it compares the actual difference between groups to the null distibution from the permutations to get a p-value. Read the documentation for the `adonis2` function by running `?adonis2` in the console. How many permutations does it perform by default? Try running it again with 9999 permutations. Copy the command you ran and a screen capture of the output to your worksheet.</li>
-<li>What is the new _p-value_? Did it get larger or smaller? Why?</li>
-</ol>
+- A. Examine the output from `adonis2`. Find the p-value in the output. Did the test show a statistically significant association between Sample.Group and beta diversity?
+- B. `adonis2` took a few seconds to run. This is because it is a permutation-based test. It randomly permutes the sample IDs many times, and uses those permutations to generate a null distribution for the difference between groups. Then it compares the actual difference between groups to the null distibution from the permutations to get a p-value. Read the documentation for the `adonis2` function by running `?adonis2` in the console. How many permutations does it perform by default? Try running it again with 9999 permutations. Copy the command you ran and a screen capture of the output to your worksheet.
+- C. What is the new _p-value_? Did it get larger or smaller? Why?
 
 ---
 
@@ -106,12 +104,14 @@ In the first set of results, the p-value for _Sample.Group_ is telling us the si
 
 There is an excellent explanation of how to interpret the various outputs of an ANOVA test in _R_ [here](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/), attributed to Falk Scholer.
 
+---
+
 ## Exercise 2
-<ol type="a">
-<li>Copy the commands you ran and a screen capture of the output of both `adonis2` commands to your worksheet.</li>
-<li>What are the relevant p-values for the significance of beta diversity vs. BMI.Class while controlling for the influence of Sample.Group, and for beta diversity vs Sample.Group while controlling for the influence of BMI.Class? Which is more highly significant, Sample.Group or BMI.Class?</li>
-<li>Rerun the `adonis2` test using only the `Generation` variable alone. Is this also significant? What is the p-value?</li>
-</ol>
+- A. Copy the commands you ran and a screen capture of the output of both `adonis2` commands to your worksheet.
+- B. What are the relevant p-values for the significance of beta diversity vs. BMI.Class while controlling for the influence of Sample.Group, and for beta diversity vs Sample.Group while controlling for the influence of BMI.Class? Which is more highly significant, Sample.Group or BMI.Class?
+- C. Rerun the `adonis2` test using only the `Generation` variable alone. Is this also significant? What is the p-value?
+
+---
 
 
 ### Perform a test in a subset
@@ -138,34 +138,15 @@ This should show that there are 54 subjects in the 2ndGen group and 36 subjects 
 adonis2(beta_uuf[ix,ix] ~ Generation, data=map[ix,])
 ```  
 
-The output shows that beta diversity variation is highly associated with Generation even between the 2ndGen and Control groups.
+The output shows that beta diversity variation is highly associated with Generation even between the 2ndGen and Control groups. Take note of this as it will be referenced in tutorial 7.
 
-#### Exercise
-- Although the test result was significant, there may be another explanation. A common concern with beta diversity testing is that differences in the _dispersion_ of the groups (how spread out each group is) can cause the `adonis2` results to appear significant. Examine the beta diversity plot above. Which group has higher dispersion, 2ndGen (labeled Hmong2nd) or Control?
-- Read the documentation for `adonis2` again, and scroll down to the "Note" near the bottom. What function do the authors suggest to test for differences in dispersion of beta diversity across groups? 
-
-
-We will now run the `betadisper` test to test whether differences in dispersion may be confounding our test for significant differences in beta diversity between 2ndGen and US Controls. Copy this into your source file and run it.
-```bash
-# run a permutation test on the output of the beta dispersion analysis
-# this was taken from the example in the documentation of betadisper
-permutest(betadisper(as.dist(beta_uuf[ix,ix]), map$Generation[ix]))
-```
-
-Here we see that there is a significant difference in dispersion (spread) of beta diversity between the two groups. Does this mean that our `adonis2` test was not actually trustworthy?
-
-#### Exercise 
-- Read the answer to [this question on StackExchange](https://stats.stackexchange.com/questions/314184/betadisper-is-significant-can-i-still-do-adonis-and-anosim) and decide whether you think dispersion may be an issue here, based on the size of the 2ndGen group and the size of the Control group.
-- (Optional) We can see that there are about 50% more samples in the 2ndGen group than in the Control group. The StackExchange page (describing a peer-reviewed publication on this topic) said that `adonis2` is not overly sensitive to dispersion when the groups are balanced. One clever approach we can use now is to pick a random subset of the 2ndGen samples so that the two groups will be the same size, and then repeat the `adonis2` test. Use `which` to convert the TRUE/FALSE indices to row numbers, and use `sample` to subsample 36 of the 2ndGen sample rows, and store them in `ix` like this: `ix <- c(sample(which(map$Generation == "2ndGen"),36), which(map$Generation == "Control"))`. Then rerun `adonis2` to determine whether it is still significant when the two groups are exactly the same size.
-
-
-### Test with a continuous variable
+### Testing beta diversity vs. a continuous variable
 Based on the beta diversity plot above, at appears that Thailand residents are on one side, US Controls and 2ndGen subjects are on the other, and the 1stGen subjects are in between. Is this because the newly arrived 1stGen immigrants and refugees are closer to their Thailand counterparts, and the the long-term USA-resident 1stGen are closer to the US controls? We could use `adonis2` to test this, but what we really want to know is whether length of residence in US is associated with the _PC1_ in the ordination. We can test this with `cor.test`.
 
-First, get the indices of all of the samples that don't have `NA` listed for Years.in.US. Note: the `!` before `is.na` means "not". So this will return TRUE for any row where Years.in.US is _not_ `NA`. Copy this into your source file and then run it.
+First, get the indices of all of the 1stGen samples as follows.
 ```bash
 # Get the indices where there is a known (not NA) duration of US residence
-ix <- !is.na(map$Years.in.US)
+ix <- map$Generation == 1stGen
 ```
 
 Now run the correlation test. We will test whether _PC1_, the first column of the `pc` matrix, is significantly correlated with _Years.in.US_. Copy this into your source file and then run it.

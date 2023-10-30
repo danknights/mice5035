@@ -77,9 +77,13 @@ The third row show the significance of the interaction term, essentially indicat
 
 There is an excellent explanation of how to interpret the various outputs of an ANOVA test in _R_ [here](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/), attributed to Falk Scholer.
 
+---
+
 ## Exercise 1
 - Take a screenshot of your test results for the two ANOVA tests above and add it to your worksheet.
 - What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity? Write a one-sentence explanation of what this result means about diversity, obesity, and U.S. immigration.
+
+---
 
 ### Check for normal distributions
 

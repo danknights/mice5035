@@ -1,7 +1,7 @@
 ## MiCE 5035 Tutorial: Statistical analysis of beta diversity in R
 
 ### Background
-This tutorial is an introduction to statistical testing of beta diversity in microbiome data in _R_. It will include making some visualizations to accompany the statistical tests.
+This tutorial is an introduction to statistical testing of beta diversity in microbiome data in _R_. It will include making some visualizations to accompany the statistical tests. 
 
 ### Requirements
 You must have completed [Tutorial 5](../05_visualization_in_R).
@@ -11,7 +11,7 @@ Make sure you (still) have open your Tutorials project.
 
 The first step will be to create a separate script that will load in the data tables and get them ready for analysis. Then we can call that script from any other scripts without having to copy all of the commands each time.
 
-Create a new R source file and call it, `load_data.r`. Add all of the commands from tutorial 5 that load the data and get some of the categorical variables ready to use. Paste the following commands into `load_data.r` and then save the file. Note: you will need to change the `XXX` to your unique project identifier in the URL for each of the four data tables.
+Create a new R source file and call it, `load_data.r`. Add all these commands (similar to those in tutorial 5) that load the data and get some of the categorical variables ready to use. Paste the following commands into `load_data.r` and then save the file. Note: you will need to change the `XXX` to your unique project identifier in the URL for each of the four data tables.
 ```bash
 # load clean preprocessed data tables
 # Replace XXX with your project ID
@@ -40,7 +40,7 @@ source('load_data.r')
 ```
 
 ### Make a Beta diversity plot and test for significance
-We will start with the final beta diversity plot (minus the ellipses) from tutorial 5. Paste these into your file and execute them.
+We will start with the final beta diversity plot (minus the ellipses) from tutorial 5. Paste these commands into your source file and run them.
 ```bash
 # These colors correspond to the order of sample groups in map$Sample.Group:
 # KarenThai, Karen1st, HmongThai, Hmong1st, Hmong2nd, Control

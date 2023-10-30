@@ -26,7 +26,7 @@ genus <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/da
 # We will do the same thing for Generation and BMI.Class.
 map$Sample.Group <- factor(map$Sample.Group,levels=c('KarenThai','Karen1st','HmongThai','Hmong1st','Hmong2nd','Control'))
 map$Generation <- factor(map$Generation,levels=c('Thai','1stGen','2ndGen','Control'))
-map$BMI.Class <- factor(map$BMI.Class,levels=c('Normal','Overweight','Obese'))
+map$BMI.Class <- factor(map$BMI.Class,levels=c('Normal','Obese'))
 ```
 
 

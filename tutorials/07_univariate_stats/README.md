@@ -1,4 +1,4 @@
-# MiCE 5035 Tutorial: Univariate statistical testing in R
+# MiCE 5035 Tutorial 7: Univariate statistical testing in R
 
 ### Background
 This tutorial is an introduction to univariate statistical analysis of microbiome data in _R_. Univariate features include alpha diversity and OTU/taxon abundances.

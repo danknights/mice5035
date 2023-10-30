@@ -73,7 +73,7 @@ Now we will test for significant clustering of samples according to sample group
 adonis2(beta_uuf ~ Sample.Group, data=map)
 ```
 
-The output should look like this:
+The output should look approximately like this:
 
 <img src="../../supporting_files/Tutorial06-adonis2-output.png" width="400" />
 

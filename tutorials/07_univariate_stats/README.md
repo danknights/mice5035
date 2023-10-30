@@ -26,9 +26,6 @@ Copy these into your file and execute them.
 # The 2 copies will color the boxes for Lean, Obese
 GROUP.COLORS.FADED <- c("#A300FF99", "#A300FF99", "#FBB40099", "#FBB40099", "#FE42AD99", "#FE42AD99", "#2E191599", "#2E191599")
 
-# Select only Lean and Obese subjects (not overweight)
-ix <- map$BMI.Class != "Overweight"
-
 # boxplot of diversity by Lean/Obese
 # Note: we have to run "droplevels" on the subset map table.
 # This causes it to ignore empty categories in factors
@@ -45,16 +42,16 @@ You should have a plot that looks approximately like this:
 We now wish to test whether alpha diversity (phylogenetic diversity) is significantly associated with Generation, BMI status, or their interaction. To make it easier to read, we will first store the values in new variables. Copy these into your file and execute them.
 ```bash
 # get the subsetted diversity scores
-diversity <- alpha$PD_whole_tree[ix]
+div <- alpha$PD_whole_tree
 
 # get the lean/obese vector, dropping the "Overweight" level
-bmi <- droplevels(map$BMI.Class[ix])
+bmi <- map$BMI.Class
 
 # get the Generation vector. We aren't actually dropping any 
 # levels here (Thai, 1stGen, 2ndGen, Control all stick around), 
 # so calling droplevels doesn't do anything, but its good 
 # to be paranoid about always dropping empty factor levels
-gen <- droplevels(map$Generation[ix])
+gen <- map$Generation
 ```
 
 Now we will test for significant differences in alpha diversity across groups. To do this we will apply two ANOVA (analysis of variance) tests, one with BMI class listed first, one with generation listed first.
@@ -62,12 +59,12 @@ Now we will test for significant differences in alpha diversity across groups. T
 # run an ANOVA with gen listed first.
 # In the output, we will care only about the p-values for "bmi"
 # and the interaction term bmi:gen
-anova(lm(y ~ gen * bmi))
+anova(lm(div ~ gen * bmi))
 
 # run an ANOVA with bmi listed first.
 # Here we will care only about the p-value for "gen"
 # (and the interaction term, but it will be the same as above)
-anova(lm(y ~ bmi * gen))
+anova(lm(div ~ bmi * gen))
 ```
 
 The output should look like this:

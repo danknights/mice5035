@@ -1,4 +1,4 @@
-## MiCE 5035 Tutorial: Univariate statistical testing in R
+# MiCE 5035 Tutorial: Univariate statistical testing in R
 
 ### Background
 This tutorial is an introduction to univariate statistical analysis of microbiome data in _R_. Univariate features include alpha diversity and OTU/taxon abundances.
@@ -15,7 +15,7 @@ Create a new R source file and call it, `tutorial_07.r`. Use `source` to tell _R
 source('load_data.r')
 ```
 
-## Alpha diversity 
+### Alpha diversity statistical testing
 We will start with the final alpha diversity plot from tutorial 5, but we will subset the data to include only Lean and Obese categories. Subsetting was discussed in Tutorial 6.
 
 An important note: when we subset a factor (categorial variable), R will keep around any empty categories (levels) unless you explicitly tell R to drop them using `droplevels`. I have spent countless hours over the years debugging code when it turns out that I simply didn't think to call `droplevels`. You can see here that we apply `droplevels` to the entire subsetted map table.
@@ -71,9 +71,15 @@ The output should look like this:
 
 <img src="../../supporting_files/Tutorial07-anova-output.png" width="400" />
 
-In the first set of results (with `gen * bmi` in the formula), the p-value for _gen_ is telling us the significance of the association between diversity and Generation alone, ignoring BMI status. The second line is telling us the significance of the association between diversity and BMI status _while controlling for the influence of Generation._ Similarly, in the second set of results, the second line is telling us the significance of the diversity ~ Generation association while controlling for the influence of BMI status. Hence, we are most interested in the second row of each of these tables. The third row show the significance of the interaction term, essentially indicating the effect of BMI on diversity depends on the Generation, and vice versa, after controlling for the individual effects of BMI status and Generation. There is an excellent explanation [here](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/), attributed to Falk Scholer.
+In the first set of results (with `gen * bmi` in the formula), the p-value for _gen_ is telling us the significance of the association between diversity and Generation alone, ignoring BMI status. The second line is telling us the significance of the association between diversity and BMI status _while controlling for the influence of Generation._ Similarly, in the second set of results, the second line is telling us the significance of the diversity ~ Generation association while controlling for the influence of BMI status. Hence, we are most interested in the second row of each of these tables.
 
-Here we can see that the interaction term is just barely significant and is probably not of much interest. And we can see that the individual terms for BMI status and Generation are both highly significant. We could report these p-values in a publication. 
+The third row show the significance of the interaction term, essentially indicating whether the effect of BMI on diversity depends on the Generation, and vice versa, after controlling for the individual effects of BMI status and Generation. Here we can see that the interaction term is either not significant or just barely significant, and is probably not of much interest.
+
+There is an excellent explanation of how to interpret the various outputs of an ANOVA test in _R_ [here](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/), attributed to Falk Scholer.
+
+## Exercise 1
+- Take a screenshot of your test results for the two ANOVA tests above and add it to your worksheet.
+- What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity? Write a one-sentence explanation of what this result means about diversity, obesity, and U.S. immigration.
 
 ### Check for normal distributions
 
@@ -83,7 +89,7 @@ We got a little carried away and went straight to the statistical testing using 
 hist(alpha$PD_whole_tree)
 ```
 
-Looks perfectly normal. If we want to formally test for normality, we can run a Shapiro-Wilk test using `shapiro.test`. If the p-value is > 0.05, we can assume the data are normal. Run this in the console:
+They should look reasonably normal. If we want to formally test for normality, we can run a Shapiro-Wilk test using `shapiro.test`. If the p-value is > 0.05, we can assume the data are normal. Run this in the console:
 ```bash
 # Run shapiro-wilk test for non-normality
 shapiro.test(alpha$PD_whole_tree)
@@ -98,8 +104,7 @@ ix <- map$Generation == "Thai"
 hist(alpha$PD_whole_tree[ix])
 ```
 
-#### Exercise
-- Check the other three Generation groups visually with a histogram, and formally using a Shapiro-Wilk test. Note: distributions don't have to be _perfectly_ normal to use parametric tests with normality assumptions like ANOVA or a t-test.
+Note: distributions don't have to be _perfectly_ normal to use parametric tests with normality assumptions like ANOVA or a t-test, especially with large sample sizes.
 
 Speaking of a t-test, before we move on to analysis of taxa, let us consider a simpler case of testing in alpha diversity where there are just two sample groups. For example, we can consider alpha diversity only in the US controls and the 2nd generation immigrants. When we have only two groups, and no interaction between two variables, we can perform a simple t-test using the function `t.test`. First, we will get the indices of the subset we want. Copy these into your source code and run them. 
 ```bash
@@ -110,16 +115,19 @@ ix <- map$Generation == "2ndGen" | map$Generation == "Control"
 t.test(alpha$PD_whole_tree[ix] ~ map$Generation[ix])
 ```
 
-What was the result? Why is this interesting? How does it compare to the result from testing beta diversity between these two groups in tutorial 5? 
+## Exercise 2
+- Was the result significant? If so, was it highly significant or just barely significant?
+- How does the result compare to the result from testing beta diversity between these two groups (2ndGen and Controls) in tutorial 6?
+- Why is this interesting from a study perspective?
 
-## Taxa
+### Taxon differential abundance across 3+ groups
 
 We can follow a similar approach to the statistical testing of taxa (e.g. OTUs, species, phyla) to what we did with alpha diversity. However, as noted above, they are rarely normally distributed, so we need to use a different type of test (not ANOVA) that is generally less powerful statistically. We can check to see if taxa are normally distributed, but we should not get our hopes up.
 
-#### Exercise
-- Recall in tutorial 5 that we made a boxplot of the genus _Parabacteroides_ across generation groups. Check for normality of this genus visually using `hist`. Then run a Shapiro.Wilk test.
+## Exercise 3
+- Recall in tutorial 5 that we made a boxplot of the genus _Parabacteroides_ across generation groups. Check for normality of this genus visually using `hist`. Copy your code and screen capture of your histogram into your worksheet.
 
-Clearly this taxon is not normally distributed which violates the assumptions of the t-test (2 groups) and the ANOVA test (for 3+ groups). Fortunately we have two alternative so-called _non-parametric_ tests that we can use: Mann-Whitney U test (for 2 groups; also known as the Wilcoxon signed-rank sum test, although that is slightly different), and the Kruskal-Wallis test (for 3+ groups). 
+Clearly this taxon is not normally distributed, which violates the assumptions of the t-test (2 groups) and the ANOVA test (for 3+ groups). Fortunately we have two alternative so-called _non-parametric_ tests that we can use: Mann-Whitney U test (for 2 groups; also known as the Wilcoxon signed-rank sum test, although that is slightly different), and the Kruskal-Wallis test (for 3+ groups). 
 
 Let's start by generating the boxplot from tutorial 5 again of _Parabacteroides_. Copy this to your source file and run it:
 ```bash
@@ -131,30 +139,40 @@ The boxplot should look like this:
 
 <img src="../../supporting_files/Tutorial07-parabacteroides-output.png" width="500" />
 
-To test for statistical association of this genus with Generation group, we will need to use the Kruskal-Wallis test, because there are more than 2 groups. We will run it as follows. Copy this to your source file and run it. 
+To test for statistical association of this genus with Generation group, we will need to use the Kruskal-Wallis test (`kruskal.test`), because there are more than 2 groups, and the KW test is a nonparametric test for differences across 3 or more groups. We will run it as follows.
+
+## Exercise 4
+- Run the Kruskal-Wallis test using `kruskal.test`. You may want to view the instructions by entering `?kruskal.test` into your console. Copy the commands you ran and a screen capture of the output to your worksheet.
+- Was the test significant? What was the p-value? What does this tell you about the genus _Parabacteroides_ and immigration to the U.S.A.?
+
+### Taxon differential abundance across 3+ groups
+
+We will now practice testing with a non-parametric test for two groups, the Mann-Whitney U test or Wilcoxon signed-rank test. We will test whether the genus _Prevotella_ is differentially abundance between the 2ndGen and Control groups. First, we will get the indices of just these two groups, as we did in the alpha diversity section above, and we will make a boxplot. Note that we have to called `droplevels` on the Generation variable to make the `boxplot` function ignore the empty other groups.
 ```bash
-# non-parametric KW test of differential Parabacteroides abundance by Generation
-kruskal.test(genus[,'g__Parabacteroides'] ~ map$Generation)
+# get indices of 2ndGen and US Controls only
+ix <- map$Generation == "2ndGen" | map$Generation == "Control"
+
+# Boxplot of prevotella vs Generation
+# Note that we have to use droplevels to ignore the
+# empty Thai and 1stGen groups
+boxplot(genus[ix,'g__Prevotella'] ~ droplevels(map$Generation[ix]))
 ```
 
-Is this significant? What is the p-value? 
+## Exercise 5
+- Test whether _Prevotella_ is differentially abundant between 2ndGen and Control subjects. Find out how to run a Mann-Whitney U test in R (hint: it's not called a Mann-Whitney U test), and then test for differential abundance between these two study groups. Copy the commands you ran and a screen capture of the output to your worksheet.
+- Why did we use a Mann-Whitney U test instead of a t-test?
+- Why did we use a Mann-Whitney U test instead of a Kruskal-Wallis test?
+- Was the test significant? What is the p-value? 
 
-#### Exercise
-- Let's run a taxon test with only two sample groups. We can use the example above from the alpha diversity section with only the 2ndGen and Control groups. Find out how to run a Mann-Whitney U test in R (hint: it's not called a Mann-Whitney U test), and then test for differential abundance between these two study groups. 
-
-Is this significant? What is the p-value? 
-
-
-### Correlations, continuous variables
-So far we have discussed testing continuous dependent variables (taxa or alpha diversity) for variation with categorical independent variables (generation, obesity status). We will also sometimes want to associate continuous variables with continuous variables through a correlation analysis. Here we have two primary options: if the data are presumed to be approximately normally distributed, we can use a Pearson's correlation test with the command `cor.test`. Otherwise, we will typically use a non-parametric correlation test called the Spearman correlation test. This also uses the function `cor.test`, but with the argument `method="spearman"`. 
+### Correlations with continuous variables
+So far we have discussed testing with categorical independent variables (generation, obesity status). We will also sometimes want to associate continuous independent variables with a continuous dependent variable through a correlation analysis. Here we have two primary options: if the data are presumed to be approximately normally distributed, we can use a Pearson's correlation test with the command `cor.test`. Otherwise, we will typically use a non-parametric correlation test called the Spearman correlation test. This also uses the function `cor.test`, but with the argument `method="spearman"`. 
 
 What would be an interesting correlation to test in this data set? One continuous independent variable is Years of US residence ("Years.in.US").
 
-## Exercise
-- Test whether phylogenetic alpha diversity is significantly associated with years of U.S. residence. Follow the approach you used in tutorial 6 for testing for correlation of years of US residence with PC1 score. Copy your answer to your source file and run it.
+## Exercise 6
+- Test whether phylogenetic alpha diversity is significantly associated with years of U.S. residence. Follow the approach you used in tutorial 6 for testing for correlation of years of US residence with PC1 score, but with alpha diversity in place of PC1 score. Copy your answer to your source file and run it.
 - Actually, we hypothesized that diversity would go _down_ the longer a person lived in the US, so we should make this a one-tailed test. This means we ignoring the possibility that diversity could have gone up with duration of residence. This gives us more statistical power. Find out how to modify this command to run a one-tailed correlation test for the desired alternative. You can search the web, or you can run `?cor.test` in _R_ to read the documentation. What happened to the correlation statistic? What happened to the p-value, and why? If you need an additional reference, see the related [Wikipedia page](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests).
 - Using the same subset of subjects, test whether _Parabacteroides_ goes up the longer someone lives in the US. You will need to run `cor.test` with the additional `method=spearman` argmument as described above. Is it significant? What is the p-value? Does this fit your expectations after viewing the boxplot above?
-
 
 ### Conclusion
 We have covered the most common univariate statistical tests that one would perform in _R_. There are slightly more powerful tests available for differential abundance testing of taxa, such as the ANCOM package, but such packages have a steeper learning curve. We also did not cover alternative normalizations of relative abundances, such as the centered-log-ratio transform discussed in class. You are referred to the [`clr` function in the _compositions_ package](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/clr) for instructions on how to perform that transformation. 

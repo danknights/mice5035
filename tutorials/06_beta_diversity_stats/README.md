@@ -168,11 +168,13 @@ plot(pc[ix,1], map$Years.in.US[ix], xlab='PC1 of unweighted UniFrac distance', y
 
 We could even add a best-fit line. `lm` fits a linear model, and `abline` draws it. Copy this into your source file and then run it.
 ```bash
+# add best fit line to plot
 abline(lm(map$Years.in.US[ix] ~ pc[ix,1]))
 ```
 
 By the way, if you want to automatically save a figure to a PDF, you can do so like this:
 ```bash
+# Save as PDF; width and height are in inches
 pdf('years_in_us_v_pc1.pdf', width=5, height=5)
 plot(pc[ix,1], map$Years.in.US[ix], xlab='PC1 of unweighted UniFrac distance', ylab='Years in US')
 abline(lm(map$Years.in.US[ix] ~ pc[ix,1]))

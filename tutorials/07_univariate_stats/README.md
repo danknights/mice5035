@@ -156,7 +156,7 @@ To test for statistical association of this genus with Generation group, we will
 
 ---
 
-### Taxon differential abundance across 3+ groups
+### Taxon differential abundance across 2 groups
 
 We will now practice testing with a non-parametric test for two groups, the Mann-Whitney U test or Wilcoxon signed-rank test. We will test whether the genus _Prevotella_ is differentially abundance between the 2ndGen and Control groups. First, we will get the indices of just these two groups, as we did in the alpha diversity section above, and we will make a boxplot. Note that we have to called `droplevels` on the Generation variable to make the `boxplot` function ignore the empty other groups.
 ```bash

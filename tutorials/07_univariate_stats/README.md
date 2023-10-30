@@ -117,7 +117,7 @@ t.test(alpha$PD_whole_tree[ix] ~ map$Generation[ix])
 ---
 
 ## Exercise 2
-- A. Was the result significant? If so, was it highly significant or just barely significant?
+- A. What was the p-value of the test? Was the result significant? If so, was it highly significant or just barely significant?
 - B. How does the result compare to the result from testing beta diversity between these two groups (2ndGen and Controls) in tutorial 6?
 - C. Why is this interesting from a study perspective?
 

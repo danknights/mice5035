@@ -82,7 +82,7 @@ The output should look approximately like this:
 ---
 
 ## Exercise 1
-- A. Examine the output from `adonis2`. Find the p-value in the output. Did the test show a statistically significant association between Sample.Group and beta diversity?
+- A. Examine the output from `adonis2`. Find the p-value in the output. What is the p-value? Did the test show a statistically significant association between Sample.Group and beta diversity?
 - B. `adonis2` took a few seconds to run. This is because it is a permutation-based test. It randomly permutes the sample IDs many times, and uses those permutations to generate a null distribution for the difference between groups. Then it compares the actual difference between groups to the null distibution from the permutations to get a p-value. Read the documentation for the `adonis2` function by running `?adonis2` in the console. How many permutations does it perform by default? Try running it again with 9999 permutations. Copy the command you ran and a screen capture of the output to your worksheet.
 - C. What is the new _p-value_? Did it get larger or smaller? Why?
 

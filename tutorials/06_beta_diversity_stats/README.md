@@ -155,6 +155,11 @@ The output shows that beta diversity variation is highly associated with Generat
 
 ## Exercise 4
 - A. Choose a different subset of samples in which to test for significance of variation in beta diversity. It must be a subset that is not used elsewhere in this tutorial. You can use any categorical variable or combination of variables and any subset of groups. State your choice of subset and explain the hypothesis you will be testing.
+
+For example, you could choose a subset of only the Thai samples with `ix <- map$Generation == "Thai"`, and then test for differences in beta diversity according to BMI.Class (Normal/Obese). In this case the hypothesis would be that there is a difference in overall microbiome profile between subjects with Normal status and Obese in the subgroup that is living in Thailand. You can explore other study variables in the `map` table by clicking on the `map` object in the _Environment_ tab in the top right.
+
+Note: be careful with variables like _Breastfed_ that are very imbalanced and/or have NA values, because you will have to remove NA values and/or you may end up with too few samples in one group. Here is an example of how you can get an interaction table of sample counts broken down by Sample.Group and Breastfed status, and see how many NA values in each subgroup: `table(map$Sample.Group, map$Breastfed,useNA = 'ifany')`. In this case, most Sample.Group categories are too imbalanced. US Controls might work, but there are some NA values. You could select only US controls without NA for Breastfed like this: `ix <- map$Sample.Group == "Control"`, and then you could tell `adonis2` to omit the NA values like this: `adonis2(beta_uuf[ix,ix] ~ Breastfed,data=map[ix,],na.action = na.omit)`.
+  
 - B. Store the new indices for your subset in a variable `ix` and then run another `adonis2` test. Copy the commands you ran and a screen capture of the output to your worksheet.
 - C. What is the p-value? Was the test significant? What is the interpretation from a study perspective?
 

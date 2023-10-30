@@ -67,8 +67,12 @@ You should now have a plot that looks approximately like this, but with fewer sa
 
 <img src="../../supporting_files/Tutorial05-final-beta-diversity-plot.png" width="600" />
 
+---
+
 ## Exercise 1
 - A. Change three things about your plot by modifying arguments in the calls to `plot`, `dataEllipse`, and/or `legend`. Describe how and why you made the changes, and what effect they had. Copy the command you ran and a screen capture of the figure to your worksheet.
+
+---
 
 Now we will test for significant clustering of samples according to sample group, using the `adonis` function in the `vegan` package. The `adonis` function is specifically designed to test for association of beta diversity distances with study variables like sample groups. It is similar to the _PERMANOVA_ test, which is also popular in the ecology field. The study variables can be continuous or categorical. Copy this code into your `tutorial_06.r` file, save it, and then run the command.
 ```bash

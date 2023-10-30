@@ -70,7 +70,7 @@ You should now have a plot that looks approximately like this, but with fewer sa
 ---
 
 ## Exercise 1
-- A. Change three things about your plot by modifying arguments in the calls to `plot`, `dataEllipse`, and/or `legend`. Describe how and why you made the changes, and what effect they had. Copy the command you ran and a screen capture of the figure to your worksheet.
+- A. Change three things about your plot by modifying arguments in the calls to `plot`, `dataEllipse`, and/or `legend`. Describe the changes you made and what effect they had. Copy the command you ran and a screen capture of the figure to your worksheet.
 
 ---
 

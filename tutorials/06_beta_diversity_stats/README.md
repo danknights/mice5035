@@ -143,7 +143,7 @@ The output shows that beta diversity variation is highly associated with Generat
 ### Testing beta diversity vs. a continuous variable
 Based on the beta diversity plot above, at appears that Thailand residents are on one side, US Controls and 2ndGen subjects are on the other, and the 1stGen subjects are in between. Is this because the newly arrived 1stGen immigrants and refugees are closer to their Thailand counterparts, and the the long-term USA-resident 1stGen are closer to the US controls? We could use `adonis2` to test this, but what we really want to know is whether length of residence in US is associated with the _PC1_ in the ordination. We can test this with `cor.test`.
 
-First, get the indices of all of the 1stGen samples as follows.
+First, get the indices of all of the 1stGen samples as follows. Copy this into your source file and then run it.
 ```bash
 # Get the indices where there is a known (not NA) duration of US residence
 ix <- map$Generation == 1stGen
@@ -155,7 +155,14 @@ Now run the correlation test. We will test whether _PC1_, the first column of th
 cor.test(pc[ix,1], map$Years.in.US[ix])
 ```
 
-What is the p-value? What is the correlation? Does the direction of the correlation (positive or negative) make sense, based on the location of the Thai and US Control samples on your beta diversity plot? 
+---
+
+## Exercise 3
+- A. Copy the `cor.test` command you ran and a screen capture of the output to your worksheet.
+- B. What is the p-value? What is the correlation value?
+- C. Does the direction of the correlation (positive or negative) make sense, based on the location of the Thai and US Control samples on your beta diversity plot? Why/why not?
+
+---
 
 We may also want a visualization to accompany our statistical test. We could simply do a scatterplot, as follows. Copy this into your source file and then run it.
 ```bash

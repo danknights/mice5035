@@ -37,7 +37,7 @@ genus <- t(read.delim(url('https://github.com/knights-lab/IMP_analyses/blob/mast
 
 Each of these objects is now a data table with samples in rows. Think spreadsheet or matrix. The beta diversity tables also have samples in the columns, of course. We can inspect each table by clicking "Environment" in the top right panel, and then click on the object.
 
-#### Exercise
+#### Exercises
 Answer these questions about the data tables:
 1. How many samples are there?
 2. How many OTUs (hint: you can run `dim(otus)` to get the dimensions)?

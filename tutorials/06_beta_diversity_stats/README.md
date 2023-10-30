@@ -1,4 +1,4 @@
-## MiCE 5035 Tutorial: Statistical analysis of beta diversity in R
+## MiCE 5035 Tutorial 6: Statistical analysis of beta diversity in R
 
 ### Background
 This tutorial is an introduction to statistical testing of beta diversity in microbiome data in _R_. It will include making some visualizations to accompany the statistical tests. 

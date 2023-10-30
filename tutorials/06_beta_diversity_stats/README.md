@@ -62,10 +62,12 @@ dataEllipse(x=pc[,1], y=pc[,2], groups=map$Sample.Group,plot.points=FALSE,levels
 legend('topleft', levels(map$Sample.Group), pch=c(16,1,17,2,15,15), col=GROUP.COLORS, cex=.75)
 ```
 
-You should now have a plot that looks approximately like this:
+You should now have a plot that looks approximately like this, but with fewer samples and with ellipses:
 
 <img src="../../supporting_files/Tutorial05-final-beta-diversity-plot.png" width="600" />
 
+## Exercise 1
+- A. Change three things about your plot by modifying arguments in the calls to `plot`, `dataEllipse`, and/or `legend`. Describe how and why you made the changes, and what effect they had. Copy the command you ran and a screen capture of the figure to your worksheet.
 
 Now we will test for significant clustering of samples according to sample group, using the `adonis` function in the `vegan` package. The `adonis` function is specifically designed to test for association of beta diversity distances with study variables like sample groups. It is similar to the _PERMANOVA_ test, which is also popular in the ecology field. The study variables can be continuous or categorical. Copy this code into your `tutorial_06.r` file, save it, and then run the command.
 ```bash
@@ -82,7 +84,7 @@ The output should look approximately like this:
 
 ---
 
-## Exercise 1
+## Exercise 2
 - A. Examine the output from `adonis2`. Find the p-value in the output. What is the p-value? Did the test show a statistically significant association between Sample.Group and beta diversity?
 - B. `adonis2` took a few seconds to run. This is because it is a permutation-based test. It randomly permutes the sample IDs many times, and uses those permutations to generate a null distribution for the difference between groups. Then it compares the actual difference between groups to the null distibution from the permutations to get a p-value. Read the documentation for the `adonis2` function by running `?adonis2` in the console. How many permutations does it perform by default? Try running it again with 9999 permutations. Copy the command you ran and a screen capture of the output to your worksheet.
 - C. What is the new _p-value_? Did it get larger or smaller? Why?
@@ -107,7 +109,7 @@ There is an excellent explanation of how to interpret the various outputs of an 
 
 ---
 
-## Exercise 2
+## Exercise 3
 - A. Copy the commands you ran and a screen capture of the output of both `adonis2` commands to your worksheet.
 - B. What are the relevant p-values for the significance of beta diversity vs. BMI.Class while controlling for the influence of Sample.Group, and for beta diversity vs Sample.Group while controlling for the influence of BMI.Class? Which is more highly significant, Sample.Group or BMI.Class?
 - C. Rerun the `adonis2` test using only the `Generation` variable alone. Is this also significant? What is the p-value?
@@ -158,7 +160,7 @@ cor.test(pc[ix,1], map$Years.in.US[ix])
 
 ---
 
-## Exercise 3
+## Exercise 4
 - A. Copy the `cor.test` command you ran and a screen capture of the output to your worksheet.
 - B. What is the p-value? What is the correlation value?
 - C. Does the direction of the correlation (positive or negative) make sense, based on the location of the Thai and US Control samples on your beta diversity plot? Why/why not?

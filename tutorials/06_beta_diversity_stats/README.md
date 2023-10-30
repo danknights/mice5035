@@ -34,6 +34,7 @@ map$BMI.Class <- factor(map$BMI.Class,levels=c('Normal','Overweight','Obese'))
 Create a new R source file and call it, `tutorial_06.r`. Load in the `vegan` package that we used in tutorial 5, and use `source` to tell _R_ to run the commands that you stored in `load_data.r`.
 ```bash
 library('vegan')
+library('car')
 
 # load all of the preprocessed data
 source('load_data.r')

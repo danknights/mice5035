@@ -148,21 +148,12 @@ Is this significant? What is the p-value?
 ### Correlations, continuous variables
 So far we have discussed testing continuous dependent variables (taxa or alpha diversity) for variation with categorical independent variables (generation, obesity status). We will also sometimes want to associate continuous variables with continuous variables through a correlation analysis. Here we have two primary options: if the data are presumed to be approximately normally distributed, we can use a Pearson's correlation test with the command `cor.test`. Otherwise, we will typically use a non-parametric correlation test called the Spearman correlation test. This also uses the function `cor.test`, but with the argument `method="spearman"`. 
 
-What would be an interesting correlation to test in this data set? One continuous independent variable is Years of US residence ("Years.in.US"). As in tutorial 6, we have to select the samples without `NA` for their "Years.in.US". Copy this to your source file and run it.
-```bash
-# Get the indices where there is a known (not NA) duration of US residence
-ix <- map$Generation == '1stGen'
-```
+What would be an interesting correlation to test in this data set? One continuous independent variable is Years of US residence ("Years.in.US").
 
-Now we can use `cor.test` to test whether alpha diversity decreases the longer a person has lived in the US. Copy this to your source file and run it. 
-```bash
-# Testing if diversity is correlated with duration of US residence
-cor.test(alpha$PD_whole_tree[ix], map$Years.in.US[ix])
-```
-
-#### Exercises
-- Actually, we hypothesized that diversity would go _down_ the longer a person lived in the US, so we should make this a one-tailed test. This means we ignoring the possibility that diversity could have gone up with duration of residence. This gives us more statistical power. Find out how to modify this command to run a one-tailed correlation test for the desired alternative. You can search the web, or you can run `?cor.test` in _R_ to read the documentation. What happened to the correlation statistic? What happened to the p-value?
-- Using the same subset of subjects, test whether _Parabacteroides_ goes up the longer someone lives in the US. You will need to run `cor.test` with the additional `method=spearman` argmument as described above. Is it significant? Does this fit your expectations after viewing the boxplot above?
+## Exercise
+- Test whether phylogenetic alpha diversity is significantly associated with years of U.S. residence. Follow the approach you used in tutorial 6 for testing for correlation of years of US residence with PC1 score. Copy your answer to your source file and run it.
+- Actually, we hypothesized that diversity would go _down_ the longer a person lived in the US, so we should make this a one-tailed test. This means we ignoring the possibility that diversity could have gone up with duration of residence. This gives us more statistical power. Find out how to modify this command to run a one-tailed correlation test for the desired alternative. You can search the web, or you can run `?cor.test` in _R_ to read the documentation. What happened to the correlation statistic? What happened to the p-value, and why? If you need an additional reference, see the related [Wikipedia page](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests).
+- Using the same subset of subjects, test whether _Parabacteroides_ goes up the longer someone lives in the US. You will need to run `cor.test` with the additional `method=spearman` argmument as described above. Is it significant? What is the p-value? Does this fit your expectations after viewing the boxplot above?
 
 
 ### Conclusion

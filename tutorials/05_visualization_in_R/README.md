@@ -134,3 +134,4 @@ boxplot(genus[,'g__Parabacteroides'] ~ map$Generation)
 ### Conclusion
 There are many other aspects of data visualization that we have not covered yet, such as histograms, barplots, network diagrams, and transparency. We also have not covered subsetting data, which will be covered in a future statistical testing tutorial. This exercise is not meant to leave you completely ready to do R visualization on your own, but instead to start giving you some practice with it, and to help serve as a guide for future projects. 
   
+Continue to [tutorial 6](../06_beta_diversity_stats)

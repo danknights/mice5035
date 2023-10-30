@@ -145,6 +145,17 @@ adonis2(beta_uuf[ix,ix] ~ Generation, data=map[ix,])
 
 The output shows that beta diversity variation is highly associated with Generation even between the 2ndGen and Control groups. Take note of this as it will be referenced in tutorial 7.
 
+
+---
+
+## Exercise 4
+- A. Choose a different subset of samples in which to test for significance of variation in beta diversity. It must be a subset that is not used elsewhere in this tutorial. You can use any categorical variable or combination of variables and any subset of groups. State your choice of subset and explain the hypothesis you will be testing.
+- B. Store the new indices for your subset in a variable `ix` and then run another `adonis2` test. Copy the commands you ran and a screen capture of the output to your worksheet.
+- C. What is the p-value? Was the test significant? What is the interpretation from a study perspective?
+
+---
+
+
 ### Testing beta diversity vs. a continuous variable
 Based on the beta diversity plot above, at appears that Thailand residents are on one side, US Controls and 2ndGen subjects are on the other, and the 1stGen subjects are in between. Is this because the newly arrived 1stGen immigrants and refugees are closer to their Thailand counterparts, and the the long-term USA-resident 1stGen are closer to the US controls? We could use `adonis2` to test this, but what we really want to know is whether length of residence in US is associated with the _PC1_ in the ordination. We can test this with `cor.test`.
 
@@ -162,7 +173,7 @@ cor.test(pc[ix,1], map$Years.in.US[ix])
 
 ---
 
-## Exercise 4
+## Exercise 5
 - A. Copy the `cor.test` command you ran and a screen capture of the output to your worksheet.
 - B. What is the p-value? What is the correlation value?
 - C. Does the direction of the correlation (positive or negative) make sense, based on the location of the Thai and US Control samples on your beta diversity plot? Why/why not?

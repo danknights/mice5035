@@ -119,7 +119,7 @@ There is an excellent explanation of how to interpret the various outputs of an 
 - A. Copy the commands you ran and a screen capture of the output of both `adonis2` commands to your worksheet.
 - B. What are the relevant p-values for the significance of beta diversity vs. BMI.Class while controlling for the influence of Sample.Group, and for beta diversity vs Sample.Group while controlling for the influence of BMI.Class? Which is more highly significant, Sample.Group or BMI.Class?
 - C. Were the p-values for _BMI.Class_ different between the first set of results and the second set of results? If the p-value was higher (larger) in one set of results, explain why this makes sense.
-- D. Rerun the `adonis2` test using only the `Generation` variable alone. Is this also significant? What is the p-value?
+- D. Rerun the `adonis2` test using only the `Generation` variable alone. Copy the commands you ran and a screen capture of the output of both adonis2 commands to your worksheet. Is this also significant? What is the p-value?
 
 ---
 

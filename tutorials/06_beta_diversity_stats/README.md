@@ -79,23 +79,39 @@ The output should look like this:
 
 `adonis2` tests whether differences in beta diversity are related to sample group membership. In other words, we are asking, "do people in the same sample group have more similar microbiomes to each other than to people in a different sample group?" In the command above we have given the `adonis2` function what in _R_ is called a _formula_. The formula is of the form `y ~ x`, where `y` is our beta diversity matrix and `x` is our list of sample group labels. Another way to describe this would be to say that we are asking the `adonis2` function whether beta diversity varies as a function of group membership.
 
-#### Exercises
-- Examine the output from `adonis2`. Did the test show a statistically significant association between Sample.Group and beta diversity? Where can you find that information in the output? Where can you find the _p-value_?
-- Note: previously when we wanted to access the sample group labels from the `map` table, we had to use `map$Sample.Group` or `map[,'Sample.Group']`. But in this command, we simply said, `Sample.Group`. Why did this work? It has something to do with the `data=map` argument. Try reading the documentation by running this command _in the console_: `?adonis2`. Find the description of the arguments, and read what the `data` argument is for. 
-- `adonis2` took a few seconds to run. Why? It is a permutation-based test. It randomly permutes the sample IDs many times, and uses those permutations to generate a null distribution for the difference between groups. Then it compares the actual difference between groups to the null distibution from the permutations to get a p-value. Read the documentation again. How many permutations does it perform by default? Try running it again with 9999 permutations. What is the new _p-value_? Did it get larger or smaller? Why?
+---
 
+## Exercise 1
+<ol type="a">
+<li>Examine the output from `adonis2`. Find the _p-value_ in the output. Did the test show a statistically significant association between Sample.Group and beta diversity?</li>
+<li>`adonis2` took a few seconds to run. This is because it is a permutation-based test. It randomly permutes the sample IDs many times, and uses those permutations to generate a null distribution for the difference between groups. Then it compares the actual difference between groups to the null distibution from the permutations to get a p-value. Read the documentation for the `adonis2` function by running `?adonis2` in the console. How many permutations does it perform by default? Try running it again with 9999 permutations. Copy the command you ran and a screen capture of the output to your worksheet.</li>
+<li>What is the new _p-value_? Did it get larger or smaller? Why?</li>
+</ol>
+
+---
 
 ### Add a covariate to the test
-We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index class (BMI.Class; Lean/Overweight/Obese). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable. Copy this into your source file and then run it.
+We tested only whether beta diversity is associated with Sample Group. There could be other variables that explain the variation in beta diversity. One such variable could be body mass index class (BMI.Class; Lean/Overweight/Obese). We can ask `adonis2` to test two variables at the same type, by providing a formula like this: `y ~ x1 + x2`. Let's add BMI as an additional variable. We will run the command twice, with the independent variables in different order each time. Copy this into your source file and then run it.
 ```bash
 # Test if variation in beta diversity is associated with 
 # sample group or subject BMI Class
+# with Sample.Group first
 adonis2(beta_uuf ~ Sample.Group + BMI.Class, data=map)
+
+# Run again with BMI.Class first
+adonis2(beta_uuf ~ BMI.Class + Sample.Group, data=map)
 ```
 
-#### Exercises
-- What was the result? Which is more highly significant, Sample.Group or BMI.Class? 
-- Rerun the `adonis2` test using only the `Generation` variable (Thai, 1st, 2nd, or Control). Is this also significant? What is the p-value?
+In the first set of results, the p-value for _Sample.Group_ is telling us the significance of the association between beta diversity and Sample.Group alone, ignoring BMI status. The second line in the first set of results is telling us the significance of the association between beta diversity and BMI status _while controlling for the influence of Sample.Group._ Similarly, in the second set of results, the second line is telling us the significance of the association of beta diversity and _Sample.Group_  while controlling for the influence of _BMI.Class_. Hence, we are most interested in the second row of each of these tables.
+
+There is an excellent explanation of how to interpret the various outputs of an ANOVA test in _R_ [here](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/), attributed to Falk Scholer.
+
+## Exercise 2
+<ol type="a">
+<li>Copy the commands you ran and a screen capture of the output of both `adonis2` commands to your worksheet.</li>
+<li>What are the relevant p-values for the significance of beta diversity vs. BMI.Class while controlling for the influence of Sample.Group, and for beta diversity vs Sample.Group while controlling for the influence of BMI.Class? Which is more highly significant, Sample.Group or BMI.Class?</li>
+<li>Rerun the `adonis2` test using only the `Generation` variable alone. Is this also significant? What is the p-value?</li>
+</ol>
 
 
 ### Perform a test in a subset

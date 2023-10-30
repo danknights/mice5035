@@ -113,4 +113,5 @@ write.table(genus,'genus.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 write.table(phylum,'phylum.txt',quote=F,col.names=TRUE,row.names=TRUE,sep="\t")
 ```
 
-Go to [tutorial 5](../05_visualization_in_R).
+Continue to [tutorial 5](../05_visualization_in_R).
+

@@ -71,20 +71,12 @@ The output should look like this:
 
 <img src="../../supporting_files/Tutorial07-anova-output.png" width="400" />
 
-In the first set of results (with `gen * bmi` in the formula), the p-value for _gen_ is telling us the significance of the association between diversity and Generation alone, ignoring BMI status. The second line is telling us the significance of the association between diversity and BMI status _while controlling for the influence of Generation._ Similarly, in the second set of results, the second line is telling us the significance of the diversity ~ Generation association while controlling for the influence of BMI status. Hence, we are most interested in the second row of each of these tables.
-
-The third row show the significance of the interaction term, essentially indicating whether the effect of BMI on diversity depends on the Generation, and vice versa, after controlling for the individual effects of BMI status and Generation. Here we can see that the interaction term is either not significant or just barely significant, and is probably not of much interest.
-
-There is an excellent explanation of how to interpret the various outputs of an ANOVA test in _R_ [here](https://www.r-bloggers.com/2011/03/anova-%E2%80%93-type-iiiiii-ss-explained/), attributed to Falk Scholer.
-
 ---
 
 ## Exercise 1
 <ol type="a">
 <li>Take a screenshot of your test results for the two ANOVA tests above and add it to your worksheet.</li>
-   
-<li>What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity?</li>
-   
+<li>What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity? Recall that we discussed how to interpret ANOVA-style results in the `adonis2` testing section in [tutorial 6](../06_beta_diversity_stats)</li>
 <li>Write a one-sentence explanation of what this result means about diversity, obesity, and U.S. immigration.</li>
 </ol>
 

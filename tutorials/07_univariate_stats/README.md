@@ -88,7 +88,7 @@ We got a little carried away and went straight to the statistical testing using 
 hist(alpha$PD_whole_tree)
 ```
 
-They should look reasonably normal. If we want to formally test for normality, we can run a Shapiro-Wilk test using `shapiro.test`. If the p-value is > 0.05, we can assume the data are normal. If the p-value is slightly less than < 0.05, it is probably still OK to treat the data as normal. Run this in the console:
+They should look reasonably normal. If we want to formally test for normality, we can run a Shapiro-Wilk test using `shapiro.test`. If the p-value is > 0.05, we can assume the data are normal. Run this in the console:
 ```bash
 # Run shapiro-wilk test for non-normality
 shapiro.test(alpha$PD_whole_tree)
@@ -103,7 +103,9 @@ ix <- map$Generation == "Thai"
 hist(alpha$PD_whole_tree[ix])
 ```
 
-Note: distributions don't have to be _perfectly_ normal to use parametric tests with normality assumptions like ANOVA or a t-test, especially with large sample sizes.
+Note: the distributions don't have to be _perfectly_ normal to use parametric tests with certain normality assumptions like ANOVA or a t-test, especially with large sample sizes. For common parametric tests that assume normality, the assumption not that the _original values_ are normally distributed, but that the _residuals_ are normally distributed. For example, when using an ANOVA test to get p-values for fitting a linear model `y ~ x`, the assumption is not that `x` or `y` is normally distributed, but that the residuals (distance above/below the best-fit line) are normally distributed. In a t-test, the assumption is that the _mean_ in each group is normally distributed (if you were to re-sample the population and take the mean many times, you would get a normal distribution of means), not that the actual values are normally distributed in each group. The [central limit theorem](https://en.wikipedia.org/wiki/Central_limit_theorem) in statistics shows that the mean of the values will be close to normally distributed as long as you have around 30 samples or more per group, even if the values themselves are not normally distributed. So the normality assumption is not as big a deal as people often think.
+
+Note: there are other key assumptions in linear regression and t-test that have to with the _variance_ of the samples. In linear regression, we assume [homoskedasticity](https://en.wikipedia.org/wiki/Homoscedasticity_and_heteroscedasticity), usually meaning that the variance of the values of `y` does not depend on the value of `x`. In other words, if you make a scatter plot of `y` vs `x`, the residuals (vertical spread) is roughly constant as you move from left to right. Similarly, in a t-test, we assume the same variance in the two groups. These assumptions may also be broken for OTU or taxon distributions in microbiome data. Thus, people tend to favor non-parametric tests for testing significance of associations between OTU or taxon distributions and study variables. We will use a parametric test (t-test) now for alpha diversity analysis, but we will switch to non-parametric tests below for OTU/taxon analysis.
 
 Speaking of a t-test, before we move on to analysis of taxa, let us consider a simpler case of testing in alpha diversity where there are just two sample groups. For example, we can consider alpha diversity only in the US controls and the 2nd generation immigrants. When we have only two groups, and no interaction between two variables, we can perform a simple t-test using the function `t.test`. First, we will get the indices of the subset we want. Copy these into your source code and run them. 
 ```bash

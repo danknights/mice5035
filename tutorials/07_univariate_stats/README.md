@@ -88,7 +88,7 @@ We got a little carried away and went straight to the statistical testing using 
 hist(alpha$PD_whole_tree)
 ```
 
-They should look reasonably normal. If we want to formally test for normality, we can run a Shapiro-Wilk test using `shapiro.test`. If the p-value is > 0.05, we can assume the data are normal. Run this in the console:
+They should look reasonably normal. If we want to formally test for normality, we can run a Shapiro-Wilk test using `shapiro.test`. If the p-value is > 0.05, we can assume the data are normal. If the p-value is slightly less than < 0.05, it is probably still OK to treat the data as normal. Run this in the console:
 ```bash
 # Run shapiro-wilk test for non-normality
 shapiro.test(alpha$PD_whole_tree)

@@ -31,7 +31,7 @@ GROUP.COLORS.FADED <- c("#A300FF99", "#A300FF99", "#FBB40099", "#FBB40099", "#FE
 # This causes it to ignore empty categories in factors
 # (categorical variables). This way, the "Overweight" category
 # doesn't show up in the plot
-boxplot(alpha$PD_whole_tree[ix] ~ BMI.Class * Generation, data=droplevels(map[ix,]),las=2, col=GROUP.COLORS.FADED, xlab='', ylab='Phylogenetic diversity')
+boxplot(alpha$PD_whole_tree ~ BMI.Class * Generation, data=droplevels(map),las=2, col=GROUP.COLORS.FADED, xlab='', ylab='Phylogenetic diversity')
 ```
 
 You should have a plot that looks approximately like this:

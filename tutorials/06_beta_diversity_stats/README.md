@@ -172,7 +172,7 @@ Based on the beta diversity plot above, at appears that Thailand residents are o
 First, get the indices of all of the 1stGen samples as follows. Copy this into your source file and then run it.
 ```bash
 # Get the indices where there is a known (not NA) duration of US residence
-ix <- map$Generation == 1stGen
+ix <- map$Generation == "1stGen"
 ```
 
 Now run the correlation test. We will test whether _PC1_, the first column of the `pc` matrix, is significantly correlated with _Years.in.US_. Copy this into your source file and then run it.

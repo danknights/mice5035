@@ -67,7 +67,7 @@ anova(lm(div ~ gen * bmi))
 anova(lm(div ~ bmi * gen))
 ```
 
-The output should look like this:
+The output should look approximately like this:
 
 <img src="../../supporting_files/Tutorial07-anova-output.png" width="400" />
 

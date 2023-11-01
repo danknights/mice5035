@@ -76,7 +76,7 @@ The output should look approximately like this:
 ## Exercise 1
 - A. Take a screenshot of your test results for the two ANOVA tests above and add it to your worksheet.
 - B. What are the relevant p-values for the significance of diversity vs. Obesity while controlling for the influence of Generation, and for diversity vs Generation while controlling for the influence of Obesity? Recall that we discussed how to interpret ANOVA-style results in the `adonis2` testing section in [tutorial 6](../06_beta_diversity_stats).
-- C. Write a one-sentence explanation of what this result means about diversity, obesity, and U.S. immigration.
+- C. Write a one-sentence explanation of what this result means about alpha diversity, obesity, and U.S. immigration.
   
 ---
 

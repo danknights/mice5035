@@ -37,7 +37,6 @@ Let's set up a folder for our analysis of WGS taxa with the Kraken tool, so that
 
 Change directory to the `wgs-kraken` directory
 ```bash
-cd ..
 cd wgs-kraken
 ```
 

@@ -66,7 +66,7 @@ This requires a custom script. A thorough search of the internet led to three fa
 ```bash
 # Now we have a single output file per sample;
 # we can merge these using the script kraken2table.py in this repo:
-python ../../../scripts/kraken2table.py kraken/*.txt taxon_tables
+python ../../../scripts/kraken2table.py kraken-out/*.txt taxon_tables
 ```
 
 5. Convert each taxonomy table to biom format to perform beta diversity and alpha diversity analysis.

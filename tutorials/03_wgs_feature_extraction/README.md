@@ -106,8 +106,8 @@ principal_coordinates.py -i beta/bray_curtis_taxa_table_L7_final.txt -o beta/bra
 principal_coordinates.py -i beta/binary_jaccard_taxa_table_L7_final.txt -o beta/binary_jaccard_taxa_table_L7_final_pc.txt
 
 # replace the mapping file with the mapping file for your study
-make_emperor.py -i beta/bray_curtis_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-bray-curtis
-make_emperor.py -i beta/binary_jaccard_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-binary-jaccard
+make_emperor.py -i beta/bray_curtis_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-bray-curtis
+make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-binary-jaccard
 
 ```
 

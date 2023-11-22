@@ -39,6 +39,17 @@ Change directory to the `wgs-kraken` directory
 ```bash
 cd wgs-kraken
 ```
+Run preprocessing on the raw data to get trimmed, filtered, stitched output sequences, in separate files, if you have not already done this in Tutorial 01.
+```bash
+time python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False
+
+# note: the output files have an extra ".fa" in their name
+# this will mess up our sample IDs later; we could fix it
+# manually with "mv" but it's faster to use a loop like this:
+cd wgs-output
+for f in *.fa.fna; do echo $f; mv $f `basename $f .fa.fna`.fna; done
+cd ..
+```
 
 Then create a subdirectory for the kraken raw output tables.
 ```bash
@@ -46,18 +57,16 @@ mkdir kraken-out
 ```
 
 3. Run Kraken.
-Run Kraken on each input file. If we had many input files, we would write a `for` loop for this so that we didn't have to enter each file manually.
-
+Run Kraken on each input file. We will use a `for` loop for this so that we don't have to enter each file manually.
 ```bash
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/CS.079.txt --use-names ../../01_preprocessing/wgs-output/CS.079.S37.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/CS.145.txt --use-names  ../../01_preprocessing/wgs-output/CS.145.S1.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/CS.146.txt --use-names  ../../01_preprocessing/wgs-output/CS.146.S12.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/CS.165.txt --use-names  ../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/CS.166.txt --use-names  ../../01_preprocessing/wgs-output/CS.165.S59.001.fa.fna 
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/CS.222.txt --use-names  ../../01_preprocessing/wgs-output/CS.222.S15.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/T.CS.008.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.008.S40.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/T.CS.018.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.018.S17.001.fa.fna
-kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/T.CS.030.txt --use-names  ../../01_preprocessing/wgs-output/T.CS.030.S84.001.fa.fna
+# loop through every .fna file. Run kraken2 on it.
+for f in wgs-output/*.fna; do echo $f; time kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/`basename $f .fna`.txt --use-names $f; done
+```
+
+Note: we could also run it on each file manually like this:
+```bash
+# just an example of running kraken2 on one individual file:
+kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/SAMPLE_ID.txt --use-names wgs-output/SAMPLE_ID.fna
 ```
 
 4. Merge the separate Kraken outputs to taxon tables
@@ -66,22 +75,41 @@ This requires a custom script. A thorough search of the internet led to three fa
 ```bash
 # Now we have a single output file per sample;
 # we can merge these using the script kraken2table.py in this repo:
-python ../../../scripts/kraken2table.py kraken-out/*.txt taxon_tables
+wget https://raw.githubusercontent.com/danknights/mice5035/master/scripts/kraken2table.py
+python kraken2table.py kraken-out/*.txt taxon_tables
 ```
 
-5. Convert each taxonomy table to biom format to perform beta diversity and alpha diversity analysis.
+5. Convert each taxonomy table to biom format if you want to perform beta diversity and alpha diversity analysis using QIIME.
 ```bash
 for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
 ```
 
 6. Continue with core diversity analyses
 Alpha and beta diversity analysis can now be performed as in [Tutorial 2](../02_16s_feature_extraction), but with the species-level taxon tables as the input biom files. There will be a few differences:
-- Be sure to check the sequencing depths after creating the summary of the OTU (species) table to choose an appropriate rarefaction depth before you run rarefaction. Note: we only have 9 samples, so you should try to include all of them when you choose the rarefaction depth. Samples below the rarefaction depth would be discarded.
+- Be sure to check the sequencing depths after creating the summary of the OTU (species) table to choose an appropriate rarefaction depth before you run rarefaction. Note: if you have a very small number of samples, you should try to include all of them when you choose the rarefaction depth. Samples below the rarefaction depth would be discarded.
 - You don't need to run `summarize_taxa.py` to create taxon-level tables, because you already have them from Kraken.
-- When you run `filter_otus_from_otu_table.py`, change the minimum number of samples for an OTU from 4 to 2. This is because we only have 9 samples, so requiring an OTU to be present in at least 4 samples is too stringent.
-- There are no tree files, so no phylogenetic diversity measures. When you run `principal_coordinates.py` and `make_emperor.py`, use `binary-jaccard` distance instead of `weighted-unifrac`.
+- When you run `filter_otus_from_otu_table.py`, change the minimum number of samples for an OTU from 4 to 2 or an appropriate number based on how many samples you have.
+- There are no tree files, so no phylogenetic diversity measures. When you run `alpha_diversity.py`, don't include a tree, and remove the "PD_whole_tree" from the list of metrics. When you run `beta_diversity.py`, remove the two "UniFrac" metrics. When you run `principal_coordinates.py`, and `make_emperor.py`, use "binary_jaccard" distance instead of "unweighted_unifrac" and "bray_curtis" instead of "weighted_unifrac", as follows:
+```bash
+# filter species in < 5 samples
+# Note: change the 5 to something appropriate for your
+# number of samples
+filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7.biom -o taxon_tables/taxa_table_L7_final.biom -s 5
 
-7. Move the final beta diversity files, alpha diversity file, and 3D plots over to your own computer using Filezilla or scp. Examine the beta diversity plot. Is there a separation according to sample group.
+# run alpha and beta diversity analysis without tree-based metrics
+alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_final.biom -o alpha-diversity.txt
+beta_diversity.py -i taxon_tables/taxa_table_L7_final.biom -o beta -m "bray_curtis,binary_jaccard"
+
+# Optionally run principal coordinates and 3D plots
+# can also do this in R as in Tutorial 5
+principal_coordinates.py -i beta/bray_curtis_taxa_table_L7_final.txt -o beta/bray_curtis_taxa_table_L7_final_pc.txt
+principal_coordinates.py -i beta/binary_jaccard_taxa_table_L7_final.txt -o beta/binary_jaccard_taxa_table_L7_final_pc.txt
+
+# replace the mapping file with the mapping file for your study
+make_emperor.py -i beta/bray_curtis_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-bray-curtis
+make_emperor.py -i beta/binary_jaccard_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-binary-jaccard
+
+```
 
 
 

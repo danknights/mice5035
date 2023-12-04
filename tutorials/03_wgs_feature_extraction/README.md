@@ -15,6 +15,7 @@ performing alpha diversity and beta diversity analysis. We will use the Kraken t
     module load qiime/1.9.1_centos7
     module load bowtie2
     module load kraken
+    module load python/3.6.3
  ```
  
 2. Navigate to the correct directory
@@ -41,6 +42,7 @@ cd wgs-kraken
 ```
 Run preprocessing on the raw data to get trimmed, filtered, stitched output sequences, in separate files, if you have not already done this in Tutorial 01.
 ```bash
+# make sure you ran "module load python/3.6.3" as indicated above
 time python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False
 
 # note: the output files have an extra ".fa" in their name

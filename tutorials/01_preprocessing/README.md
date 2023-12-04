@@ -43,7 +43,10 @@ Note: we are running the ["portable" version of SHI7](https://github.com/knights
 A subsampled shallow set of the IMP 16s data are located here: `/home/knightsd/public/imp-16s-shallow/`. 
 
 Before running the quality filtering, first use the `-h` flag (short for "help") to print out the instructions for `shi7.py`/. You will see that there are many different settings that can be specified using certain command-line "flags". For example, if you do not want to convert the output data to FASTA format (from FASTQ format), you can run shi7 with the flag `--convert_fasta False`.
+
+Note that you need to load an older version of python for Shi7 to work (3.6.3).
 ```bash
+module load python/3.6.3
 python3 /home/knightsd/public/shi7/shi7.py -h
 ```
 

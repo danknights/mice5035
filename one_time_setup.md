@@ -28,10 +28,11 @@ cd
 git clone https://github.com/danknights/mice5035.git
 ```
 
-### Install R and R studio on your computer 
-You do not have to use R but we will demonstrate its capabilities during class. You can optionally install it if you want to follow along and get a light introduction to it.
+### Install R and R Studio on your computer 
+We will be using R and R Studio in this class.
 
 Instructions for installing R can be found here: https://mirror.las.iastate.edu/CRAN/
 
 Instructions for installing RStudio can be found here: https://www.rstudio.com/
 
+More detailed instructions can be found [here](https://www.r-bloggers.com/2020/08/tutorial-getting-started-with-r-and-rstudio/).

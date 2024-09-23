@@ -2,7 +2,7 @@
 Follow these instructions _one time_ at the beginning of the semester.
 
 ### Set some default parameters
-This setup script performs the following actions: (1) Set a parameter `backend:agg` that lets the QIIME 1.9 data visualization software `matplotlib` work; (2) tell the operating system where to find executables for the SHI7 tool.
+This setup script performs the following actions: (1) Set a parameter `backend:agg` that lets the popular Python-based visualization software `matplotlib` work; (2) tell the operating system where to find executables for the SHI7 tool.
 
 Copy this command, paste it into your terminal, and press "return". It's OK to get a "File exists" error:
 ```bash

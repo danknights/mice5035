@@ -21,7 +21,10 @@ This should print out some details about your system configuration and should no
 
 ### Clone/download the course code repository to your home directory
 ```
-cd /home/mice5035/<yourusername>
+# make sure you are in your home directory
+cd
+
+# download a copy of this repo to your directory
 git clone https://github.com/danknights/mice5035.git
 ```
 

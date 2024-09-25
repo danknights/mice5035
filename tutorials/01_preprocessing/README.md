@@ -4,8 +4,8 @@
 In this tutorial we will learn how to use the command line to
 use a preprocessing tool to perform quality trimming and filtering on 16S and shotgun data.
 
-### Connect to an interactive computing node on MSI
-- Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
+### Connect to an interactive computing node at MSI
+- If you are not already logged in to an interactive computing node at MSI, Follow the steps in the [getting started guide](../../README.md) to get connected to an interactive node on MSI.
 
 
 ### Navigate to the correct directory

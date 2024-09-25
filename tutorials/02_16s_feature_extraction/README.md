@@ -169,7 +169,7 @@ principal_coordinates.py -i beta/weighted_unifrac_otu_table_final.txt -o beta/we
 make_emperor.py -i beta/weighted_unifrac_otu_table_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-weighted-unifrac
 ```
 
-## Additional exercises
+## Additional exercises (optional)
 ### Rerun de-novo OTU picking at 94% similarity instead of 97%.
 
 To do this, you will need to use a *parameters file*. There is already one called `parameters.txt` in the tutorial directory. The script you ran above, `pick_de_novo_otus.py`, is actually a *workflow* script that calls other QIIME commands: `pick_otus.py`, `pick_rep_set.py`, `parallel_assign_taxonomy_uclust.py`, `make_otu_table.py`, `parallel_align_seqs_pynast.py`, `filter_alignment.py`, and `make_phylogeny.py`, as you can see when you look at the printed output. The *parameters file* is necessary to tell the script what parameters to pass on to the sub-commands. 

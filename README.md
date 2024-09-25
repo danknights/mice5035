@@ -7,6 +7,17 @@ To connect to an MSI supercomputer, please follow these steps:
 * Click Files > Home Directory to view your files
 * Click Clusters > Agate Shell Access to open a terminal with command-line access to a login node.
 
+### Switch to the MICE 5035 "group" _if_ you also have another group
+If you are in a lab group or another class group, you can run this to switch to our class group account:
+```bash
+newgrp mice5035
+```
+
+You can check if you're in other groups with this:
+```bash
+groups
+```
+
 ### Launch and connect to an interactive computing node
 - When you first log in to MSI, you will be on a "login" node. You are not allowed to run computations on this node. Instead, you can launch an interactive node for running computations with this command:
 

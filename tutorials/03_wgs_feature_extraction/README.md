@@ -5,7 +5,7 @@ This tutorial is an introduction to extracting taxonomic features from shotgun s
 performing alpha diversity and beta diversity analysis. We will use the Kraken tool to annotate the data.
 
 ### Connect to an interactive computing node on MSI
-- Follow the steps the [logging in guide](../../logging_in.md) to get connected to an interactive node on MSI.
+- If needed, follow the steps the [getting started guide](../../README.md) to get connected to an interactive node on MSI.
 
 ### Tutorial
 
@@ -20,7 +20,7 @@ performing alpha diversity and beta diversity analysis. We will use the Kraken t
  
 2. Navigate to the correct directory
 Change directory in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
-Make sure that you are in your home directory inside the MICE 5035 course directory (`/home/mice5035`), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
+Make sure that you are in your home directory. As a reminder, the following command will list your current directory:
  ```bash
     pwd
  ```

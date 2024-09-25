@@ -130,7 +130,8 @@ Note: we may perform relative abundance filtering later when doing statistical t
  ```
 
 11. Move the files back from MSI to your computer using OnDemand
-    Using OnDemand, navigate to `mice5035/tutorials/02_16s_feature_extraction`. Then download the `alpha-diversity.txt` _file_ and `beta`, `otus`, and `taxon_tables` _folders_ over to your local computer.
+
+Using OnDemand, navigate to `mice5035/tutorials/02_16s_feature_extraction`. Then download the `alpha-diversity.txt` _file_ and `beta`, `otus`, and `taxon_tables` _folders_ over to your local computer.
 
 Note: make sure you copy THE WHOLE `3dplots` (or `3dplots-weighted-unifrac`) folder, not just the `index.html` file.
 

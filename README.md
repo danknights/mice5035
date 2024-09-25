@@ -1,6 +1,6 @@
 # MiCE 5035 Getting Started Guide
 
-To set up your MSI account for using the supercomputer, please follow these steps:
+To connect to an MSI supercomputer, please follow these steps:
 
 ### Connect to MSI login node using "OnDemand":
 * Control-click (Windows) or Command-click (Mac) here to open the MSI OnDemand dashboard in a new tab: https://ondemand.msi.umn.edu/pun/sys/dashboard

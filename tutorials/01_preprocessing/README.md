@@ -33,7 +33,7 @@ fastqc -o 16s-fastqc /home/knightsd/public/imp/16s-shallow/*.fastq.gz
 ```
 
 ### Transfer files back to your computer and view in a web browser
-- Use the OnDemand Dashboard to download the entire `16s-fastqc` folder to your computer Desktop or class folder. Open the folder to unzip/decompress it, and open the first `html` file.
+- Use the OnDemand Dashboard to select and download the entire `16s-fastqc` folder to your computer Desktop or class folder. Open the folder to unzip/decompress it, and open the first `html` file.
 - When does the sequence quality begin to drop off? If you had to choose a single length at which to truncate the sequences (trim off the ends, what would it be)? A quality score of 30 or 35 or higher is usually considered good.
 - Scroll down to view the table of overrepresented sequences. Copy and paste the first one in to [NCBI's BLAST tool](https://blast.ncbi.nlm.nih.gov/Blast.cgi). Does it look suspicious?
 

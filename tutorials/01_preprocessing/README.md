@@ -13,8 +13,9 @@ use a preprocessing tool to perform quality trimming and filtering on 16S and sh
 # print the current working directory
 pwd
 
-# change to your course directory if you are not already there.
-cd /home/mice5035/yourusername
+# change to your home directory if you are not already there.
+# Entering "cd" on its own will always take you home
+cd 
 
 # change into course repository directory that you cloned from git (above).
 # the change to this tutorial directory

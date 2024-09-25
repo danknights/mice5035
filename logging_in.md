@@ -1,5 +1,7 @@
-## How to log in to an interactive node on MSI
+# Guide to logging in to MSI "manually" (not using OnDemand)
+Warning: This is for advanced users only. Normally, you will use MSI's [on demand](https://ondemand.msi.umn.edu/pun/sys/dashboard) app for logging in, as described on the [getting started guide](README.md).
 
+## How to log in to an interactive node on MSI
 ### Background
 You will need to follow these steps once every time you want to get logged in to a new interactive node. 
 

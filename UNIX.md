@@ -177,14 +177,41 @@ grep -v ">" input.fna
 grep -c ">" input.fna
 ```
 
-### start a "screen" session (like opening a tab, conceptually)
+## Using "Screen" to keep a session open
+If you need to run something that will take a while, there are ways to keep an interactive computing session open on MSI. One way is to log in to a _specific_ login node (e.g. `ahl01`), open a "screen" session, and then start your interactive session. The screen session will stay open on the login node if you disconnect and connect again later. Here are the steps:
+
+1. When you first connect to MSI, connect to a specific login node:
+```bash
+ssh username@ahl01.msi.umn.edu
+```
+2. Start a "screen" session (like opening a browser window, conceptually)
 ```
 screen
 ```
-
-### start another screen "tab" (like having multiple tabs open)
+3. Launch your compute node
+```bash
+srun ...
+```
+4. When you need to log off temporarily, detach from the screen session (don't hold ctrl after the `a`)
 ```
 <ctrl>-a d
+```
+Then exit the login node with `<ctrl>-d` or `exit`.
+5. When ready to log back on, connect to the same login node:
+```bash
+ssh username@ahl01.msi.umn.edu
+```
+6. Re-attach to the screen session
+```
+screen -Dr
+```
+
+Now you are back on the compute node, right where you left off. If you had a command running, it will have continued running in the background.
+
+## Other helpful screen commands
+### start another screen "window" (like opening another tab in a browser)
+```
+<ctrl>-a c
 ```
 
 ### move to the next screen "tab"
@@ -197,17 +224,7 @@ screen
 <ctrl>-a p
 ```
 
-### terminate/log out from a commandline session or screen session
+### terminate/permanently close a commandline session or screen session
 ```
 <ctrl>-d
-```
-
-### temporarily detach from a screen session (don't hold ctrl after the `a`)
-```
-<ctrl>-a d
-```
-
-### re-attach to a screen session
-```
-screen -Dr
 ```

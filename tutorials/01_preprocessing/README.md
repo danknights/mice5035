@@ -63,6 +63,8 @@ head 16s-output/combined_seqs.fna | cut -c 1-100
 # Note: this uses the bash command sed, to replace .fa_ with _ in every line.
 sed -i -e 's/.fa_/_/' 16s-output/combined_seqs.fna
 ```
+#### Troublshooting "flash" error
+Note: if you got an error saying that "flash" could not be found, please make sure you did the steps in the [One-time setup intructions](../../one_time_setup.md), and then run this: `source ~/.bash_profile`. This is telling the operating system to load in your configuration file. Then run the above `shi7.py` command again.
 
 ### Examine the log file to learn about your data
 We will use the program `less` to scroll through the log file. Make sure you quit `less` by typing "q" when you are done viewing the file.

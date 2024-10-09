@@ -20,7 +20,7 @@ more options for visualizations but performs mostly the same core analyses and h
  ```
  
 2. Navigate to the correct directory
-Make sure that you are in your home directory inside the MICE 5035 course directory (`/home/mice5035`), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
+Make sure that you are in your home directory (run `cd` to get there automatically), and not your default home directory if you have another one. As a reminder, the following command will list your current directory:
  ```bash
     pwd
  ```

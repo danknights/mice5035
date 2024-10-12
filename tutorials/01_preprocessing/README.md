@@ -80,10 +80,13 @@ less 16s-output/shi7.log
 # exit from less by typing “q”
 q
 ```
-The log file shows how well stitching of read pairs went, if it was performed, and it shows the results of the quality trimming and filtering. These images explain how to interpret the log file:
+The log file shows how well stitching of read pairs went, if it was performed, and it shows the results of the quality trimming and filtering. These images explain how to interpret the log file.
+
+Stitching results (closer to the top of the file):
 
 <img src="../../supporting_files/Tutorial01-interpreting-stitching-results.png" width="600" />
 
+Trimming and quality filtering results (closer to the bottom of the file):
 <img src="../../supporting_files/Tutorial01-interpreting-trimming-and-filtering-results.png" width="600" />
 
 ### Run shi7 on IMP WGS data

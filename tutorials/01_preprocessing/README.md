@@ -80,6 +80,11 @@ less 16s-output/shi7.log
 # exit from less by typing “q”
 q
 ```
+The log file shows how well stitching of read pairs went, if it was performed, and it shows the results of the quality trimming and filtering. These images explain how to interpret the log file:
+
+<img src="../../supporting_files/Tutorial01-interpreting-stitching-results.png" width="600" />
+
+<img src="../../supporting_files/Tutorial01-interpreting-trimming-and-filtering-results.png" width="600" />
 
 ### Run shi7 on IMP WGS data
 These are whole-genome shotgun (WGS) sequencing data. Only 3 samples from 3 groups are included due to the large size of the files, and they have been subsampled to only 100,000 sequences per sample, down from 20-30 million.

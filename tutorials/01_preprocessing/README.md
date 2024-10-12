@@ -87,6 +87,7 @@ Stitching results (closer to the top of the file):
 <img src="../../supporting_files/Tutorial01-interpreting-stitching-results.png" width="600" />
 
 Trimming and quality filtering results (closer to the bottom of the file):
+
 <img src="../../supporting_files/Tutorial01-interpreting-trimming-and-filtering-results.png" width="600" />
 
 ### Run shi7 on IMP WGS data

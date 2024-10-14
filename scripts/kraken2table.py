@@ -24,7 +24,10 @@ if not os.path.exists(outdir):
 taxa = set() # set of all observed taxa
 samples = {} # each sample ID will map to a dict of taxa:count
 
+count = 0
 for fname in files:
+    count += 1
+    original_sampleID = fname
     sampleID = os.path.basename(fname)
     sampleID = os.path.splitext(sampleID)[0]
     # remove .fa at end if present
@@ -37,8 +40,9 @@ for fname in files:
     # Process filename and modify it if pattern is detected
     if pattern.search(sampleID):
         sampleID= re.sub(pattern, '', sampleID)
-
-    print(sampleID)
+    
+    if count <= 10:
+        print(f'Merging {original_sampleID} into table as {sampleID}')
     
     # sampleID = '.'.join(sampleID.split('.')[:-1])
                         

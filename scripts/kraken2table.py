@@ -43,6 +43,8 @@ for fname in files:
     
     if count <= 10:
         print(f'Merging {original_sampleID} into table as {sampleID}')
+    elif count == 10:
+        print("etc...")
     
     # sampleID = '.'.join(sampleID.split('.')[:-1])
                         

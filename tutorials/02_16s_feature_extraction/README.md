@@ -153,7 +153,7 @@ To pick de novo OTUs:
 
 Then proceed with steps 5-11 above.
 
-Note: you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the beta diversity step. 
+Note: you will need to use the de novo tree `otus/rep_set.tre` rather than the reference tree in the alpha and beta diversity steps. 
 
 Note: we will use the same rarefaction depth (140) as in the closed-reference analysis above. In practice, you would run `biom summarize-table` to get summary statistics about the OTU table, and then you would use that output to choose an appropriate rarefaction depth. 
 

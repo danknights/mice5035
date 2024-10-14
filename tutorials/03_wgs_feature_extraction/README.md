@@ -46,15 +46,6 @@ Run preprocessing on the raw data to get trimmed, filtered, stitched output sequ
 ```bash
 # make sure you ran "module load python/3.6.3" as indicated above
 time python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False
-
-# note: these output files still have some extra text in their name
-# added by Illumina. They look like sampleID.Sxyz.001.fna
-#
-# If we don't do this, it will mess up our sample IDs later; we could fix it
-# manually with "mv" but it's faster to use a loop like this:
-cd wgs-output
-for f in *.fna; do mv "$f" "$(echo "$f" | sed -E 's/\.S[0-9]+\.001//')"; done
-cd ..
 ```
 
 Then create a subdirectory for the kraken raw output tables.

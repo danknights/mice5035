@@ -9,7 +9,8 @@ performing alpha diversity and beta diversity analysis. We will use the Kraken t
 
 ### Tutorial
 
-1. Load software  
+1. Load software
+   
  Load all of the software "modules" that you will need.
  ```bash
     module load qiime/1.9.1_centos7
@@ -19,6 +20,7 @@ performing alpha diversity and beta diversity analysis. We will use the Kraken t
  ```
  
 2. Navigate to the correct directory
+
 Change directory in to the course repo and then into the directory for this tutorial. Ensure you have the latest files from the github repository with `git pull`.
 Make sure that you are in your home directory. As a reminder, the following command will list your current directory:
  ```bash
@@ -58,7 +60,8 @@ Then create a subdirectory for the kraken raw output tables.
 mkdir kraken-out
 ```
 
-3. Run Kraken.
+3. Run Kraken
+
 Run Kraken on each input file. We will use a `for` loop for this so that we don't have to enter each file manually.
 ```bash
 # loop through every .fna file. Run kraken2 on it.
@@ -71,7 +74,8 @@ Note: we could also run it on each file manually like this:
 kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/SAMPLE_ID.txt --use-names wgs-output/SAMPLE_ID.fna
 ```
 
-4. Merge the separate Kraken outputs to taxon tables.
+4. Merge the separate Kraken outputs to taxon tables
+
 This requires a custom script. A thorough search of the internet led to three failed attempts to use other software tools to do this.
 
 ```bash
@@ -81,7 +85,10 @@ wget https://raw.githubusercontent.com/danknights/mice5035/master/scripts/kraken
 python kraken2table.py kraken-out/*.txt taxon_tables
 ```
 
-5. Convert each taxonomy table to biom format if you want to perform beta diversity and alpha diversity analysis using QIIME.
+5. Convert each taxonomy table to biom format
+
+This is only if you want to perform beta diversity and alpha diversity analysis using QIIME; can also do those steps in R. 
+
 ```bash
 for f in taxon_tables/*.txt; do echo $f; biom convert -i $f --to-json -o `dirname $f`/`basename $f .txt`.biom --process-obs-metadata taxonomy; done
 ```

@@ -26,6 +26,14 @@ samples = {} # each sample ID will map to a dict of taxa:count
 
 for fname in files:
     sampleID = os.path.basename(fname)
+    
+    # Regular expression pattern to match the .S***.001 part
+    pattern = re.compile(r'\.S\d+\.001')
+
+    # Process filename and modify it if pattern is detected
+    if pattern.search(sampleID):
+        sampleID= re.sub(pattern, '', sampleID)
+
     sampleID = '.'.join(sampleID.split('.')[:-1])
                         
     counts = defaultdict(int)

@@ -93,10 +93,10 @@ Alpha and beta diversity analysis can now be performed as in [Tutorial 2](../02_
 - When you run `filter_otus_from_otu_table.py`, change the minimum number of samples for an OTU from 4 to 2 or an appropriate number based on how many samples you have.
 - There are no tree files, so no phylogenetic diversity measures. When you run `alpha_diversity.py`, don't include a tree, and remove the "PD_whole_tree" from the list of metrics. When you run `beta_diversity.py`, remove the two "UniFrac" metrics. When you run `principal_coordinates.py`, and `make_emperor.py`, use "binary_jaccard" distance instead of "unweighted_unifrac" and "bray_curtis" instead of "weighted_unifrac", as follows:
 ```bash
-# filter species in < 5 samples
-# Note: change the 5 to something appropriate for your
+# filter species in < 10 samples
+# Note: change the 10 to something appropriate for your
 # number of samples
-filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7.biom -o taxon_tables/taxa_table_L7_final.biom -s 5
+filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7.biom -o taxon_tables/taxa_table_L7_final.biom -s 10
 
 # run alpha and beta diversity analysis without tree-based metrics
 alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_final.biom -o alpha-diversity.txt

@@ -91,7 +91,9 @@ Alpha and beta diversity analysis can now be performed as in [Tutorial 2](../02_
 - Be sure to check the sequencing depths after creating the summary of the OTU (species) table to choose an appropriate rarefaction depth before you run rarefaction. Note: if you have a very small number of samples, you should try to include all of them when you choose the rarefaction depth. Samples below the rarefaction depth would be discarded.
 - You don't need to run `summarize_taxa.py` to create taxon-level tables, because you already have them from Kraken.
 - When you run `filter_otus_from_otu_table.py`, change the minimum number of samples for an OTU from 4 to 2 or an appropriate number based on how many samples you have.
-- There are no tree files, so no phylogenetic diversity measures. When you run `alpha_diversity.py`, don't include a tree, and remove the "PD_whole_tree" from the list of metrics. When you run `beta_diversity.py`, remove the two "UniFrac" metrics. When you run `principal_coordinates.py`, and `make_emperor.py`, use "binary_jaccard" distance instead of "unweighted_unifrac" and "bray_curtis" instead of "weighted_unifrac", as follows:
+- There are no tree files, so no phylogenetic diversity measures. When you run `alpha_diversity.py`, don't include a tree, and remove the "PD_whole_tree" from the list of metrics. When you run `beta_diversity.py`, remove the two "UniFrac" metrics. When you run `principal_coordinates.py`, and `make_emperor.py`, use "binary_jaccard" distance instead of "unweighted_unifrac" and "bray_curtis" instead of "weighted_unifrac", as follows.
+- Warning: Do not simply copy and paste these commands! You may need to modify them for them to work. Please read the comments and run one command at a time.
+- 
 ```bash
 # filter species in < 10 samples
 # Note: change the 10 to something appropriate for your

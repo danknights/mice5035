@@ -71,7 +71,7 @@ Note: we could also run it on each file manually like this:
 kraken2 --db /home/knightsd/public/minikraken2_v1_8GB --use-mpa-style --output tmp --report kraken-out/SAMPLE_ID.txt --use-names wgs-output/SAMPLE_ID.fna
 ```
 
-4. Merge the separate Kraken outputs to taxon tables
+4. Merge the separate Kraken outputs to taxon tables.
 This requires a custom script. A thorough search of the internet led to three failed attempts to use other software tools to do this.
 
 ```bash

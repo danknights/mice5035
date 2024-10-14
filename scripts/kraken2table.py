@@ -34,6 +34,13 @@ for fname in files:
     if pattern.search(sampleID):
         sampleID= re.sub(pattern, '', sampleID)
 
+    # Also change .fa.fna to .fna in case its there
+    pattern = re.compile(r'\.fa\.fna$')
+
+    # Process filename and modify it if pattern is detected
+    if pattern.search(sampleID):
+        sampleID= re.sub(pattern, '.fna', sampleID)
+    
     sampleID = '.'.join(sampleID.split('.')[:-1])
                         
     counts = defaultdict(int)

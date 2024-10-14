@@ -83,7 +83,7 @@ This requires a custom script. A thorough search of the internet led to three fa
 ```bash
 # Now we have a single output file per sample;
 # we can merge these using the script kraken2table.py in this repo:
-wget https://raw.githubusercontent.com/danknights/mice5035/master/scripts/kraken2table.py
+wget https://raw.githubusercontent.com/danknights/mice5035/master/scripts/kraken2table.py -O kraken2table.py
 python kraken2table.py kraken-out/*.txt taxon_tables
 ```
 

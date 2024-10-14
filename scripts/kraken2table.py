@@ -40,7 +40,7 @@ for fname in files:
     # Process filename and modify it if pattern is detected
     if pattern.search(sampleID):
         sampleID= re.sub(pattern, '.fna', sampleID)
-    
+    print(sampleID)
     sampleID = '.'.join(sampleID.split('.')[:-1])
                         
     counts = defaultdict(int)

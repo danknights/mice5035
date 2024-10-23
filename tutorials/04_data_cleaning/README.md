@@ -93,7 +93,7 @@ colnames(genus) <- sapply(strsplit(colnames(genus),";"),function(xx) xx[length(x
 colnames(phylum) <- sapply(strsplit(colnames(phylum),";"),function(xx) xx[length(xx)])
 ```
 
-Let's make a new column that is just "Generation" (Thai/1st/2nd/Control). The `|` in `map$Sample.Group == "Karen1st" | map$Sample.Group == "HmongThai"` is a logical "OR" operator. It makes the statement TRUE for every row in the mapping table where Sample.Group is "Karen1st" or "HmongThai", and FALSE otherwise. Paste these into your source file and then execute them. 
+Let's make a new column that is just "Generation" (Thai/1st/2nd/Control). The `|` in `map$Sample.Group == "Karen1st" | map$Sample.Group == "Hmong1st"` is a logical "OR" operator. It makes the statement TRUE for every row in the mapping table where Sample.Group is "Karen1st" or "Hmong1st", and FALSE otherwise. Paste these into your source file and then execute them. 
 ```bash
 map$Generation <- "Thai" # fill with Thai to start
 map$Generation[map$Sample.Group == "Karen1st" | map$Sample.Group == "Hmong1st"] <- "1stGen"

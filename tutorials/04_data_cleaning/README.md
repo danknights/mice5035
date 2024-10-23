@@ -56,10 +56,12 @@ We can also access a arange of elements in a table by passing in a vector of num
 map[1:3,1:6]
 ```
 
+<!--
 ..and this prints the first 3 rows and columns 1, 2, 3, and 6. The `c()` function concatenates individual values (the TRUE's and FALSE's) into a vector:
 ```bash
 map[1:3,c(TRUE, TRUE, TRUE, FALSE, FALSE, TRUE)]
 ```
+-->
 
 There is another important and convenient way that we can access data in a table. R allows tables to have row names and column names, and these can be used to access data. For example, if we want to print out the `Sample.Group` column in the `map` table, there are two different ways:
 ```bash

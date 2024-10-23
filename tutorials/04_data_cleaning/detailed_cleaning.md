@@ -1,3 +1,5 @@
+## MiCE 5035 Tutorial: Detailed Data cleaning in R
+
 We will assume the raw IMP data tables have been loaded as shown at the top of [Tutorial 4](README.md).
 
 Before we continue, we need to remove the longitudinal samples from all of the tables. These are subjects that have `NA` or `1` in the "Sample.Order" column in the mapping file. Note: the `|` means "or" and it makes `keep.ix` `TRUE` for every row where either the value is `NA` or `1`. Paste this command into your source file. You can type command-Return (Mac) or control-Return (Windows) to run each single line immediately in the terminal. 

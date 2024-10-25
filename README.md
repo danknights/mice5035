@@ -22,10 +22,15 @@ groups
 - When you first log in to MSI, you will be on a "login" node. You are not allowed to run computations on this node. Instead, you can launch an interactive node for running computations with this command:
 
  ```bash
-srun -N 1 --ntasks-per-node=4 --mem-per-cpu=4gb -t 02:00:00 -p interactive --pty bash
+srun -N 1 --ntasks-per-node=4 --mem-per-cpu=4gb -t 02:00:00 -p agsmall --pty bash
  ```
 
 This may take a while to finish running. It will log you directly in to the interactive node. Often you can see that this has happened because the start of the line in the terminal will say something like "yourusername@cn0077" or "yourusename@acn001" and it will be different from what it was on the previous line. If in doubt, you can run `hostname` to print out the name of the node. Login nodes usually start with `ahl` or `login` or `ln`. 
+
+Note: if this fails to connect, please try logging back in and running this instead (requesting the `interactive` partition instead of the `agsmall` partition):
+ ```bash
+srun -N 1 --ntasks-per-node=4 --mem-per-cpu=4gb -t 02:00:00 -p interactive --pty bash
+ ```
 
 ### One-time setup
 If this is the FIRST TIME you have connected to MSI in this class, follow the [one-time setup instructions](one_time_setup.md).

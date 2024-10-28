@@ -28,7 +28,7 @@ install.packages('car')
 #### Load the data
 Load in the two packages that we installed at the start of the tutorial. It's a good practice to load these at the top of your source file, so that you know right away if you have the required packages installed. Paste these into your source file and execute them. 
 ```bash
-library('car')
+library('car') # OK if this library didn't install correctly
 library('vegan')
 ```
 

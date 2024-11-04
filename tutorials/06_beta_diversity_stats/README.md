@@ -103,10 +103,12 @@ We tested only whether beta diversity is associated with Sample Group. There cou
 # Test if variation in beta diversity is associated with 
 # sample group or subject BMI Class
 # with Sample.Group first
-adonis2(beta_uuf ~ Sample.Group + BMI.Class, data=map)
+# note: the by="terms" parameter tells it to do a traditional ANOVA
+# with each term being assessed
+adonis2(beta_uuf ~ Sample.Group + BMI.Class, data=map, by="terms")
 
 # Run again with BMI.Class first
-adonis2(beta_uuf ~ BMI.Class + Sample.Group, data=map)
+adonis2(beta_uuf ~ BMI.Class + Sample.Group, data=map, by="terms")
 ```
 
 In the first set of results, the p-value for _Sample.Group_ is telling us the significance of the association between beta diversity and Sample.Group alone, ignoring BMI status. The second line in the first set of results is telling us the significance of the association between beta diversity and BMI status _while controlling for the influence of Sample.Group._ Similarly, in the second set of results, the second line is telling us the significance of the association of beta diversity and _Sample.Group_  while controlling for the influence of _BMI.Class_. Hence, we are most interested in the second row of each of these tables.

@@ -147,7 +147,7 @@ table(map$Generation[ix])
 This should show that there are 30 subjects in the 2ndGen group and 24 subjects in the Control group. Now let us run the `adonis2` test, only in these two groups. Note that we had to use `ix` in both the rows and columns of `beta_uuf`. Check your understanding: can you explain why? Copy this into your source file and then run it.
 ```bash
 # Run adonis2 test on Generation group, only in 2ndGen and Controls
-adonis2(beta_uuf[ix,ix] ~ Generation, data=map[ix,])
+adonis2(beta_uuf[ix,ix] ~ Generation, data=map[ix,], by="terms")
 ```  
 
 The output shows that beta diversity variation is highly associated with Generation even between the 2ndGen and Control groups. Take note of this as it will be referenced in tutorial 7.

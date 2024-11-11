@@ -190,6 +190,14 @@ What would be an interesting correlation to test in this data set? One continuou
 
 ## Exercise 6
 - A. Test whether phylogenetic alpha diversity is significantly associated with years of U.S. residence. Follow the approach you used in tutorial 6 for testing for correlation of years of US residence with PC1 score, but with alpha diversity in place of PC1 score. Copy your answer to your source file and run it.
+
+Important: in tutorial 6 we used the subset of 1stGen subjects for analyzing associations with Years of US residence. This is, in fact, the only group where it would make sense to test for associations with Years in US, because the Thai group has _never_ lived in the US, and the 2ndGen and Control groups have _always_ lived in the US. Therefore you will be selecting just the 1stGen samples for these tests, as in Tutorial 6:
+
+```bash
+# Get the indices where there is a known (not NA) duration of US residence
+ix <- map$Generation == "1stGen"
+```
+Now run the correlation test.
 - B. Actually, we hypothesized that diversity would go _down_ the longer a person lived in the US, so we should make this a one-tailed test. This means we ignoring the possibility that diversity could have gone up with duration of residence. This gives us more statistical power. Find out how to modify this command to run a one-tailed correlation test for the desired alternative. You can search the web, or you can run `?cor.test` in _R_ to read the documentation. What happened to the correlation statistic? What happened to the p-value, and why? If you need an additional reference, see the related [Wikipedia page](https://en.wikipedia.org/wiki/One-_and_two-tailed_tests).
 - C. Using the same subset of subjects, test whether _Parabacteroides_ goes up the longer someone lives in the US. You will need to run `cor.test` with the additional `method=spearman` argmument as described above. Is it significant? What is the p-value? Does this fit your expectations after viewing the boxplot above?
 

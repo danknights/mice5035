@@ -20,6 +20,10 @@ alpha <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/da
 beta_uuf <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/data_tables/XXX/beta_uuf.txt"),row=1)
 genus <- read.delim(url("https://github.com/danknights/mice5035_data/raw/main/data_tables/XXX/genus.txt"),row=1)
 
+# convert beta_uuf from a data frame to a matrix
+# this will make it work with indices
+beta_uuf <- as.matrix(beta_uuf)
+
 # Let's tell R to show sample groups in a certain order. 
 # This is to ensure that when we make plots, R puts
 # the groups in an order that makes sense visually.

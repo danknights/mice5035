@@ -23,6 +23,9 @@ groups
 - When you first log in to MSI, you will be on a "login" node. You are not allowed to run computations on this node. Instead, you can launch an interactive node for running computations with this command:
 
  ```bash
+# Note: --ntasks-per-node is the number of cores you want
+# and --mem-per-cpu is the RAM _per_ core
+# and -t is the time you want allowed
 srun -N 1 --ntasks-per-node=4 --mem-per-cpu=4gb -t 02:00:00 -p agsmall --pty bash
  ```
 

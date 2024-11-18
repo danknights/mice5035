@@ -6,7 +6,7 @@ To connect to an MSI supercomputer, please follow these steps:
 * Control-click (Windows) or Command-click (Mac) here to open the MSI OnDemand dashboard in a new tab: [https://ood.msi.umn.edu](https://ood.msi.umn.edu)
 * Click Clusters > Agate Shell Access to open a terminal with command-line access to a login node.
 * Click Files > Home Directory to view your files
-* Note: you can also SSH in to MSI from a terminal with ssh username@login.msi.umn.edu
+* Note: you can also SSH in to MSI from a terminal with `ssh username@login.msi.umn.edu`
 
 ### Switch to the MICE 5035 "group" _if_ you also have another group
 If you are in a lab group or another class group, you can run this to switch to our class group account:

@@ -14,7 +14,6 @@ performing alpha diversity and beta diversity analysis. We will use the Kraken t
  Load all of the software "modules" that you will need.
  ```bash
     module load qiime/1.9.1_centos7
-    module load bowtie2
     module load kraken
     module load python/3.6.3
  ```

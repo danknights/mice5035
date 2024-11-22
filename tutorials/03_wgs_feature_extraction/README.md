@@ -98,7 +98,20 @@ Alpha and beta diversity analysis can now be performed as in [Tutorial 2](../02_
 - There are no tree files, so no phylogenetic diversity measures. When you run `alpha_diversity.py`, don't include a tree, and remove the "PD_whole_tree" from the list of metrics. When you run `beta_diversity.py`, remove the two "UniFrac" metrics. When you run `principal_coordinates.py`, and `make_emperor.py`, use "binary_jaccard" distance instead of "unweighted_unifrac" and "bray_curtis" instead of "weighted_unifrac", as follows.
 - Warning: Do not simply copy and paste these commands! You may need to modify them for them to work. Please read the comments and run one command at a time.
 
+First, check the depths of the samples to choose a rarefaction depth:
+
 ```bash
+biom summarize-table -i taxon_tables/taxa_table_L7.biom -o stats.txt
+less stats.txt
+```
+
+Let's assume we chose 10,000 sequences as the rarefaction depth. In practice this would be much higher for deep shotgun data. 
+
+```bash
+# Rarefaction, choose an appropriate depth based on the stats of the biom table
+# DO NOT PASTE this command without editing the rarefaction depth
+single_rarefaction.py -i taxon_tables/taxa_table_L7.biom -d 10000 -o taxon_tables/taxa_table_L7_rarefied.biom
+
 # filter species in < 10 samples
 # Note: change the 10 to something appropriate for your
 # number of samples

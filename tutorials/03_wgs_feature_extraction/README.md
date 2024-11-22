@@ -115,7 +115,7 @@ single_rarefaction.py -i taxon_tables/taxa_table_L7.biom -d 10000 -o taxon_table
 # filter species in < 10 samples
 # Note: change the 10 to something appropriate for your
 # number of samples
-filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7.biom -o taxon_tables/taxa_table_L7_final.biom -s 10
+filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7_rarefied.biom -o taxon_tables/taxa_table_L7_final.biom -s 10
 
 # run alpha and beta diversity analysis without tree-based metrics
 alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_final.biom -o alpha-diversity.txt
@@ -132,6 +132,7 @@ make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m ../../../da
 
 ```
 
+Then repeat the processing with the other taxonomic levels like genus (level 6) or phylum (level 2). 
 
 
 

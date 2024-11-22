@@ -132,7 +132,7 @@ make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m ../../../da
 
 ```
 
-Then repeat the processing with the other taxonomic levels like genus (level 6) or phylum (level 2). 
+Then repeat the processing with the other taxonomic levels like genus (level 6) or phylum (level 2) as needed. 
 
 
 

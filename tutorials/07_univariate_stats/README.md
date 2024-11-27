@@ -204,12 +204,12 @@ Now run the correlation test.
 ---
 
 ## Optional Excersize 7
-Multiple hypothesis testing with CLR
-# do CLR to the genus table!! 
-# THIS IS THE THING! This is how to transform your 
-# genus/species table to CLR-transformed data
+Multiple hypothesis testing with centered-log-ratio (CLR) transform:
 
-# This is the key right here: this is how to apply CLR
+# Apply CLR transform (to make the data more normal, and get rid of
+# compositional artifacts)
+# Note: if you don't have this library, install with install.packages('robCompositions')
+library('robCompositions')
 eps <- min(genus[genus > 0]) / 2 # set zero values to this tiny value
 genus.nonzero <- genus
 genus.nonzero[genus.nonzero == 0] <- eps

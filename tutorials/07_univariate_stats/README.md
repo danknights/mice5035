@@ -206,6 +206,7 @@ Now run the correlation test.
 ## Optional Excersize 7
 Multiple hypothesis testing with centered-log-ratio (CLR) transform:
 
+```bash
 # Apply CLR transform (to make the data more normal, and get rid of
 # compositional artifacts)
 # Note: if you don't have this library, install with install.packages('robCompositions')
@@ -223,6 +224,7 @@ qvals <- p.adjust(pvals,'fdr')
 
 # print the 10 most significant taxa
 sort(qvals)[1:10]
+```
 
 ### Conclusion
 We have covered the most common univariate statistical tests that one would perform in _R_. There are slightly more powerful tests available for differential abundance testing of taxa, such as the ANCOM package, but such packages have a steeper learning curve. We also did not cover alternative normalizations of relative abundances, such as the centered-log-ratio transform discussed in class. You are referred to the [`clr` function in the _compositions_ package](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/clr) for instructions on how to perform that transformation. 

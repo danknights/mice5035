@@ -117,6 +117,12 @@ single_rarefaction.py -i taxon_tables/taxa_table_L7.biom -d 10000 -o taxon_table
 # number of samples
 filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7_rarefied.biom -o taxon_tables/taxa_table_L7_final.biom -s 10
 
+# convert the final taxon table back to text format to load into R
+# Note: this file have an extra "comment" at the top, so in R
+# you will have to load with t(read.delim("taxa_table_L7_final.txt", row.names=1, skip=1))
+# Also note that these files have taxa in the _rows_ so, you have to transpose in R with t()
+biom convert -i taxon_tables/taxa_table_L7_final.biom -o taxon_tables/taxa_table_L7_final.txt --to-tsv --table-type "Taxon table"
+
 # run alpha and beta diversity analysis without tree-based metrics
 alpha_diversity.py -m "chao1,observed_otus,shannon" -i taxon_tables/taxa_table_L7_final.biom -o alpha-diversity.txt
 beta_diversity.py -i taxon_tables/taxa_table_L7_final.biom -o beta -m "bray_curtis,binary_jaccard"
@@ -129,17 +135,6 @@ principal_coordinates.py -i beta/binary_jaccard_taxa_table_L7_final.txt -o beta/
 # replace the mapping file with the mapping file for your study
 make_emperor.py -i beta/bray_curtis_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-bray-curtis
 make_emperor.py -i beta/binary_jaccard_taxa_table_L7_final_pc.txt -m ../../../data/imp/map.txt -o 3dplots-binary-jaccard
-
-# convert the final taxon tables back to text format to load into R
-# Note: these files have an extra "comment" at the top, so in R
-# you will have to load with t(read.delim("taxa_table_L7_final.txt", row.names=1, skip=1))
-# Also note that these have taxa in the _rows_ 
-biom convert -i taxon_tables/taxa_table_L2_final.biom -o taxon_tables/taxa_table_L2_final.txt --to-tsv --table-type "Taxon table"
-biom convert -i taxon_tables/taxa_table_L3_final.biom -o taxon_tables/taxa_table_L3_final.txt --to-tsv --table-type "Taxon table"
-biom convert -i taxon_tables/taxa_table_L4_final.biom -o taxon_tables/taxa_table_L4_final.txt --to-tsv --table-type "Taxon table"
-biom convert -i taxon_tables/taxa_table_L5_final.biom -o taxon_tables/taxa_table_L5_final.txt --to-tsv --table-type "Taxon table"
-biom convert -i taxon_tables/taxa_table_L6_final.biom -o taxon_tables/taxa_table_L6_final.txt --to-tsv --table-type "Taxon table"
-biom convert -i taxon_tables/taxa_table_L7_final.biom -o taxon_tables/taxa_table_L7_final.txt --to-tsv --table-type "Taxon table"
 ```
 
 Then repeat the processing with the other taxonomic levels like genus (level 6) or phylum (level 2) as needed. 

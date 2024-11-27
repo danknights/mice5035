@@ -203,6 +203,27 @@ Now run the correlation test.
 
 ---
 
+## Optional Excersize 7
+Multiple hypothesis testing with CLR
+# do CLR to the genus table!! 
+# THIS IS THE THING! This is how to transform your 
+# genus/species table to CLR-transformed data
+
+# This is the key right here: this is how to apply CLR
+eps <- min(genus[genus > 0]) / 2 # set zero values to this tiny value
+genus.nonzero <- genus
+genus.nonzero[genus.nonzero == 0] <- eps
+genus.nonzero <- sweep(genus.nonzero, 1, rowSums(genus.nonzero), '/')
+genus.clr <- cenLR(genus.nonzero)$x.clr
+
+# now see what's significant. We will use a t.test instead of wilcox test, 
+# because we have done the CLR transform
+pvals <- apply(genus.clr,2,function(xx) t.test(xx ~ droplevels(map$Vegetarian))$p.value)
+qvals <- p.adjust(pvals,'fdr')
+
+# print the 10 most significant taxa
+sort(qvals)[1:10]
+
 ### Conclusion
 We have covered the most common univariate statistical tests that one would perform in _R_. There are slightly more powerful tests available for differential abundance testing of taxa, such as the ANCOM package, but such packages have a steeper learning curve. We also did not cover alternative normalizations of relative abundances, such as the centered-log-ratio transform discussed in class. You are referred to the [`clr` function in the _compositions_ package](https://www.rdocumentation.org/packages/compositions/versions/2.0-6/topics/clr) for instructions on how to perform that transformation. 
   

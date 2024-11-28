@@ -203,7 +203,7 @@ Now run the correlation test.
 
 ---
 
-## Optional Exersize 7
+## Optional Exercize 7
 Multiple hypothesis testing with centered-log-ratio (CLR) transform:
 
 ```bash

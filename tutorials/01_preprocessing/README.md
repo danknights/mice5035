@@ -99,7 +99,7 @@ ls wgs-output
 Examine the output files and the log file as before:
 ```bash
 # print top 10 lines of the first output fastq (.fq) file 
-head wgs-output/CS.079.S37.001.fa.fna
+head wgs-output/CS.079.S37.001.fna
 
 # examine the log file as above
 # less lets you scroll up and down in a file without editing

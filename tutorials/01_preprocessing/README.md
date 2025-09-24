@@ -58,10 +58,6 @@ python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/16s-shal
 # inspect combined_seqs file (cut -c 1-100 cuts out the first 100 characters of each line)
 head 16s-output/combined_seqs.fna | cut -c 1-100
 
-# Unfortunately there are some extra characters (".fa") in the sample IDs in this file
-# We can remove them manually later but it's easiest to clean them out of the seqs file now
-# Note: this uses the bash command sed, to replace .fa_ with _ in every line.
-sed -i -e 's/.fa_/_/' 16s-output/combined_seqs.fna
 ```
 #### Troublshooting "flash" error
 Note: if you got an error saying that "flash" could not be found, please make sure you did the steps in the [One-time setup intructions](../../one_time_setup.md), and then run this: `source ~/.bash_profile`. This is telling the operating system to load in your configuration file. Then run the above `shi7.py` command again.

@@ -313,8 +313,6 @@ cd 16s-kraken
 
 # generate stitched, trimmed, per-sample FASTQ files with SHI7
 python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/16s-shallow/ -o 16s-output-fastq-sep --convert_fasta False --combine_fasta False
-# unfortunately we have an extra ".fa" in each sample name; remove with this
-for f in 16s-output-fastq-sep/*.fq; do echo $f; mv $f "$(echo "${f}" | sed 's/.fa.fq/.fq/')"; done
 
 # Run kraken on each per-sample FASTQ files
 mkdir kraken-out

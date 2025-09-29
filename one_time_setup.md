@@ -12,9 +12,9 @@ bash /home/knightsd/public/mice5035/mice5035_setup.sh
 ###
 ### Run a test script
 
-`module load qiime/1.9.1_centos7` (Load the "QIIME" software)
+`module load qiime/1.9.1_centos7` # (Load the "QIIME" software)
 
-`print_qiime_config.py` (to test that this package is working).
+`print_qiime_config.py` #(to test that this package is working).
 
 This should print out some details about your system configuration and should not return any errors. If so, you are now ready to use MSI and all of the bioinformatics packages they have available.
 

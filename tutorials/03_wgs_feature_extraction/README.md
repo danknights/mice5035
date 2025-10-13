@@ -5,7 +5,7 @@ This tutorial is an introduction to extracting taxonomic features from shotgun s
 performing alpha diversity and beta diversity analysis. We will use the Kraken tool to annotate the data.
 
 ### Connect to an interactive computing node on MSI
-- If needed, follow the steps the [getting started guide](../../README.md) to get connected to an interactive node on MSI.
+- This is described on the home page.
 
 ### Tutorial
 

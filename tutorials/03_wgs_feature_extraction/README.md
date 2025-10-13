@@ -107,10 +107,10 @@ Let's assume we chose 10,000 sequences as the rarefaction depth. In practice thi
 # DO NOT PASTE this command without editing the rarefaction depth
 single_rarefaction.py -i taxon_tables/taxa_table_L7.biom -d 10000 -o taxon_tables/taxa_table_L7_rarefied.biom
 
-# filter species in < 10 samples
-# Note: change the 10 to something appropriate for your
+# filter out (remove) species in < 2 samples
+# Note: You may need to change the 2 to something appropriate for your
 # number of samples
-filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7_rarefied.biom -o taxon_tables/taxa_table_L7_final.biom -s 10
+filter_otus_from_otu_table.py -i taxon_tables/taxa_table_L7_rarefied.biom -o taxon_tables/taxa_table_L7_final.biom -s 2
 
 # convert the final taxon table back to text format to load into R
 # Note: this file have an extra "comment" at the top, so in R

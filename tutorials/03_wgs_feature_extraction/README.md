@@ -45,10 +45,6 @@ Run preprocessing on the raw data to get trimmed, filtered, stitched output sequ
 ```bash
 # make sure you ran "module load python/3.6.3" as indicated above
 time python3 /home/knightsd/public/shi7/shi7.py -i /home/knightsd/public/imp/wgs-shallow -o wgs-output --combine_fasta False
-
-# Note: if the output files have an extra ".fa" in their names,
-# then run this to rename the files:
-for f in wgs-output/*.fa.fna; do mv $f wgs-output/`basename $f .fa.fna`.fna; done
 ```
 
 Then create a subdirectory for the kraken raw output tables.

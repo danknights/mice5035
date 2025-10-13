@@ -30,7 +30,6 @@ Make sure that you are in your home directory. As a reminder, the following comm
     cd mice5035
     cd tutorials/03_wgs_feature_extraction
     ls
-    git pull
  ```
 
 Let's set up a folder for our analysis of WGS taxa with the Kraken tool, so that we can keep our files organized.

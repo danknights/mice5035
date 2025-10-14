@@ -41,7 +41,7 @@ fastqc -o 16s-fastqc /home/knightsd/public/imp/16s-shallow/*.fastq.gz
 ### run shi7 on Immigration Microbiome Project (IMP) 16S data
 Note: we are running the ["portable" version of SHI7](https://github.com/knights-lab/shi7/releases/tag/v1.0.1). You could download this to your own directory, add it to your `PATH` as we did in the "Getting Started Guide," and run your own version. I am letting you just run mine here to save time and energy for more important things.
 
-A subsampled shallow set of the IMP 16s data are located here: `/home/knightsd/public/imp-16s-shallow/`. 
+A subsampled shallow set of the IMP 16s data are located here: `/home/knightsd/public/imp/16s-shallow/`. 
 
 Before running the quality filtering, first use the `-h` flag (short for "help") to print out the instructions for `shi7.py`/. You will see that there are many different settings that can be specified using certain command-line "flags". For example, if you do not want to convert the output data to FASTA format (from FASTQ format), you can run shi7 with the flag `--convert_fasta False`.
 

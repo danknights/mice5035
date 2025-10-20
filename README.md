@@ -47,4 +47,4 @@ When you are done using MSI, log out with `exit`, or you can type _control-D_. Y
   * Make sure you are on campus, connected to the the UofM network or eduroam network. Otherwise, MSI will block your computer from connecting. To get around this, you can also use a [University of Minnesota VPN](https://it.umn.edu/services-technologies/virtual-private-network-vpn). 
 
 ### Installing R
-When you are asked to install R on your computer, you may find [the instructions here](Installing_R.md).
+When you are asked to install R on your computer, you may find [the instructions here](installing_r.md).

@@ -20,6 +20,7 @@ If that proceeds without errors, then install the `car` package:
 ```bash
 install.packages('car')
 ```
+Note: if the `car` package fails to install, just skip and move on.
 
 #### Download and clean up the Immigration Microbiome Project data
 We will download all of the output files from the [Immigration Microbiome Project code repository](https://github.com/knights-lab/IMP_analyses).

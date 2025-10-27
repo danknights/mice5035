@@ -10,7 +10,7 @@ You must have completed [Tutorial 4](../04_data_cleaning).
 #### Install some needed packages
 Make sure you (still) have open your Tutorials project.
 
-Create a new R source file and call it, `tutorial_05.r`. Click in the console window. For this tutorial we will need the car package and the vegan package (installed in [Tutorial 4](../04_data_cleaning).
+Create a new R source file and call it, `tutorial_05.r`. Click in the console window. For this tutorial we will need the car package and the vegan package (installed in [Tutorial 4](../04_data_cleaning)).
 
 ### Tutorial
 
